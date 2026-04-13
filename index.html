@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digitalni sustav za poduzetnike — Projekt Integracija</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  .elementor-widget-html,.elementor-widget-container,.elementor-column,.elementor-column-wrap,.elementor-widget-wrap,.elementor-section,.elementor-container {
+    padding-left: 0 !important; padding-right: 0 !important;
+    margin-left: 0 !important; margin-right: 0 !important;
+    max-width: 100% !important; width: 100% !important; overflow-x: hidden !important;
+  }
+  * { box-sizing: border-box !important; max-width: 100% !important; word-break: break-word !important; }
+  body { width: 100% !important; overflow-x: hidden !important; -webkit-overflow-scrolling: touch !important; }
+
+  :root {
+    --red: #EF0000; --red-dark: #c00000;
+    --bg: #ffffff; --bg2: #f7f7f7;
+    --border: #e0e0e0; --text: #111111;
+    --dark: #111111; --white: #ffffff; --muted: #555555;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 28px; }
+  strong { font-weight: 600; color: var(--dark); }
+
+  /* ════ HERO ════ */
+  .hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; padding-bottom: 64px; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: url('https://projekthrvatska.com/wp-content/uploads/2025/06/image00074-scaled.jpg') center 15% / cover no-repeat; background-color: #1a1a1a; }
+  .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.2) 100%); }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 28px; width: 100%; }
+  .hero-tag { display: inline-block; background: var(--red); color: #fff; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 14px; border-radius: 2px; margin-bottom: 20px; animation: fadeUp 0.4s ease both; }
+  .hero h1 { font-size: clamp(2.4rem, 6.5vw, 4.4rem); font-weight: 800; color: #fff; line-height: 1.08; text-transform: uppercase; margin-bottom: 20px; max-width: 700px; animation: fadeUp 0.5s 0.07s ease both; }
+  .hero h1 span { color: var(--red); display: block; }
+  .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.82); max-width: 560px; margin-bottom: 36px; line-height: 1.8; font-weight: 300; animation: fadeUp 0.5s 0.14s ease both; }
+  .hero-sub strong { color: #fff; font-weight: 600; }
+  .hero-actions { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; animation: fadeUp 0.5s 0.2s ease both; }
+  .hero-meta { font-size: 0.76rem; color: rgba(255,255,255,0.35); font-weight: 400; animation: fadeUp 0.5s 0.26s ease both; }
+  .hero-meta span { margin: 0 8px; opacity: 0.5; }
+
+  /* ════ GUMBI ════ */
+  .btn-red { display: block !important; width: 100% !important; background: #EF0000 !important; color: #fff !important; padding: 15px 20px !important; font-family: 'Poppins', sans-serif !important; font-weight: 700 !important; font-size: 0.88rem !important; letter-spacing: 0.06em !important; text-transform: uppercase !important; text-decoration: none !important; border-radius: 4px !important; border: 2px solid #EF0000 !important; text-align: center !important; transition: background 0.2s, transform 0.15s; }
+  .btn-red:hover { background: #c00000 !important; border-color: #c00000 !important; transform: translateY(-1px); color: #fff !important; }
+  .btn-outline { display: block !important; width: 100% !important; background: transparent !important; color: rgba(255,255,255,0.8) !important; padding: 15px 20px !important; font-family: 'Poppins', sans-serif !important; font-weight: 600 !important; font-size: 0.88rem !important; letter-spacing: 0.06em !important; text-transform: uppercase !important; text-decoration: none !important; border-radius: 4px !important; border: 2px solid rgba(255,255,255,0.4) !important; text-align: center !important; transition: border-color 0.2s, color 0.2s; }
+  .btn-outline:hover { border-color: #fff !important; color: #fff !important; }
+
+  /* ════ STATS ════ */
+  .stats { background: var(--red); padding: 24px 0; }
+  .stats-inner { max-width: 900px; margin: 0 auto; padding: 0 28px; display: flex; justify-content: space-around; gap: 16px; }
+  .stat { text-align: center; flex: 1; }
+  .stat-num { font-size: clamp(1.1rem, 3.5vw, 2rem); font-weight: 800; color: #fff; line-height: 1; white-space: nowrap; }
+  .stat-label { font-size: clamp(0.54rem, 1.4vw, 0.68rem); font-weight: 500; color: rgba(255,255,255,0.72); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; line-height: 1.3; }
+
+  /* ════ SECTIONS ════ */
+  .section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+  .section-alt { background: var(--bg2); }
+  .section-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
+  .section h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; color: var(--dark); line-height: 1.1; margin-bottom: 32px; text-transform: uppercase; }
+  .section h2 span { color: var(--red); }
+
+  /* ════ PRIČA ════ */
+  .story { max-width: 680px; }
+  .story p { font-size: 1rem; color: var(--dark); line-height: 1.85; margin-bottom: 18px; font-weight: 300; }
+  .story p:last-child { margin-bottom: 0; }
+  .story strong { color: var(--dark); font-weight: 600; }
+  .story-quote { border-left: 3px solid var(--red); padding: 20px 20px 20px 24px; margin: 28px 0; background: var(--bg2); border-radius: 0 4px 4px 0; }
+  .story-quote p { color: var(--dark); font-style: italic; font-size: 1rem; margin: 0; font-weight: 400; line-height: 1.8; }
+  .nije-kod { background: var(--dark); border-radius: 6px; padding: 36px 32px; margin-top: 36px; position: relative; overflow: hidden; }
+  .nije-kod::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); }
+  .nije-kod p { font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.8; font-weight: 300; margin-bottom: 12px; }
+  .nije-kod p:last-child { margin-bottom: 0; }
+  .nije-kod strong { color: #fff; font-weight: 600; }
+
+  /* ════ ZA KOGA ════ */
+  .who-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .who-card { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 28px 22px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .who-card:hover { border-color: var(--red); box-shadow: 0 4px 20px rgba(239,0,0,0.08); }
+  .who-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
+  .who-title { font-size: 0.92rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .who-desc { font-size: 0.83rem; color: #444; line-height: 1.7; font-weight: 300; }
+
+  /* ════ ŠTO DOBIVAŠ ════ */
+  .items-list { list-style: none; }
+  .item-row { display: flex; align-items: flex-start; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+  .item-row:last-child { border-bottom: none; }
+  .item-num { width: 30px; height: 30px; background: var(--red); color: #fff; font-size: 0.78rem; font-weight: 700; display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; margin-top: 2px; }
+  .item-text { font-size: 0.94rem; color: var(--dark); line-height: 1.65; font-weight: 300; }
+  .item-text strong { color: var(--dark); font-weight: 600; }
+
+  /* ════ KVIZ ════ */
+  .kviz-outer { background: var(--bg2); padding: 64px 0 72px; width: 100%; border-bottom: 1px solid var(--border); }
+  .kviz-wrap { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+  .kviz-header { text-align: center; margin-bottom: 36px; }
+  .kviz-eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+  .kviz-main-title { font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 800; color: var(--dark); line-height: 1.1; text-transform: uppercase; margin-bottom: 10px; }
+  .kviz-main-title span { color: var(--red); }
+  .kviz-main-sub { font-size: 0.9rem; color: var(--muted); font-weight: 300; line-height: 1.7; max-width: 480px; margin: 0 auto; }
+  .progress-bar { display: flex; gap: 6px; margin-bottom: 8px; }
+  .progress-step { flex: 1; height: 3px; background: var(--border); border-radius: 2px; transition: background 0.3s; }
+  .progress-step.active { background: var(--red); }
+  .progress-step.done { background: var(--red-dark); opacity: 0.5; }
+  .progress-label { font-size: 0.7rem; color: var(--muted); margin-bottom: 28px; }
+  .step-eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+  .step-title { font-size: clamp(1.2rem, 4vw, 1.6rem); font-weight: 800; color: var(--dark); margin-bottom: 6px; line-height: 1.15; text-transform: uppercase; }
+  .step-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 22px; line-height: 1.65; font-weight: 300; }
+  .options-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .option-card { border: 2px solid var(--border); border-radius: 6px; padding: 16px 18px; cursor: pointer; transition: border-color 0.2s, background 0.2s; display: flex; align-items: center; gap: 14px; background: var(--bg); user-select: none; }
+  .option-card:hover { border-color: var(--red); background: #fff5f5; }
+  .option-card.selected { border-color: var(--red); background: #fff5f5; }
+  .option-icon { font-size: 1.5rem; flex-shrink: 0; width: 36px; text-align: center; }
+  .option-label { font-size: 0.95rem; font-weight: 600; color: var(--dark); line-height: 1.3; }
+  .option-sublabel { font-size: 0.78rem; color: var(--muted); margin-top: 2px; font-weight: 300; }
+  .option-check { margin-left: auto; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; transition: all 0.2s; color: #fff; font-weight: 700; }
+  .option-card.selected .option-check { background: var(--red); border-color: var(--red); }
+  .btn-next { display: block !important; width: 100% !important; background: var(--red) !important; color: #fff !important; border: none !important; border-radius: 4px !important; padding: 16px !important; font-family: 'Poppins', sans-serif !important; font-size: 0.9rem !important; font-weight: 700 !important; letter-spacing: 0.04em !important; text-transform: uppercase !important; cursor: pointer !important; text-align: center !important; transition: background 0.2s !important; }
+  .btn-next:hover { background: var(--red-dark) !important; }
+  .btn-next:disabled { background: var(--border) !important; color: #999 !important; cursor: not-allowed !important; }
+  .btn-back { display: block; width: 100%; background: transparent; color: var(--muted); border: none; padding: 12px; font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 500; cursor: pointer; text-align: center; margin-top: 8px; }
+  .btn-back:hover { color: var(--dark); }
+  .diskvali-wrap { background: var(--dark); border-radius: 6px; padding: 36px 28px; text-align: center; position: relative; overflow: hidden; }
+  .diskvali-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); }
+  .diskvali-icon { font-size: 2.5rem; margin-bottom: 16px; }
+  .diskvali-title { font-size: 1.1rem; font-weight: 800; color: #fff; text-transform: uppercase; margin-bottom: 10px; line-height: 1.2; }
+  .diskvali-text { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.75; font-weight: 300; margin-bottom: 24px; }
+  .diskvali-text strong { color: #fff; font-weight: 600; }
+  .btn-gmail { display: inline-block !important; background: #fff !important; color: var(--dark) !important; padding: 14px 28px !important; font-family: 'Poppins', sans-serif !important; font-weight: 700 !important; font-size: 0.88rem !important; text-transform: uppercase !important; letter-spacing: 0.06em !important; text-decoration: none !important; border-radius: 4px !important; border: none !important; margin-bottom: 12px !important; }
+  .diskvali-note { font-size: 0.75rem; color: rgba(255,255,255,0.3); font-style: italic; }
+  .btn-imam-gmail { display: block !important; width: 100% !important; background: transparent !important; color: rgba(255,255,255,0.5) !important; border: 1px solid rgba(255,255,255,0.2) !important; border-radius: 4px !important; padding: 12px !important; font-family: 'Poppins', sans-serif !important; font-size: 0.82rem !important; font-weight: 500 !important; cursor: pointer !important; text-align: center !important; margin-top: 12px !important; }
+  .btn-imam-gmail:hover { color: #fff !important; border-color: rgba(255,255,255,0.4) !important; }
+  .result-hero { background: var(--dark); border-radius: 6px; padding: 36px 28px; text-align: center; margin-bottom: 20px; position: relative; overflow: hidden; }
+  .result-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); }
+  .result-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 20px; }
+  .result-dvojac { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .result-blok { flex: 1; min-width: 110px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 16px 12px; text-align: center; }
+  .result-blok-broj { font-size: clamp(1.8rem, 6vw, 2.8rem); font-weight: 800; color: var(--red); line-height: 1; margin-bottom: 4px; }
+  .result-blok-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); font-weight: 300; line-height: 1.4; }
+  .result-poruka { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.75; font-weight: 300; font-style: italic; max-width: 440px; margin: 0 auto; }
+  .result-poruka strong { color: #fff; font-weight: 600; font-style: normal; }
+  .edu-section { margin-bottom: 20px; }
+  .edu-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 14px; }
+  .edu-card { background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--red); border-radius: 0 6px 6px 0; padding: 18px 20px; margin-bottom: 10px; }
+  .edu-card-title { font-size: 0.92rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+  .edu-card-text { font-size: 0.85rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+  .edu-card-text strong { color: var(--dark); font-weight: 600; }
+
+  /* ════ KONFIGURATOR ════ */
+  .konfig-outer { background: var(--bg); padding: 64px 0 72px; border-bottom: 1px solid var(--border); }
+  .konfig-inner { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+  .konfig-uvod { text-align: center; margin-bottom: 36px; }
+  .konfig-uvod-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+  .konfig-uvod-title { font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 800; color: var(--dark); line-height: 1.1; text-transform: uppercase; margin-bottom: 10px; }
+  .konfig-uvod-title span { color: var(--red); }
+  .konfig-uvod-sub { font-size: 0.9rem; color: var(--muted); font-weight: 300; line-height: 1.7; max-width: 480px; margin: 0 auto; }
+  .konfig-wrap { background: var(--bg); border: 2px solid var(--dark); border-radius: 6px; padding: 32px 28px; margin-bottom: 16px; position: relative; overflow: hidden; }
+  .konfig-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); }
+  .konfig-title { font-size: 1rem; font-weight: 800; color: var(--dark); text-transform: uppercase; margin-bottom: 6px; }
+  .konfig-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 24px; font-weight: 300; line-height: 1.65; }
+  .addon-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dark); opacity: 0.5; margin-bottom: 12px; margin-top: 8px; display: block; }
+  .baza-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+  .baza-card { border: 2px solid var(--border); border-radius: 6px; padding: 18px 20px; cursor: pointer; transition: border-color 0.2s, background 0.2s; background: var(--bg); user-select: none; }
+  .baza-card:hover { border-color: var(--red); background: #fff5f5; }
+  .baza-card.selected { border-color: var(--red); background: #fff5f5; }
+  .baza-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 4px; }
+  .baza-card-title { font-size: 0.92rem; font-weight: 700; color: var(--dark); }
+  .baza-price-wrap { text-align: right; flex-shrink: 0; }
+  .baza-card-price { font-size: 0.92rem; font-weight: 800; color: var(--red); white-space: nowrap; }
+  .baza-card-price-pdv { font-size: 0.7rem; color: var(--muted); font-weight: 300; }
+  .baza-card-desc { font-size: 0.8rem; color: var(--muted); font-weight: 300; line-height: 1.6; }
+  .addon-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 8px; cursor: pointer; transition: border-color 0.2s, background 0.2s; background: var(--bg); user-select: none; }
+  .addon-item:hover { border-color: var(--red); background: #fff5f5; }
+  .addon-item.selected { border-color: var(--red); background: #fff5f5; }
+  .addon-checkbox { width: 22px; height: 22px; min-width: 22px; border: 2px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: #fff; transition: all 0.2s; margin-top: 1px; flex-shrink: 0; }
+  .addon-item.selected .addon-checkbox { background: var(--red); border-color: var(--red); }
+  .addon-content { flex: 1; }
+  .addon-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 3px; }
+  .addon-title { font-size: 0.88rem; font-weight: 700; color: var(--dark); line-height: 1.3; }
+  .addon-price-wrap { text-align: right; flex-shrink: 0; }
+  .addon-price { font-size: 0.88rem; font-weight: 800; color: var(--dark); white-space: nowrap; }
+  .addon-price-pdv { font-size: 0.7rem; color: var(--muted); font-weight: 300; }
+  .addon-desc { font-size: 0.78rem; color: var(--muted); font-weight: 300; line-height: 1.6; }
+  .ukupno-wrap { background: var(--dark); border-radius: 6px; padding: 20px 22px; margin-top: 20px; margin-bottom: 20px; }
+  .ukupno-rows { margin-bottom: 14px; }
+  .ukupno-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 0.82rem; color: rgba(255,255,255,0.5); font-weight: 300; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .ukupno-row:last-child { border-bottom: none; }
+  .ukupno-row span:last-child { color: rgba(255,255,255,0.8); font-weight: 600; }
+  .ukupno-divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 12px 0; }
+  .ukupno-final { display: flex; justify-content: space-between; align-items: baseline; }
+  .ukupno-final-label { font-size: 0.78rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+  .ukupno-final-iznos { font-size: 1.8rem; font-weight: 800; color: #fff; line-height: 1; }
+  .ukupno-pdv-note { font-size: 0.7rem; color: rgba(255,255,255,0.25); margin-top: 6px; font-weight: 300; font-style: italic; line-height: 1.5; }
+  .odrzavanje-wrap { background: rgba(239,0,0,0.08); border: 1px solid rgba(239,0,0,0.2); border-radius: 6px; padding: 16px 20px; margin-top: 12px; }
+  .odrzavanje-naslov { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--red); margin-bottom: 8px; }
+  .odrzavanje-iznos { font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
+  .odrzavanje-tekst { font-size: 0.78rem; color: rgba(255,255,255,0.45); font-weight: 300; line-height: 1.65; }
+  .odrzavanje-tekst strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+
+  /* ════ PRIVOLA ════ */
+  .privola-wrap { margin: 16px 0; }
+  .privola-label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; user-select: none; }
+  .privola-checkbox {
+    width: 20px; height: 20px; min-width: 20px;
+    border: 2px solid var(--border); border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700; color: #fff;
+    transition: all 0.2s; margin-top: 2px; flex-shrink: 0;
+  }
+  .privola-label.checked .privola-checkbox { background: var(--red); border-color: var(--red); }
+  .privola-tekst { font-size: 0.78rem; color: var(--muted); font-weight: 300; line-height: 1.65; }
+  .privola-tekst a { color: var(--red); text-decoration: underline; cursor: pointer; }
+  .privola-error { font-size: 0.72rem; color: var(--red); margin-top: 4px; display: none; }
+
+  /* Obrazac */
+  .razgovor-napomena { background: #fff5f5; border: 1px solid rgba(239,0,0,0.2); border-radius: 4px; padding: 16px 18px; font-size: 0.82rem; color: var(--dark); line-height: 1.7; font-weight: 300; margin-bottom: 16px; }
+  .razgovor-napomena strong { font-weight: 600; }
+  .pdv-napomena { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 12px 16px; font-size: 0.75rem; color: var(--muted); line-height: 1.65; font-weight: 300; margin-bottom: 16px; }
+  .pdv-napomena strong { color: var(--dark); font-weight: 600; }
+  .obrazac-title { font-size: 0.82rem; font-weight: 700; color: var(--dark); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 14px; }
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+  .field label { font-size: 0.75rem; font-weight: 700; color: var(--dark); text-transform: uppercase; letter-spacing: 0.06em; }
+  .field input { width: 100%; padding: 13px 16px; border: 2px solid var(--border); border-radius: 4px; font-family: 'Poppins', sans-serif; font-size: 0.92rem; color: var(--dark); background: var(--bg); -webkit-appearance: none; appearance: none; transition: border-color 0.2s; }
+  .field input:focus { outline: none; border-color: var(--red); }
+  .field input::placeholder { color: #bbb; }
+  .field-error { font-size: 0.72rem; color: var(--red); margin-top: 2px; display: none; }
+  .btn-submit { display: block !important; width: 100% !important; background: var(--red) !important; color: #fff !important; border: none !important; border-radius: 4px !important; padding: 16px !important; font-family: 'Poppins', sans-serif !important; font-size: 0.9rem !important; font-weight: 700 !important; letter-spacing: 0.04em !important; text-transform: uppercase !important; cursor: pointer !important; text-align: center !important; transition: background 0.2s !important; }
+  .btn-submit:hover { background: var(--red-dark) !important; }
+  .btn-submit:disabled { background: var(--border) !important; color: #999 !important; cursor: not-allowed !important; }
+
+  /* ════ HVALA EKRAN ════ */
+  .hvala-ekran { display: none; }
+  .hvala-hero { background: var(--dark); padding: 72px 0 64px; text-align: center; position: relative; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .hvala-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); }
+  .hvala-check { width: 72px; height: 72px; background: var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; font-size: 2rem; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both; }
+  .hvala-tag { display: inline-block; background: rgba(239,0,0,0.15); color: var(--red); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 20px; border: 1px solid rgba(239,0,0,0.25); }
+  .hvala-h1 { font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 800; color: #fff; line-height: 1.08; text-transform: uppercase; margin-bottom: 16px; }
+  .hvala-h1 span { color: var(--red); display: block; }
+  .hvala-sub-txt { font-size: 1rem; color: rgba(255,255,255,0.55); max-width: 460px; margin: 0 auto; font-weight: 300; line-height: 1.75; }
+  .hvala-koraci { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  .hvala-wa { padding: 56px 0; background: var(--bg2); border-bottom: 1px solid var(--border); text-align: center; }
+  .hvala-wa h2 { font-size: clamp(1.4rem, 4vw, 1.9rem); font-weight: 800; color: var(--dark); text-transform: uppercase; margin-bottom: 10px; line-height: 1.1; }
+  .hvala-wa h2 span { color: var(--red); }
+  .hvala-wa p { font-size: 0.9rem; color: var(--muted); max-width: 400px; margin: 0 auto 28px; font-weight: 300; line-height: 1.7; }
+  .hvala-napomena { padding: 48px 0; }
+  .note-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 24px 28px; border-left: 3px solid var(--red); }
+  .note-card p { font-size: 0.88rem; color: var(--dark); line-height: 1.8; font-weight: 300; }
+  .note-card strong { font-weight: 600; }
+  .btn-wa { display: inline-flex !important; align-items: center !important; gap: 12px !important; background: #25D366 !important; color: #fff !important; padding: 16px 36px !important; font-family: 'Poppins', sans-serif !important; font-weight: 700 !important; font-size: 0.95rem !important; letter-spacing: 0.04em !important; text-transform: uppercase !important; text-decoration: none !important; border-radius: 4px !important; border: none !important; transition: background 0.2s; }
+  .btn-wa:hover { background: #1da851 !important; }
+  .wa-icon { width: 22px; height: 22px; flex-shrink: 0; }
+  .wa-note { margin-top: 14px; font-size: 0.75rem; color: var(--muted); font-weight: 300; }
+  .koraci { display: flex; flex-direction: column; gap: 0; position: relative; max-width: 680px; }
+  .koraci::before { content: ''; position: absolute; left: 19px; top: 38px; bottom: 38px; width: 2px; background: linear-gradient(180deg, var(--red) 0%, var(--border) 100%); }
+  .korak { display: flex; gap: 20px; align-items: flex-start; padding: 18px 0; }
+  .korak-num { width: 40px; height: 40px; background: var(--red); color: #fff; font-size: 0.85rem; font-weight: 800; display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; position: relative; z-index: 1; }
+  .korak-content h3 { font-size: 0.95rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .korak-content p { font-size: 0.85rem; color: var(--muted); font-weight: 300; line-height: 1.65; }
+  .korak-content p strong { color: var(--dark); font-weight: 600; }
+
+  /* ════ KAKO IDE ════ */
+  .primjer-wrap { background: var(--dark); border-radius: 6px; padding: 36px 32px; max-width: 680px; position: relative; overflow: hidden; }
+  .primjer-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); }
+  .primjer-eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+  .primjer-naslov { font-size: clamp(1.2rem, 3vw, 1.6rem); font-weight: 800; color: #fff; text-transform: uppercase; margin-bottom: 6px; line-height: 1.15; }
+  .primjer-naslov span { color: var(--red); }
+  .primjer-sub { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 24px; font-weight: 300; line-height: 1.65; }
+  .primjer-lista { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .primjer-lista li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.88rem; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.55; }
+  .primjer-lista li::before { content: '✓'; color: var(--red); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .primjer-lista li strong { color: #fff; font-weight: 600; }
+  .primjer-footer { font-size: 0.75rem; color: rgba(255,255,255,0.25); font-style: italic; font-weight: 300; }
+
+  /* ════ FAQ ════ */
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-q { width: 100%; background: none; border: none; text-align: left; padding: 18px 0; font-family: 'Poppins', sans-serif; font-size: 0.88rem; font-weight: 600; color: var(--dark); cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; transition: color 0.2s; text-transform: uppercase; letter-spacing: 0.03em; line-height: 1.4; word-break: break-word; white-space: normal; }
+  .faq-q:hover { color: var(--red); }
+  .faq-q-text { flex: 1; text-align: left; min-width: 0; }
+  .faq-icon { width: 24px; height: 24px; min-width: 24px; background: var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; font-size: 1rem; transition: transform 0.3s; margin-top: 2px; }
+  .faq-item.open .faq-q { color: var(--red); }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-a { overflow: hidden; max-height: 0; transition: max-height 0.35s ease; }
+  .faq-a-inner { padding: 0 0 20px; color: var(--muted); font-size: 0.9rem; line-height: 1.8; font-weight: 300; }
+  .faq-a-inner strong { color: var(--dark); font-weight: 600; }
+
+  /* ════ CTA FINAL ════ */
+  .cta-final { padding: 80px 0 72px; background: var(--dark); position: relative; }
+  .cta-final::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); }
+  .cta-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 12px; }
+  .cta-final h2 { font-size: clamp(2rem, 5.5vw, 3.6rem); font-weight: 800; color: #fff; line-height: 1.08; text-transform: uppercase; margin-bottom: 16px; }
+  .cta-final h2 span { color: var(--red); }
+  .cta-final .sub { color: rgba(255,255,255,0.55); max-width: 480px; margin-bottom: 14px; font-size: 0.97rem; font-weight: 300; line-height: 1.75; }
+  .cta-final .sub2 { color: rgba(255,255,255,0.3); max-width: 480px; margin-bottom: 36px; font-size: 0.82rem; font-weight: 300; line-height: 1.7; font-style: italic; }
+
+  /* ════ FOOTER ════ */
+  .footer { background: #0a0a0a; padding: 28px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+  .footer-inner { max-width: 900px; margin: 0 auto; padding: 0 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-brand { font-size: 0.78rem; color: rgba(255,255,255,0.25); font-weight: 300; }
+  .footer-brand strong { color: rgba(255,255,255,0.45); font-weight: 600; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-link { font-size: 0.75rem; color: rgba(255,255,255,0.3); text-decoration: none; cursor: pointer; transition: color 0.2s; font-weight: 300; }
+  .footer-link:hover { color: rgba(255,255,255,0.7); }
+
+  /* ════ PRAVNI MODAL ════ */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85); z-index: 9999;
+    overflow-y: auto; padding: 20px;
+  }
+  .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+  .modal-box {
+    background: var(--bg); border-radius: 8px;
+    max-width: 720px; width: 100%;
+    margin: 20px auto; position: relative;
+    overflow: hidden;
+  }
+  .modal-header {
+    background: var(--dark); padding: 24px 28px;
+    display: flex; justify-content: space-between; align-items: center;
+    position: sticky; top: 0; z-index: 1;
+  }
+  .modal-header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); }
+  .modal-title { font-size: 0.88rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.06em; }
+  .modal-close {
+    width: 32px; height: 32px; background: rgba(255,255,255,0.1);
+    border: none; border-radius: 50%; color: #fff; font-size: 1.1rem;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: background 0.2s;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.2); }
+  .modal-tabs { display: flex; border-bottom: 1px solid var(--border); background: var(--bg2); }
+  .modal-tab { flex: 1; padding: 14px 12px; font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border: none; background: transparent; cursor: pointer; color: var(--muted); border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+  .modal-tab.active { color: var(--red); border-bottom-color: var(--red); background: var(--bg); }
+  .modal-content { padding: 28px; }
+  .modal-panel { display: none; }
+  .modal-panel.active { display: block; }
+  .modal-panel h3 { font-size: 0.95rem; font-weight: 700; color: var(--dark); text-transform: uppercase; margin-bottom: 12px; margin-top: 20px; }
+  .modal-panel h3:first-child { margin-top: 0; }
+  .modal-panel p { font-size: 0.85rem; color: var(--muted); line-height: 1.8; font-weight: 300; margin-bottom: 12px; }
+  .modal-panel p:last-child { margin-bottom: 0; }
+  .modal-panel strong { color: var(--dark); font-weight: 600; }
+  .modal-panel ul { list-style: none; padding: 0; margin-bottom: 12px; }
+  .modal-panel ul li { font-size: 0.85rem; color: var(--muted); line-height: 1.8; font-weight: 300; padding: 4px 0; padding-left: 16px; position: relative; }
+  .modal-panel ul li::before { content: '–'; position: absolute; left: 0; color: var(--red); }
+
+  /* ════ MOBILE ════ */
+  @media (max-width: 760px) {
+    .hero-bg { background-position: 35% top; }
+    .hero { padding-bottom: 48px; }
+    .hero-content { padding: 0 20px; }
+    .container { padding: 0 18px; }
+    .section { padding: 48px 0; }
+    .stats-inner { padding: 0 16px; gap: 8px; }
+    .stat-num { font-size: clamp(0.95rem, 4.5vw, 1.3rem); }
+    .stat-label { font-size: 0.52rem; letter-spacing: 0.04em; }
+    .who-grid { grid-template-columns: 1fr; }
+    .nije-kod { padding: 24px 20px; }
+    .kviz-outer, .konfig-outer { padding: 48px 0 56px; }
+    .konfig-wrap { padding: 24px 18px; }
+    .result-dvojac { flex-direction: column; }
+    .cta-final { padding: 56px 0 48px; }
+    .faq-q { font-size: 0.78rem; padding: 14px 0; }
+    .faq-icon { width: 20px; height: 20px; min-width: 20px; font-size: 0.85rem; }
+    .primjer-wrap { padding: 24px 20px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+    .modal-box { margin: 0; border-radius: 0; min-height: 100vh; }
+    .btn-wa { width: 100% !important; justify-content: center !important; padding: 16px 24px !important; }
+    .modal-tab { font-size: 0.65rem; padding: 12px 8px; }
+  }
+
+  @media (min-width: 761px) {
+    .hero-actions { flex-direction: row; }
+    .btn-red, .btn-outline { display: inline-block !important; width: auto !important; padding: 15px 32px !important; }
+    .btn-wa { display: inline-flex !important; }
+  }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes popIn { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════
+     GLAVNI SADRŽAJ
+════════════════════════════ -->
+<div id="glavniSadrzaj">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Projekt Integracija · Digitalni alati za poduzetnike</div>
+    <h1>Koliko bi te ljudi kontaktiralo —<br><span>kad bi znali gdje?</span></h1>
+    <p class="hero-sub">Svaki tjedan netko vidi tvoj rad, svidi mu se i pomisli "htio bih ovo." Ali nema gdje kliknuti. Nema obrazac. Nema gumb. I ode dalje — <strong>ne zato što ne želi, nego zato što mu nisi dao način da se javi.</strong></p>
+    <div class="hero-actions">
+      <a href="#kviz" class="btn-red">Vidi koliko ih prolaziš →</a>
+      <a href="#sto-dobivas" class="btn-outline">Što je uključeno? ↓</a>
+    </div>
+    <p class="hero-meta">Gotovo za 3 dana <span>·</span> Od 390 € + PDV <span>·</span> Ne trebaš znati ništa tehničko</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-num">3 dana</div><div class="stat-label">do gotovog sustava</div></div>
+    <div class="stat"><div class="stat-num">0</div><div class="stat-label">tehničkog znanja potrebno</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">prima upite umjesto tebe</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">tvoje, zauvijek</div></div>
+  </div>
+</div>
+
+<!-- PRIČA -->
+<section class="section">
+  <div class="container">
+    <div class="section-tag">Zašto sam ovo napravio</div>
+    <h2>Posao se obavi.<br><span>Ali administracija nikad ne staje.</span></h2>
+    <div class="story">
+      <p>Na kanalima govorim o osobnim financijama, poduzetništvu, povratku u Hrvatsku, obitelji. Ali sve te teme vode prema jednom — da imaš kontrolu nad svojim životom, a ne da on kontrolira tebe.</p>
+      <p>Jer što vrijedi graditi nešto svoje ako si stalno zauzet? Uslugu obavljaš odlično. Ali sve oko nje — odgovaranje na upite, zapisivanje kontakata, praćenje tko se javio — to pada na tebe. I baš u tom trenutku dok sređuješ administraciju, propuštaš nešto drugo.</p>
+      <p>Ne propuštaš posao. <strong>Propuštaš večeru. Razgovor. Prisutnost uz one koji su ti najvažniji.</strong></p>
+      <div class="story-quote">
+        <p>Znam kako to izgleda. Znam koliko minuta traje svaki upit koji dođe u pogrešno vrijeme. I znam kako izgleda kad završiš s tim — a oni su već otišli spavati.</p>
+      </div>
+      <p>Složio sam sustav koji prima upite, sprema kontakte i javlja mi se dok ja radim ono što je važno. Uslugu. Ili jednostavno — budem tamo gdje trebam biti.</p>
+      <p><strong>To sad nudim i tebi. Jer administracija ne smije biti razlog zašto nisi prisutan.</strong></p>
+      <div class="nije-kod">
+        <p><strong>I ne — ne trebaš znati kodirati.</strong> Ne trebaš znati što je hosting, domena ni webhook. Od tebe trebam fotografiju, tekst o usluzi i cijenu. Sve ostalo sredim ja. Za 3 dana imaš sustav koji radi.</p>
+        <p>Isti sustav koji meni omogućava da budem prisutan — sad može biti i tvoj.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZA KOGA -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-tag">Prepoznaješ li se?</div>
+    <h2>Ovo nije<br><span>za svakoga.</span></h2>
+    <div class="who-grid">
+      <div class="who-card"><span class="who-icon">📱</span><div class="who-title">Uvijek si "na poslu"</div><p class="who-desc">Provjeriš mobitel za stolom. Kažeš "samo trenutak" — a trenutak traje sat vremena. Imaš odličnu uslugu ali nemaš sustav koji prima upite kad ti ne možeš.</p></div>
+      <div class="who-card"><span class="who-icon">💬</span><div class="who-title">Upiti dolaze — ali prolaze</div><p class="who-desc">Netko te pita, ti si zauzet, odgovaraš prekasno — a oni su već otišli drugdje. Ne zato što nisi dobar. Nego zato što nisi imao gdje primiti upit na pravi način.</p></div>
+      <div class="who-card"><span class="who-icon">🏠</span><div class="who-title">Otvorio si posao za slobodu — a slobode je sve manje</div><p class="who-desc">Svaki novi klijent znači više poruka, više praćenja, manje prisutnosti. Negdje se to mora prekinuti. Sustav koji radi umjesto tebe to prekida.</p></div>
+      <div class="who-card"><span class="who-icon">📈</span><div class="who-title">Sve leži na tebi</div><p class="who-desc">Ako ti ne odgovaraš — ništa se ne dogodi. Ako odeš na odmor — posao staje. To nije sloboda. To je zamka koja se tiho zatvorila dok nisi ni primijetio.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ŠTO DOBIVAŠ -->
+<section class="section" id="sto-dobivas">
+  <div class="container">
+    <div class="section-tag">Što je uključeno</div>
+    <h2>Jednom se postavi.<br><span>Nakon toga radi samo.</span></h2>
+    <ul class="items-list">
+      <li class="item-row"><span class="item-num">1</span><span class="item-text"><strong>Stranica koja prima ljude 24/7</strong> — ne trebaš je voditi ni provjeravati. Tu je i radi dok ti živiš svoj život.</span></li>
+      <li class="item-row"><span class="item-num">2</span><span class="item-text"><strong>Svaki upit automatski spremen</strong> — ime, broj, email — sve na jednom mjestu. Nikad više "čekaj da zapišem."</span></li>
+      <li class="item-row"><span class="item-num">3</span><span class="item-text"><strong>Email čim se netko javi</strong> — dobiješ obavijest odmah. Provjeriš kad možeš — ne kad moraš biti za ekranom.</span></li>
+      <li class="item-row"><span class="item-num">4</span><span class="item-text"><strong>WhatsApp gumb za one koji ne vole obrasce</strong> — jednim klikom direktno tebi. Poruka je već napisana, oni samo pošalju.</span></li>
+      <li class="item-row"><span class="item-num">5</span><span class="item-text"><strong>Sve na tvojoj domeni</strong> — tvoja adresa, tvoj brand, tvoje zauvijek. Bez WordPressa, bez tehničkih znanja s tvoje strane.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- KVIZ -->
+<div class="kviz-outer" id="kviz">
+<div class="kviz-wrap" id="kviz-top">
+  <div class="kviz-header">
+    <div class="kviz-eyebrow">Provjeri svoju situaciju</div>
+    <div class="kviz-main-title">Koliko ti posao<br><span>krade od života?</span></div>
+    <p class="kviz-main-sub">Odgovori na nekoliko pitanja — vidiš koliko upita i koliko vremena tjedno propuštaš.</p>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-step active" id="pb1"></div>
+    <div class="progress-step" id="pb2"></div>
+    <div class="progress-step" id="pb3"></div>
+    <div class="progress-step" id="pb4"></div>
+  </div>
+  <div class="progress-label" id="progressLabel">Pitanje 1 od 4</div>
+
+  <!-- GMAIL GATE -->
+  <div id="step0" style="display:block;">
+    <div class="step-eyebrow">Prije nego počnemo</div>
+    <div class="step-title">Koristiš li Gmail ili Google Workspace?</div>
+    <div class="step-sub">Sustav koji gradim radi na Google platformi. Bez Gmaila neki dodaci ne rade — ali stranica s WhatsApp gumbom radi i bez njega.</div>
+    <div class="options-grid">
+      <div class="option-card" onclick="provjeriGmail('da')"><div class="option-icon">✅</div><div><div class="option-label">Da, imam Gmail ili Google Workspace</div><div class="option-sublabel">Svi dodaci dostupni</div></div><div class="option-check"></div></div>
+      <div class="option-card" onclick="provjeriGmail('ne')"><div class="option-icon">❌</div><div><div class="option-label">Ne, nemam Google account</div><div class="option-sublabel">Neki dodaci neće biti dostupni</div></div><div class="option-check"></div></div>
+    </div>
+  </div>
+
+  <!-- DISKVALIFIKACIJA -->
+  <div id="diskvalifikacija" style="display:none;">
+    <div class="diskvali-wrap">
+      <div class="diskvali-icon">⚠️</div>
+      <div class="diskvali-title">Bez Gmaila — neke stvari ne mogu postaviti.</div>
+      <p class="diskvali-text">Automatsko spremanje upita i email obavijest rade na Google platformi. <strong>Bez Gmail accounta ti dodaci nisu dostupni.</strong><br><br>Stranica s WhatsApp gumbom radi savršeno i bez Gmaila. Ili otvori Gmail besplatno — traje 2 minute.</p>
+      <a href="https://accounts.google.com/signup" target="_blank" class="btn-gmail">Otvori Gmail account →</a>
+      <p class="diskvali-note">Nakon što otvoriš account, vrati se i nastavi.</p>
+      <button type="button" class="btn-imam-gmail" onclick="provjeriGmail('da')">Već imam Gmail — nastavljam →</button>
+      <button type="button" class="btn-imam-gmail" onclick="provjeriGmail('ne_svejedno')" style="margin-top:8px !important;">Nastavljam bez Gmaila →</button>
+    </div>
+  </div>
+
+  <!-- KORACI 1-4 -->
+  <div id="step1" style="display:none;">
+    <div class="step-eyebrow">Pitanje 1 od 4</div>
+    <div class="step-title">Koliko te ljudi tjedno pita za tvoju uslugu?</div>
+    <div class="step-sub">Procijeni — poruke, usmeno, telefon, sve zajedno.</div>
+    <div class="options-grid">
+      <div class="option-card" data-upiti="2" onclick="selectOpt(this,'tjedno','btnStep1')"><div class="option-icon">🤙</div><div><div class="option-label">1 – 3 osobe</div><div class="option-sublabel">Ponekad, ne svaki tjedan</div></div><div class="option-check"></div></div>
+      <div class="option-card" data-upiti="5" onclick="selectOpt(this,'tjedno','btnStep1')"><div class="option-icon">📱</div><div><div class="option-label">4 – 7 osoba</div><div class="option-sublabel">Redovito, skoro svaki tjedan</div></div><div class="option-check"></div></div>
+      <div class="option-card" data-upiti="10" onclick="selectOpt(this,'tjedno','btnStep1')"><div class="option-icon">🔥</div><div><div class="option-label">8 ili više</div><div class="option-sublabel">Stalno se netko javlja</div></div><div class="option-check"></div></div>
+    </div>
+    <button class="btn-next" id="btnStep1" onclick="goToStep(2)" disabled>Dalje →</button>
+  </div>
+
+  <div id="step2" style="display:none;">
+    <div class="step-eyebrow">Pitanje 2 od 4</div>
+    <div class="step-title">Imaš li gdje poslati ljude koji žele tvoju uslugu?</div>
+    <div class="step-sub">Ne misli na Facebook ili Instagram — nego na pravu stranicu s obrascem ili kontaktom.</div>
+    <div class="options-grid">
+      <div class="option-card" data-propust="0.15" onclick="selectOpt(this,'stranica','btnStep2')"><div class="option-icon">✅</div><div><div class="option-label">Imam pravu stranicu</div><div class="option-sublabel">S obrascem ili kontakt formom</div></div><div class="option-check"></div></div>
+      <div class="option-card" data-propust="0.45" onclick="selectOpt(this,'stranica','btnStep2')"><div class="option-icon">📲</div><div><div class="option-label">Imam samo Facebook ili Instagram</div><div class="option-sublabel">Pošaljem link na profil</div></div><div class="option-check"></div></div>
+      <div class="option-card" data-propust="0.75" onclick="selectOpt(this,'stranica','btnStep2')"><div class="option-icon">❌</div><div><div class="option-label">Nemam ništa</div><div class="option-sublabel">Kažem "nazovi me" ili "javi se u DM"</div></div><div class="option-check"></div></div>
+    </div>
+    <button class="btn-next" id="btnStep2" onclick="goToStep(3)" disabled>Dalje →</button>
+    <button class="btn-back" onclick="goToStep(1)">← Natrag</button>
+  </div>
+
+  <div id="step3" style="display:none;">
+    <div class="step-eyebrow">Pitanje 3 od 4</div>
+    <div class="step-title">Što se dogodi s upitom kad si zauzet?</div>
+    <div class="step-sub">Što se stvarno dogodi kad te netko pita a ti si s obitelji, na terenu ili ne možeš odmah odgovoriti.</div>
+    <div class="options-grid">
+      <div class="option-card" data-faktor="1.0" data-minuta="5" onclick="selectOpt(this,'zauzet','btnStep3')"><div class="option-icon">⚡</div><div><div class="option-label">Odgovorim čim mogu, isti dan</div><div class="option-sublabel">Nikad ne propustim</div></div><div class="option-check"></div></div>
+      <div class="option-card" data-faktor="1.3" data-minuta="15" onclick="selectOpt(this,'zauzet','btnStep3')"><div class="option-icon">⏰</div><div><div class="option-label">Kasnim, ponekad zaboravim</div><div class="option-sublabel">Vidim poruku ali ne stignem odmah</div></div><div class="option-check"></div></div>
+      <div class="option-card" data-faktor="1.6" data-minuta="30" onclick="selectOpt(this,'zauzet','btnStep3')"><div class="option-icon">💨</div><div><div class="option-label">Uglavnom propadne</div><div class="option-sublabel">Dok se javim, već su otišli drugdje</div></div><div class="option-check"></div></div>
+    </div>
+    <button class="btn-next" id="btnStep3" onclick="goToStep(4)" disabled>Dalje →</button>
+    <button class="btn-back" onclick="goToStep(2)">← Natrag</button>
+  </div>
+
+  <div id="step4" style="display:none;">
+    <div class="step-eyebrow">Pitanje 4 od 4</div>
+    <div class="step-title">Koliko naplaćuješ po klijentu?</div>
+    <div class="step-sub">Prosječan iznos jedne usluge ili jednog klijenta.</div>
+    <div class="options-grid">
+      <div class="option-card" data-cijena="35" onclick="selectOpt(this,'cijena','btnStep4')"><div class="option-icon">💶</div><div><div class="option-label">Do 50 €</div><div class="option-sublabel">Niža cijena, veći volumen</div></div><div class="option-check"></div></div>
+      <div class="option-card" data-cijena="120" onclick="selectOpt(this,'cijena','btnStep4')"><div class="option-icon">💶</div><div><div class="option-label">50 – 200 €</div><div class="option-sublabel">Standardna usluga</div></div><div class="option-check"></div></div>
+      <div class="option-card" data-cijena="300" onclick="selectOpt(this,'cijena','btnStep4')"><div class="option-icon">💶</div><div><div class="option-label">Više od 200 €</div><div class="option-sublabel">Premium ili projektna usluga</div></div><div class="option-check"></div></div>
+    </div>
+    <button class="btn-next" id="btnStep4" onclick="prikaziRezultat()" disabled>Vidi rezultat →</button>
+    <button class="btn-back" onclick="goToStep(3)">← Natrag</button>
+  </div>
+
+  <!-- REZULTAT + EDUKACIJA -->
+  <div id="rezultatWrap" style="display:none;">
+    <div class="result-hero">
+      <div class="result-label">Tvoja procjena</div>
+      <div class="result-dvojac">
+        <div class="result-blok"><div class="result-blok-broj" id="rezUpiti">—</div><div class="result-blok-label">propuštenih upita<br>tjedno</div></div>
+        <div class="result-blok"><div class="result-blok-broj" id="rezIznos">—</div><div class="result-blok-label">€ izgubljeno<br>mjesečno</div></div>
+        <div class="result-blok"><div class="result-blok-broj" id="rezVrijeme">—</div><div class="result-blok-label">minuta tjedno<br>na administraciju</div></div>
+      </div>
+      <p class="result-poruka" id="rezPoruka"></p>
+    </div>
+    <div class="edu-section">
+      <div class="edu-title">Zašto se to događa</div>
+      <div class="edu-card"><div class="edu-card-title" id="eduStranicaNaslov"></div><div class="edu-card-text" id="eduStranicaTekst"></div></div>
+      <div class="edu-card"><div class="edu-card-title">📋 Upiti ne ostavljaju trag</div><div class="edu-card-text">Kad te netko pita u poruci ili usmeno — taj kontakt nigdje nije zapisan. <strong>Ako se ne javi odmah, zauvijek je otišao.</strong> Obrazac koji automatski sprema svaki upit to rješava dok ti radiš ili si s obitelji.</div></div>
+      <div class="edu-card"><div class="edu-card-title" id="eduZauzetNaslov"></div><div class="edu-card-text" id="eduZauzetTekst"></div></div>
+    </div>
+    <div style="text-align:center; padding: 8px 0 4px;">
+      <a href="#konfigurator" class="btn-next" style="display:inline-block !important; width:auto !important; padding: 15px 32px !important; text-decoration:none !important;">Složi što ti treba ↓</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- KAKO IDE -->
+<section class="section">
+  <div class="container">
+    <div class="section-tag">Proces</div>
+    <h2>Od upita do<br><span>gotovog sustava.</span></h2>
+    <div class="koraci">
+      <div class="korak"><div class="korak-num">1</div><div class="korak-content"><h3>Ispuniš konfigurator</h3><p>Odabereš što ti treba i pošalješ upit s imenom i brojem mobitela. <strong>Nema dugih obrazaca, nema čekanja.</strong></p></div></div>
+      <div class="korak"><div class="korak-num">2</div><div class="korak-content"><h3>Kratki razgovor od 10 minuta</h3><p>Javim ti se osobno. Prolazimo tvoju situaciju. <strong>Tek tada šaljem ponudu s točnim iznosom.</strong></p></div></div>
+      <div class="korak"><div class="korak-num">3</div><div class="korak-content"><h3>Pripremaš materijale</h3><p>Šaljem ti kratki upitnik — fotografija, tekst o usluzi, cijena, Gmail adresa. <strong>To je sve što trebam od tebe.</strong></p></div></div>
+      <div class="korak"><div class="korak-num">4</div><div class="korak-content"><h3>Za 3 dana — sustav je gotov</h3><p>Pokazujem ti kako izgleda prije nego postavimo. Kad potvrdiš — ide online. <strong>Od tog trenutka prima upite umjesto tebe.</strong></p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIMJER -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-tag">Primjer</div>
+    <h2>Ovako izgleda<br><span>gotov sustav.</span></h2>
+    <div class="primjer-wrap">
+      <div class="primjer-eyebrow">Primjer — osobni trener</div>
+      <div class="primjer-naslov">Ivan Kovač<br><span>Osobni trening · Zagreb</span></div>
+      <p class="primjer-sub">Stranica, sustav i automatizacija — sve postavljeno za 3 dana. Ivan više ne provjerava DM-ove — sustav radi umjesto njega.</p>
+      <ul class="primjer-lista">
+        <li>Stranica na <strong>ivankovac.pi.hr</strong> — dostupna 24 sata dnevno</li>
+        <li>Svaki upit automatski spremen — <strong>ime, broj, email na jednom mjestu</strong></li>
+        <li>Email obavijest čim se netko javi — <strong>provjeri kad imaš trenutak</strong></li>
+        <li>WhatsApp gumb za direktan kontakt — <strong>poruka već napisana</strong></li>
+      </ul>
+      <p class="primjer-footer">* Primjer je ilustrativan. Tvoja stranica je prilagođena tvojoj usluzi i publici.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <div class="section-tag">Pitanja</div>
+    <h2>Ono što me<br><span>najčešće pitaju.</span></h2>
+    <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Trebam li znati nešto tehničko?</span><span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Ne. Od tebe trebam fotografiju, tekst o usluzi, cijenu i Gmail adresu. Sve ostalo sredim ja. <strong>Ti samo potvrdiš kako izgleda i ideš dalje.</strong></div></div></div>
+    <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Koliko dugo traje izrada?</span><span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Od trenutka kad dobijem sve materijale — <strong>3 radna dana.</strong> Pokazujem ti preview prije nego ide online.</div></div></div>
+    <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Što ako trebam promjenu na stranici?</span><span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Izmjena teksta, cijene ili fotografije — uključeno u godišnje održavanje od <strong>150 € + PDV.</strong> Veće izmjene dogovaramo posebno.</div></div></div>
+    <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Moram li imati Gmail?</span><span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Za automatizaciju koja sprema upite i šalje obavijesti — da. <strong>Gmail je besplatan i otvoriš ga za 2 minute.</strong> Stranica s WhatsApp gumbom radi i bez Gmaila.</div></div></div>
+    <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Što se dogodi nakon godinu dana?</span><span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Plaćaš godišnje održavanje — <strong>150 € + PDV (187,50 €)</strong> — koje pokriva sitne izmjene i tehničko održavanje. Ako ne želiš nastaviti, stranica ostaje tvoja zauvijek.</div></div></div>
+    <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Idem li ja u sustav PDV-a zbog ovoga?</span><span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Ne. <strong>Paušalisti plaćaju ukupni iznos s PDV-om.</strong> Poduzetnici u sustavu PDV-a mogu odbiti PDV kao pretporez.</div></div></div>
+    <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Zašto je ovo dio Projekt Hrvatske?</span><span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Projekt Hrvatska postoji da poduzetnik koji gradi nešto svoje može imati i posao i prisutnost uz one koji su mu važni. <strong>Financije, poduzetništvo, obitelj</strong> — sve vodi prema jednom: da imaš kontrolu nad svojim životom. Ovo je alat koji taj cilj čini malo lakšim.</div></div></div>
+  </div>
+</section>
+
+<!-- KONFIGURATOR -->
+<div class="konfig-outer" id="konfigurator">
+<div class="konfig-inner">
+  <div class="konfig-uvod">
+    <div class="konfig-uvod-tag">Složi što trebaš</div>
+    <div class="konfig-uvod-title">Odaberi.<br><span>Pošalji upit.</span></div>
+    <p class="konfig-uvod-sub">Cijena se računa automatski. Nakon upita — kratki razgovor od 10 minuta i šaljem ti točnu ponudu.</p>
+  </div>
+  <div class="konfig-wrap" id="kontigWrapEl">
+    <div class="konfig-title">Konfigurator</div>
+    <div class="konfig-sub">Odaberi bazu i dodatke koje trebaš — sve ostalo je na meni.</div>
+    <span class="addon-label">Baza — odaberi jedno</span>
+    <div class="baza-grid">
+      <div class="baza-card" id="bazaNema" onclick="odaberiBazu('nema_stranice')">
+        <div class="baza-card-top"><div class="baza-card-title">Stranica na kojoj te mogu naći</div><div class="baza-price-wrap"><div class="baza-card-price">390 € + PDV</div><div class="baza-card-price-pdv">ukupno 487,50 €</div></div></div>
+        <div class="baza-card-desc">Profesionalna stranica na tvojoj domeni ili pi.hr subdomeni — gotova za 3 dana.</div>
+      </div>
+      <div class="baza-card" id="bazaIma" onclick="odaberiBazu('ima_stranicu')">
+        <div class="baza-card-top"><div class="baza-card-title">Dodajemo landing na tvoju postojeću stranicu</div><div class="baza-price-wrap"><div class="baza-card-price">290 € + PDV</div><div class="baza-card-price-pdv">ukupno 362,50 €</div></div></div>
+        <div class="baza-card-desc">Imaš stranicu — dodajemo novi landing koji prima upite. Ne diramo ostatak.</div>
+      </div>
+    </div>
+    <span class="addon-label">Dodaci — biraj što trebaš</span>
+    <div class="addon-item" id="addonObrazac" onclick="toggleAddon('obrazac', 100)">
+      <div class="addon-checkbox" id="chkObrazac"></div>
+      <div class="addon-content"><div class="addon-top"><div class="addon-title">Netko ispuni obrazac → ti dobiješ email s podacima</div><div class="addon-price-wrap"><div class="addon-price">+100 € + PDV</div><div class="addon-price-pdv">+125,00 €</div></div></div><div class="addon-desc">Automatski se sprema i <strong>odmah ti stiže email</strong>: "Javio ti se novi klijent." Provjeriš kad imaš trenutak.</div></div>
+    </div>
+    <div class="addon-item" id="addonWa" onclick="toggleAddon('whatsapp', 50)">
+      <div class="addon-checkbox" id="chkWa"></div>
+      <div class="addon-content"><div class="addon-top"><div class="addon-title">WhatsApp gumb — jednim klikom direktno tebi</div><div class="addon-price-wrap"><div class="addon-price">+50 € + PDV</div><div class="addon-price-pdv">+62,50 €</div></div></div><div class="addon-desc">Za one koji ne vole obrasce — kliknu gumb i <strong>odmah ti pišu na WhatsApp</strong>.</div></div>
+    </div>
+    <div class="addon-item" id="addonDomena" onclick="toggleAddon('domena', 120)" style="display:none;">
+      <div class="addon-checkbox" id="chkDomena"></div>
+      <div class="addon-content"><div class="addon-top"><div class="addon-title">Vlastita domena (npr. tvojeime.hr)</div><div class="addon-price-wrap"><div class="addon-price">+120 € + PDV</div><div class="addon-price-pdv">+150,00 €</div></div></div><div class="addon-desc">Umjesto pi.hr subdomene, imaš <strong>svoju adresu</strong>. Tvoj brand, zauvijek tvoje.</div></div>
+    </div>
+    <div class="addon-item" id="addonKviz" onclick="toggleAddon('kviz', 120)">
+      <div class="addon-checkbox" id="chkKviz"></div>
+      <div class="addon-content"><div class="addon-top"><div class="addon-title">Kviz koji zagrijava posjetitelja</div><div class="addon-price-wrap"><div class="addon-price">+120 € + PDV</div><div class="addon-price-pdv">+150,00 €</div></div></div><div class="addon-desc">Posjetitelj odgovori na par pitanja i <strong>sam shvati zašto mu trebaš</strong> — kao što si ti upravo ovdje shvatio.</div></div>
+    </div>
+
+    <!-- Ukupno -->
+    <div class="ukupno-wrap">
+      <div class="ukupno-rows" id="ukupnoRows"><div class="ukupno-row"><span>Odaberi bazu za početak</span><span>—</span></div></div>
+      <hr class="ukupno-divider">
+      <div class="ukupno-final"><div class="ukupno-final-label">Ukupno s PDV-om</div><div class="ukupno-final-iznos"><span id="ukupnoIznos">—</span> €</div></div>
+      <div class="ukupno-pdv-note">Paušalisti plaćaju ukupni iznos. Poduzetnici u sustavu PDV-a mogu odbiti PDV kao pretporez.</div>
+      <div class="odrzavanje-wrap">
+        <div class="odrzavanje-naslov">Godišnje održavanje</div>
+        <div class="odrzavanje-iznos">150 € + PDV · godišnje (187,50 €)</div>
+        <div class="odrzavanje-tekst">Uključuje: <strong>izmjena teksta, cijene i fotografije</strong>, tehničko održavanje i dostupnost ako nešto prestane raditi. Bez održavanja — stranica je tvoja, ali si sam. S njim — ja sam tu.</div>
+      </div>
+    </div>
+
+    <!-- Napomena -->
+    <div class="razgovor-napomena"><strong>Kako ide dalje:</strong> Nakon što pošalješ upit, dogovaramo kratki razgovor od 10 minuta. Trebam vidjeti tvoju situaciju. Tek tada šaljem konkretnu ponudu.</div>
+    <div class="pdv-napomena"><strong>Napomena o PDV-u:</strong> Paušalisti i fizičke osobe plaćaju ukupni iznos s PDV-om. Poduzetnici u sustavu PDV-a mogu odbiti PDV kao pretporez.</div>
+
+    <!-- Obrazac -->
+    <div class="obrazac-title">Pošalji upit</div>
+    <div class="field">
+      <label>Ime i prezime *</label>
+      <input type="text" id="f-ime" placeholder="Tvoje ime i prezime">
+      <span class="field-error" id="e-ime">Obavezno polje</span>
+    </div>
+    <div class="field">
+      <label>Broj mobitela *</label>
+      <input type="tel" id="f-mob" placeholder="+385 91 234 5678">
+      <span class="field-error" id="e-mob">Obavezno polje</span>
+    </div>
+
+    <!-- PRIVOLA -->
+    <div class="privola-wrap">
+      <label class="privola-label" id="privolaLabel" onclick="togglePrivola()">
+        <div class="privola-checkbox" id="privolaCheck"></div>
+        <span class="privola-tekst">Prihvaćam <a onclick="otvoriModal('privatnost'); event.stopPropagation();">politiku privatnosti</a> i <a onclick="otvoriModal('uvjeti'); event.stopPropagation();">uvjete korištenja</a> te dajem suglasnost za obradu osobnih podataka u svrhu odgovora na upit.</span>
+      </label>
+      <div class="privola-error" id="privolaError">Molimo prihvati uvjete za nastavak</div>
+    </div>
+
+    <button type="button" class="btn-submit" id="btnPosalji" onclick="posaljiUpit()" disabled>Pošalji upit →</button>
+  </div>
+
+  <!-- HVALA KONFIGURATORA -->
+  <div id="hvalaKonfig" style="display:none; margin-top: 16px;">
+    <div style="background: var(--dark); border-radius: 6px; padding: 36px 28px; text-align: center; position: relative; overflow: hidden;">
+      <div style="position:absolute; top:0; left:0; right:0; height:3px; background:var(--red);"></div>
+      <div style="width:60px; height:60px; background:var(--red); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-size:1.6rem; animation: popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;">✓</div>
+      <div style="font-size:clamp(1.4rem,5vw,2rem); font-weight:800; color:#fff; text-transform:uppercase; margin-bottom:10px; line-height:1.1;">Upit primljen.<br><span style="color:var(--red);">Javljam se.</span></div>
+      <p style="font-size:0.9rem; color:rgba(255,255,255,0.55); font-weight:300; line-height:1.7; margin-bottom:24px; max-width:420px; margin-left:auto; margin-right:auto;">Pregledavam tvoj odabir i javljam se osobno da dogovorimo kratki razgovor od 10 minuta.</p>
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:20px; margin-bottom:20px; text-align:left;">
+        <div style="font-size:0.68rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:12px;">Tvoj odabir</div>
+        <div id="hvalaRedovi"></div>
+        <div style="display:flex; justify-content:space-between; margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.15); align-items:baseline;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.1em;">Ukupno s PDV-om</span>
+          <span style="font-size:1.4rem; font-weight:800; color:#fff;"><span id="hvalaUkupno">—</span> €</span>
+        </div>
+      </div>
+      <a id="btnWaKonfig" href="#" class="btn-wa" target="_blank" style="display:inline-flex !important;">
+        <svg class="wa-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Potvrdi na WhatsApp — javim se odmah
+      </a>
+      <p style="font-size:0.72rem; color:rgba(255,255,255,0.25); margin-top:14px; font-style:italic;">Kad klikneš WhatsApp gumb, znam da si ozbiljan i dajem ti prednost u odgovoru.</p>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="container">
+    <div class="cta-tag">Projekt Integracija</div>
+    <h2>Ispuni konfigurator.<br><span>Javljam se.</span></h2>
+    <p class="sub">Odaberi što ti treba, pošalji upit s brojem mobitela — i dogovaramo kratki razgovor od 10 minuta. Bez obveze, bez skrivenih troškova.</p>
+    <p class="sub2">Kad si zadnji put bio potpuno prisutan — bez mobitela, bez misli na posao? Ovo je jedan korak prema tome.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><strong>Projekt Integracija d.o.o.</strong> · Digitalni alati za poduzetnike</div>
+    <div class="footer-links">
+      <span class="footer-link" onclick="otvoriModal('privatnost')">Politika privatnosti</span>
+      <span class="footer-link" onclick="otvoriModal('impresum')">Impresum</span>
+      <span class="footer-link" onclick="otvoriModal('uvjeti')">Uvjeti korištenja</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /glavniSadrzaj -->
+
+
+<!-- ════════════════════════════
+     HVALA EKRAN (thank you page)
+════════════════════════════ -->
+<div id="hvalaEkran" class="hvala-ekran">
+
+  <div class="hvala-hero">
+    <div class="container">
+      <div class="hvala-check">✓</div>
+      <div class="hvala-tag">Upit primljen</div>
+      <div class="hvala-h1">Hvala na<br><span>povjerenju.</span></div>
+      <p class="hvala-sub-txt">Tvoj upit je stigao. Javim ti se osobno da dogovorimo kratki razgovor od 10 minuta.</p>
+    </div>
+  </div>
+
+  <section class="hvala-koraci">
+    <div class="container">
+      <div class="section-tag">Što se događa dalje</div>
+      <h2 class="section h2" style="font-size:clamp(1.4rem,4vw,1.9rem); font-weight:800; color:var(--dark); text-transform:uppercase; margin-bottom:28px; line-height:1.1;">Evo što <span style="color:var(--red);">očekivati.</span></h2>
+      <div class="koraci">
+        <div class="korak"><div class="korak-num">1</div><div class="korak-content"><h3>Javim ti se osobno</h3><p>Pregledam tvoj odabir i javljam se na broj koji si ostavio — <strong>obično isti dan ili sljedeći radni dan.</strong></p></div></div>
+        <div class="korak"><div class="korak-num">2</div><div class="korak-content"><h3>Razgovor od 10 minuta</h3><p>Prolazimo tvoju situaciju. <strong>Bez obveze, bez prodajnog pritiska.</strong> Samo da vidim što ti zapravo treba.</p></div></div>
+        <div class="korak"><div class="korak-num">3</div><div class="korak-content"><h3>Šaljem ti točnu ponudu</h3><p>Nakon razgovora šaljem ti ponudu prilagođenu tvojoj situaciji — <strong>s točnim iznosom, bez skrivenih troškova.</strong></p></div></div>
+        <div class="korak"><div class="korak-num">4</div><div class="korak-content"><h3>Za 3 dana — sustav je live</h3><p>Kad potvrdiš ponudu, šaljem ti kratki upitnik. Za <strong>3 radna dana imaš sustav koji prima upite umjesto tebe.</strong></p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hvala-wa">
+    <div class="container">
+      <div class="section-tag">Brži put</div>
+      <h2>Želi se javiti <span>odmah?</span></h2>
+      <p>Ako ne možeš čekati — javi mi se direktno na WhatsApp jednim klikom i dogovorimo razgovor odmah.</p>
+      <a href="https://wa.me/385917515309?text=Bok%20Drago%2C%20upravo%20sam%20ispunio%2Fla%20konfigurator%20na%20Projekt%20Integracija%20i%20javljam%20se%20da%20dogovorimo%20razgovor%20%3A)" class="btn-wa" target="_blank">
+        <svg class="wa-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Pošalji WhatsApp poruku
+      </a>
+      <p class="wa-note">Poruka je već napisana — ti samo pošalješ.</p>
+    </div>
+  </section>
+
+  <section class="hvala-napomena">
+    <div class="container">
+      <div class="note-card">
+        <p><strong>Napomena o terminima:</strong> Prihvaćam maksimalno 3 nova projekta mjesečno da se mogu kvalitetno posvetiti svakom klijentu. Ako je sljedeći slobodni termin malo dalje — hvala na strpljenju. Vrijedi čekati.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><strong>Projekt Integracija d.o.o.</strong> · Digitalni alati za poduzetnike</div>
+      <div class="footer-links">
+        <span class="footer-link" onclick="otvoriModal('privatnost')">Politika privatnosti</span>
+        <span class="footer-link" onclick="otvoriModal('impresum')">Impresum</span>
+        <span class="footer-link" onclick="otvoriModal('uvjeti')">Uvjeti korištenja</span>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /hvalaEkran -->
+
+
+<!-- ════════════════════════════
+     PRAVNI MODAL
+════════════════════════════ -->
+<div class="modal-overlay" id="pravniModal" onclick="zatvoriModalKlik(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title" id="modalTitle">Pravna napomena</span>
+      <button class="modal-close" onclick="zatvoriModal()">✕</button>
+    </div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" id="tab-privatnost" onclick="promijenTab('privatnost')">Privatnost</button>
+      <button class="modal-tab" id="tab-impresum" onclick="promijenTab('impresum')">Impresum</button>
+      <button class="modal-tab" id="tab-uvjeti" onclick="promijenTab('uvjeti')">Uvjeti</button>
+    </div>
+    <div class="modal-content">
+
+      <!-- POLITIKA PRIVATNOSTI -->
+      <div class="modal-panel active" id="panel-privatnost">
+        <h3>Politika privatnosti</h3>
+        <p>Projekt Integracija d.o.o. (dalje: "mi") poštuje tvoju privatnost i štiti osobne podatke u skladu s Općom uredbom o zaštiti podataka (GDPR) i važećim zakonodavstvom Republike Hrvatske.</p>
+
+        <h3>Koje podatke prikupljamo</h3>
+        <p>Putem obrasca na ovoj stranici prikupljamo: ime i prezime, broj mobitela i, opcijski, email adresu. Podatke koristiš dobrovoljno popunjavanjem obrasca.</p>
+
+        <h3>Svrha obrade</h3>
+        <ul>
+          <li>Odgovaranje na tvoj upit i uspostavljanje poslovnog kontakta</li>
+          <li>Priprema i dostava ponude za traženu uslugu</li>
+          <li>Komunikacija vezana uz realizaciju narudžbe</li>
+        </ul>
+
+        <h3>Pravna osnova</h3>
+        <p>Obrada podataka temelji se na tvojoj privoli (čl. 6. st. 1. toč. a) GDPR-a) i na provedbi predugovornih mjera na tvoj zahtjev (čl. 6. st. 1. toč. b) GDPR-a).</p>
+
+        <h3>Pohrana podataka</h3>
+        <p>Podaci se pohranjuju u Google Sheets na Google infrastrukturi (EU podatkovni centri). Google obrađuje podatke u skladu s GDPR-om kao naš procesor podataka.</p>
+
+        <h3>Čuvanje podataka</h3>
+        <p>Podatke čuvamo onoliko dugo koliko je potrebno za ispunjenje svrhe za koju su prikupljeni, a najdulje 3 godine od posljednjeg kontakta ili do opoziva privole.</p>
+
+        <h3>Tvoja prava</h3>
+        <ul>
+          <li>Pravo na pristup osobnim podacima</li>
+          <li>Pravo na ispravak netočnih podataka</li>
+          <li>Pravo na brisanje ("pravo na zaborav")</li>
+          <li>Pravo na ograničenje obrade</li>
+          <li>Pravo na prigovor obradi</li>
+          <li>Pravo na opoziv privole u bilo kojem trenutku</li>
+        </ul>
+        <p>Za ostvarivanje prava kontaktiraj nas na: <strong>info@projektintegracija.hr</strong></p>
+
+        <h3>Kolačići</h3>
+        <p>Ova stranica ne koristi kolačiće za praćenje niti analitičke alate treće strane. Ne prikupljamo nikakve podatke o ponašanju posjetitelja.</p>
+
+        <h3>Kontakt voditelja obrade</h3>
+        <p><strong>Projekt Integracija d.o.o.</strong><br>Email: info@projektintegracija.hr<br>Prigovore možeš uputiti i Agenciji za zaštitu osobnih podataka (AZOP): azop.hr</p>
+      </div>
+
+      <!-- IMPRESUM -->
+      <div class="modal-panel" id="panel-impresum">
+        <h3>Impresum</h3>
+        <p><strong>Naziv:</strong> Projekt Integracija d.o.o.<br>
+        <strong>OIB:</strong> #OIB#<br>
+        <strong>Adresa:</strong> #ADRESA#<br>
+        <strong>Email:</strong> info@projektintegracija.hr<br>
+        <strong>Telefon:</strong> +385 91 751 5309</p>
+
+        <h3>Upis u sudski registar</h3>
+        <p>Društvo je upisano u sudski registar Trgovačkog suda u Zagrebu.<br>
+        <strong>MBS:</strong> #MBS#<br>
+        <strong>Temeljni kapital:</strong> uplaćen u cijelosti</p>
+
+        <h3>Odgovornost za sadržaj</h3>
+        <p>Sadržaj ove stranice pripremili smo s dužnom pažnjom. Ne preuzimamo odgovornost za točnost, potpunost i aktualnost sadržaja. Korištenje sadržaja stranice je na vlastitu odgovornost korisnika.</p>
+
+        <h3>Autorska prava</h3>
+        <p>Svi sadržaji ove stranice (tekstovi, slike, grafike, dizajn) zaštićeni su autorskim pravima. Svako korištenje bez pisane suglasnosti zabranjeno je.</p>
+      </div>
+
+      <!-- UVJETI KORIŠTENJA -->
+      <div class="modal-panel" id="panel-uvjeti">
+        <h3>Uvjeti korištenja</h3>
+        <p>Korištenjem ove stranice i ispunjavanjem obrasca prihvaćaš sljedeće uvjete.</p>
+
+        <h3>Usluga</h3>
+        <p>Projekt Integracija d.o.o. pruža usluge izrade web stranica i digitalnih sustava za male poduzetnike i obrtnike. Detalji usluge, cijene i rokovi dogovaraju se individualno i potvrđuju pisanom ponudom.</p>
+
+        <h3>Narudžba i plaćanje</h3>
+        <ul>
+          <li>Narudžba se smatra potvrđenom prihvatom pisane ponude</li>
+          <li>Plaćanje se vrši prema uvjetima navedenim u ponudi</li>
+          <li>Faktura se ispostavlja po završetku ili prema dogovorenim fazama</li>
+          <li>Rok plaćanja je 8 dana od datuma fakture</li>
+        </ul>
+
+        <h3>Isporuka</h3>
+        <p>Rok isporuke od 3 radna dana odnosi se na standardne projekte, od trenutka primitka svih potrebnih materijala od klijenta. Za kompleksnije projekte rok se dogovara posebno.</p>
+
+        <h3>Godišnje održavanje</h3>
+        <p>Usluga godišnjeg održavanja (150 € + PDV / god) uključuje sitne izmjene sadržaja (tekst, cijene, fotografija), tehničko održavanje hostinga i dostupnost za podršku. Ne uključuje veće prerade ili nove funkcionalnosti.</p>
+
+        <h3>Vlasništvo</h3>
+        <p>Po završetku i uplati, klijent postaje vlasnik izrađene stranice. Projekt Integracija d.o.o. zadržava pravo prikazivati projekt u portfoliju.</p>
+
+        <h3>Mjerodavno pravo</h3>
+        <p>Na ove uvjete primjenjuje se pravo Republike Hrvatske. Za sporove je nadležan sud u Zagrebu.</p>
+
+        <p style="margin-top: 16px; font-size: 0.78rem; color: var(--muted);">Posljednja izmjena: lipanj 2025.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+(function() {
+
+  var PDV = 0.25;
+  var imaGmail = true;
+  var privolaOznacena = false;
+  var state = {
+    tjednoUpiti: 2, stranicaPropust: 0.5,
+    zauzetFaktor: 1.2, zauzetMinuta: 15,
+    cijenaVal: 100, stranica: null, zauzet: null,
+    baza: null, bazaCijenaNet: 0,
+    addoni: { obrazac: false, whatsapp: false, domena: false, kviz: false },
+    addonCijene: { obrazac: 100, whatsapp: 50, domena: 120, kviz: 120 }
+  };
+  var currentStep = 0;
+
+  // ── PRIVOLA ──
+  window.togglePrivola = function() {
+    privolaOznacena = !privolaOznacena;
+    var label = document.getElementById('privolaLabel');
+    var check = document.getElementById('privolaCheck');
+    var err = document.getElementById('privolaError');
+    if (privolaOznacena) {
+      label.classList.add('checked');
+      check.textContent = '✓';
+      err.style.display = 'none';
+    } else {
+      label.classList.remove('checked');
+      check.textContent = '';
+    }
+    azurirajGumb();
+  };
+
+  function azurirajGumb() {
+    var btn = document.getElementById('btnPosalji');
+    if (!btn) return;
+    btn.disabled = !(state.baza && privolaOznacena);
+  }
+
+  // ── GMAIL GATE ──
+  window.provjeriGmail = function(odgovor) {
+    if (odgovor === 'ne') {
+      document.getElementById('step0').style.display = 'none';
+      document.getElementById('diskvalifikacija').style.display = 'block';
+      document.getElementById('kviz-top').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (odgovor === 'ne_svejedno') {
+      imaGmail = false;
+      document.getElementById('diskvalifikacija').style.display = 'none';
+      pokreniKviz();
+    } else {
+      imaGmail = true;
+      document.getElementById('step0').style.display = 'none';
+      document.getElementById('diskvalifikacija').style.display = 'none';
+      pokreniKviz();
+    }
+  };
+
+  function pokreniKviz() {
+    document.getElementById('step1').style.display = 'block';
+    document.getElementById('pb1').classList.add('active');
+    document.getElementById('progressLabel').textContent = 'Pitanje 1 od 4';
+    currentStep = 1;
+    document.getElementById('kviz-top').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ── KVIZ ──
+  window.selectOpt = function(el, group, btnId) {
+    el.closest('.options-grid').querySelectorAll('.option-card').forEach(function(c) {
+      c.classList.remove('selected');
+      c.querySelector('.option-check').textContent = '';
+    });
+    el.classList.add('selected');
+    el.querySelector('.option-check').textContent = '✓';
+    state[group] = el.dataset.val;
+    if (el.dataset.upiti)   state.tjednoUpiti     = parseFloat(el.dataset.upiti);
+    if (el.dataset.propust) state.stranicaPropust  = parseFloat(el.dataset.propust);
+    if (el.dataset.faktor)  state.zauzetFaktor     = parseFloat(el.dataset.faktor);
+    if (el.dataset.minuta)  state.zauzetMinuta     = parseFloat(el.dataset.minuta);
+    if (el.dataset.cijena)  state.cijenaVal        = parseFloat(el.dataset.cijena);
+    var btn = document.getElementById(btnId);
+    if (btn) btn.disabled = false;
+  };
+
+  window.goToStep = function(n) {
+    var cur = document.getElementById('step' + currentStep);
+    if (cur) cur.style.display = 'none';
+    document.getElementById('rezultatWrap').style.display = 'none';
+    var next = document.getElementById('step' + n);
+    if (next) next.style.display = 'block';
+    for (var i = 1; i <= 4; i++) {
+      var pb = document.getElementById('pb' + i);
+      if (!pb) continue;
+      pb.classList.remove('active', 'done');
+      if (i < n) pb.classList.add('done');
+      else if (i === n) pb.classList.add('active');
+    }
+    document.getElementById('progressLabel').textContent = 'Pitanje ' + n + ' od 4';
+    currentStep = n;
+    document.getElementById('kviz-top').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  window.prikaziRezultat = function() {
+    document.getElementById('step' + currentStep).style.display = 'none';
+    for (var i = 1; i <= 4; i++) {
+      var pb = document.getElementById('pb' + i);
+      if (pb) { pb.classList.remove('active'); pb.classList.add('done'); }
+    }
+    document.getElementById('progressLabel').textContent = 'Rezultat';
+    var propusteniTjedno = Math.max(1, Math.round(state.tjednoUpiti * state.stranicaPropust * state.zauzetFaktor));
+    var izgubljenoMjesec = Math.round(propusteniTjedno * 4 * state.cijenaVal);
+    var minutaTjedno = Math.round(state.tjednoUpiti * state.zauzetMinuta);
+    document.getElementById('rezUpiti').textContent = '~' + propusteniTjedno;
+    document.getElementById('rezIznos').textContent = '~' + izgubljenoMjesec.toLocaleString('hr-HR');
+    document.getElementById('rezVrijeme').textContent = '~' + minutaTjedno;
+    var poruka = (state.stranica === 'nema' || state.stranica === 'social')
+      ? 'To su ' + propusteniTjedno + ' osobe tjedno koje su htjele tvoju uslugu — ali <strong>nisu imale gdje se javiti.</strong>'
+      : 'I to su samo upiti koje znaš za. <strong>Koliko ih je otišlo bez da su se uopće javili</strong> — to nikad nećeš saznati.';
+    document.getElementById('rezPoruka').innerHTML = poruka;
+    var eduSN = '', eduST = '', eduZN = '', eduZT = '';
+    if (state.stranica === 'nema') { eduSN = '📍 Nemaš gdje poslati ljude'; eduST = 'Bez ijednog mjesta gdje te mogu pronaći online — svaki tko te ne poznaje osobno odlazi. <strong>Nije da nema interesa. Nema vrata kroz koja mogu ući.</strong>'; }
+    else if (state.stranica === 'social') { eduSN = '📲 Facebook i Instagram nisu zamjena za pravu stranicu'; eduST = 'Profil ovisi o algoritmu i ne izgleda profesionalno. <strong>Vlastita stranica je uvijek tu, ne ovisi ni o čemu.</strong>'; }
+    else { eduSN = '⚙️ Imaš stranicu — ali sustav koji prima upite?'; eduST = 'Stranica koja ne sprema upite automatski znači da moraš biti stalno dostupan. <strong>Sustav koji ti javlja čim se netko javi mijenja puno.</strong>'; }
+    if (state.zauzet === 'brzo') { eduZN = '⏱️ Brzo odgovaraš — ali koliko te to košta vremena?'; eduZT = 'Svaki upit koji moraš ručno obraditi znači da moraš biti dostupan. <strong>Automatska obavijest drži klijenta dok se ti oslobodiš.</strong>'; }
+    else if (state.zauzet === 'kasnim') { eduZN = '⏰ Dok kasnimo — klijent pita nekoga drugog'; eduZT = 'Vidio si poruku. Rekao si "odgovaram čim završim." A kad si završio — klijent je već negdje drugdje. <strong>Sustav koji odmah sprema kontakt to rješava.</strong>'; }
+    else { eduZN = '💨 Upiti koji propadnu ne vraćaju se'; eduZT = 'Dok si s obitelji ili na terenu — upit propada. <strong>Sustav koji sprema kontakt i javi ti se znači da nijedan upit više ne propada.</strong>'; }
+    document.getElementById('eduStranicaNaslov').textContent = eduSN;
+    document.getElementById('eduStranicaTekst').innerHTML = eduST;
+    document.getElementById('eduZauzetNaslov').textContent = eduZN;
+    document.getElementById('eduZauzetTekst').innerHTML = eduZT;
+    document.getElementById('rezultatWrap').style.display = 'block';
+    document.getElementById('kviz-top').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  // ── KONFIGURATOR ──
+  window.odaberiBazu = function(tip) {
+    state.baza = tip;
+    document.getElementById('bazaNema').classList.remove('selected');
+    document.getElementById('bazaIma').classList.remove('selected');
+    if (tip === 'nema_stranice') {
+      document.getElementById('bazaNema').classList.add('selected');
+      state.bazaCijenaNet = 390;
+      document.getElementById('addonDomena').style.display = 'flex';
+    } else {
+      document.getElementById('bazaIma').classList.add('selected');
+      state.bazaCijenaNet = 290;
+      document.getElementById('addonDomena').style.display = 'none';
+      state.addoni.domena = false;
+      document.getElementById('addonDomena').classList.remove('selected');
+      document.getElementById('chkDomena').textContent = '';
+    }
+    if (!imaGmail) {
+      var el = document.getElementById('addonObrazac');
+      if (el) { el.style.opacity = '0.4'; el.style.pointerEvents = 'none'; }
+    }
+    azurirajUkupno();
+    azurirajGumb();
+  };
+
+  window.toggleAddon = function(naziv, cijena) {
+    if (!imaGmail && naziv === 'obrazac') return;
+    state.addoni[naziv] = !state.addoni[naziv];
+    var key = naziv.charAt(0).toUpperCase() + naziv.slice(1);
+    var item = document.getElementById('addon' + key);
+    var chk  = document.getElementById('chk'  + key);
+    if (state.addoni[naziv]) { item.classList.add('selected'); chk.textContent = '✓'; }
+    else { item.classList.remove('selected'); chk.textContent = ''; }
+    azurirajUkupno();
+  };
+
+  function azurirajUkupno() {
+    if (!state.baza) return;
+    var redovi = '';
+    var ukupnoNet = state.bazaCijenaNet;
+    var bazaLabel = state.baza === 'nema_stranice' ? 'Stranica na tvojoj domeni' : 'Landing na postojećoj stranici';
+    redovi += '<div class="ukupno-row"><span>' + bazaLabel + '</span><span>' + fmt(state.bazaCijenaNet * 1.25) + ' €</span></div>';
+    var labels = { obrazac: 'Obrazac + email obavijest', whatsapp: 'WhatsApp gumb', domena: 'Vlastita domena', kviz: 'Kviz' };
+    for (var k in state.addoni) {
+      if (state.addoni[k]) {
+        ukupnoNet += state.addonCijene[k];
+        redovi += '<div class="ukupno-row"><span>+ ' + labels[k] + '</span><span>+ ' + fmt(state.addonCijene[k] * 1.25) + ' €</span></div>';
+      }
+    }
+    document.getElementById('ukupnoRows').innerHTML = redovi;
+    document.getElementById('ukupnoIznos').textContent = fmt(ukupnoNet * 1.25);
+  }
+
+  function fmt(n) { return n.toFixed(2).replace('.', ','); }
+
+  // ── SLANJE ──
+  window.posaljiUpit = function() {
+    if (!state.baza) { alert('Odaberi bazu prije slanja.'); return; }
+    if (!privolaOznacena) {
+      document.getElementById('privolaError').style.display = 'block';
+      return;
+    }
+    var ime = document.getElementById('f-ime').value.trim();
+    var mob = document.getElementById('f-mob').value.trim();
+    document.getElementById('e-ime').style.display = ime ? 'none' : 'block';
+    document.getElementById('f-ime').style.borderColor = ime ? '' : '#EF0000';
+    document.getElementById('e-mob').style.display = mob ? 'none' : 'block';
+    document.getElementById('f-mob').style.borderColor = mob ? '' : '#EF0000';
+    if (!ime || !mob) return;
+
+    var WEBHOOK_URL = '#WEBHOOK_URL#';
+    var labels2 = { obrazac: 'Obrazac + email', whatsapp: 'WhatsApp gumb', domena: 'Vlastita domena', kviz: 'Kviz' };
+    var bazaLabel = state.baza === 'nema_stranice' ? 'Stranica na tvojoj domeni' : 'Landing na postojećoj stranici';
+    var odabrani = [bazaLabel];
+    var ukupnoNet = state.bazaCijenaNet;
+    for (var k in state.addoni) { if (state.addoni[k]) { odabrani.push(labels2[k]); ukupnoNet += state.addonCijene[k]; } }
+    var ukupno = ukupnoNet * 1.25;
+
+    if (WEBHOOK_URL !== '#WEBHOOK_URL#') {
+      var fd = new FormData();
+      fd.append('ime', ime); fd.append('mobitel', mob);
+      fd.append('odabir', odabrani.join(', '));
+      fd.append('ukupno', fmt(ukupno) + ' €');
+      fd.append('ima_gmail', imaGmail ? 'da' : 'ne');
+      fd.append('izvor', 'landing-projekt-integracija');
+      fetch(WEBHOOK_URL, { method: 'POST', mode: 'no-cors', body: fd });
+    }
+
+    // Hvala u konfiguratoru
+    var hvalaHtml = '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.07);font-size:0.82rem;gap:10px;"><span style="color:rgba(255,255,255,0.5);font-weight:300;">' + bazaLabel + '</span><span style="color:#fff;font-weight:600;text-align:right;">' + fmt(state.bazaCijenaNet * 1.25) + ' €</span></div>';
+    for (var k2 in state.addoni) {
+      if (state.addoni[k2]) {
+        hvalaHtml += '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.07);font-size:0.82rem;gap:10px;"><span style="color:rgba(255,255,255,0.5);font-weight:300;">+ ' + labels2[k2] + '</span><span style="color:#fff;font-weight:600;text-align:right;">+ ' + fmt(state.addonCijene[k2] * 1.25) + ' €</span></div>';
+      }
+    }
+    document.getElementById('hvalaRedovi').innerHTML = hvalaHtml;
+    document.getElementById('hvalaUkupno').textContent = fmt(ukupno);
+
+    var waMsg = 'Bok Drago! Zovem se ' + ime + ', broj mi je ' + mob + '.\n\nIspunio/la sam konfigurator na Projekt Integracija.\n\nOdabir: ' + odabrani.join(', ') + '\nUkupno: ' + fmt(ukupno) + ' €\n\nŽelim dogovoriti kratki razgovor od 10 minuta.';
+    document.getElementById('btnWaKonfig').href = 'https://wa.me/385917515309?text=' + encodeURIComponent(waMsg);
+
+    document.querySelector('.konfig-wrap').style.display = 'none';
+    document.getElementById('hvalaKonfig').style.display = 'block';
+    document.getElementById('konfigurator').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  // ── FAQ ──
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.closest('.faq-item');
+      var answer = item.querySelector('.faq-a');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) {
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight = '0';
+      });
+      if (!isOpen) { item.classList.add('open'); answer.style.maxHeight = answer.scrollHeight + 'px'; }
+    });
+  });
+
+  // ── PRAVNI MODAL ──
+  window.otvoriModal = function(tab) {
+    document.getElementById('pravniModal').classList.add('open');
+    promijenTab(tab || 'privatnost');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.zatvoriModal = function() {
+    document.getElementById('pravniModal').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  window.zatvoriModalKlik = function(e) {
+    if (e.target === document.getElementById('pravniModal')) zatvoriModal();
+  };
+
+  window.promijenTab = function(tab) {
+    ['privatnost', 'impresum', 'uvjeti'].forEach(function(t) {
+      document.getElementById('tab-' + t).classList.remove('active');
+      document.getElementById('panel-' + t).classList.remove('active');
+    });
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.getElementById('panel-' + tab).classList.add('active');
+    var naslovi = { privatnost: 'Politika privatnosti', impresum: 'Impresum', uvjeti: 'Uvjeti korištenja' };
+    document.getElementById('modalTitle').textContent = naslovi[tab];
+  };
+
+  // ESC za zatvaranje modala
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') zatvoriModal();
+  });
+
+})();
+</script>
+</body>
+</html>
