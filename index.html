@@ -10,23 +10,19 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --cream:       #f5f1e8;
-  --cream-dark:  #ede8da;
-  --cream-mid:   #e8e2d3;
-  --olive:       #3d5a3e;
-  --olive-mid:   #4e7050;
-  --sage:        #7a9e7e;
-  --sage-light:  #a8c5aa;
-  --sage-pale:   #d4e4d5;
-  --lemon:       #c8b84a;
-  --lemon-light: #ddd080;
-  --text-dark:   #2a3d2b;
-  --text-mid:    #4e6650;
-  --text-light:  #7a9a7c;
+  --cream:      #f5f1e8;
+  --cream-dark: #ede8da;
+  --olive:      #3d5a3e;
+  --olive-mid:  #4e7050;
+  --sage:       #7a9e7e;
+  --sage-light: #a8c5aa;
+  --sage-pale:  #d4e4d5;
+  --text-dark:  #2a3d2b;
+  --text-mid:   #4e6650;
+  --text-light: #7a9a7c;
 }
 
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--cream);
   color: var(--text-dark);
@@ -35,191 +31,178 @@ body {
   overflow-x: hidden;
 }
 
-/* ──────── HERO ──────── */
-.hero {
+/* ── HERO PHOTO ── */
+.hero-photo {
+  width: 100%;
+  display: block;
+  max-height: 100svh;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+/* ── BOTANICAL CORNERS (hero wrapper) ── */
+.hero-wrap {
   position: relative;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-  background: var(--cream);
 }
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background: url('hero.jpg') center 25% / cover no-repeat;
-  opacity: 0.18;
-}
-
-/* Botanical SVG corners */
 .botanical {
   position: absolute;
   pointer-events: none;
-}
-.botanical-tr {
-  top: 0; right: 0;
-  width: clamp(120px, 22vw, 200px);
-  opacity: 0.85;
-}
-.botanical-bl {
-  bottom: 0; left: 0;
-  width: clamp(100px, 18vw, 170px);
-  opacity: 0.75;
-  transform: rotate(180deg);
-}
-.botanical-tl {
-  top: 0; left: 0;
-  width: clamp(80px, 14vw, 140px);
-  opacity: 0.6;
-  transform: scaleX(-1);
-}
-.botanical-br {
-  bottom: 0; right: 0;
-  width: clamp(90px, 16vw, 150px);
-  opacity: 0.7;
-  transform: scaleX(-1) rotate(180deg);
-}
-
-.hero-content {
-  position: relative;
   z-index: 2;
-  text-align: center;
-  padding: 60px 32px;
-  width: 100%;
+}
+.botanical-tr { top: 0; right: 0; width: clamp(110px, 20vw, 190px); opacity: 0.9; }
+.botanical-bl { bottom: 0; left: 0; width: clamp(100px, 18vw, 170px); opacity: 0.8; transform: rotate(180deg); }
+.botanical-tl { top: 0; left: 0; width: clamp(80px, 13vw, 130px); opacity: 0.65; transform: scaleX(-1); }
+.botanical-br { bottom: 0; right: 0; width: clamp(80px, 14vw, 140px); opacity: 0.7; transform: scaleX(-1) rotate(180deg); }
+
+/* ── INTRO TEXT BLOCK ── */
+.intro-block {
+  padding: 56px 28px 48px;
   max-width: 580px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.hero-eyebrow {
-  font-size: 10px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
+.intro-eyebrow {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(22px, 5vw, 30px);
   color: var(--text-mid);
+  line-height: 1.5;
+  margin-bottom: 6px;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.2s forwards;
+}
+
+.intro-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(42px, 11vw, 68px);
+  color: var(--olive);
+  line-height: 1.1;
   margin-bottom: 20px;
   opacity: 0;
-  animation: fadeUp 1s ease 0.4s forwards;
-  line-height: 1.8;
+  animation: fadeUp 1.1s ease 0.4s forwards;
 }
 
-.hero-names {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(58px, 16vw, 100px);
-  color: var(--olive);
-  line-height: 1.05;
-  margin-bottom: 28px;
+.intro-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(16px, 4vw, 20px);
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin-bottom: 40px;
   opacity: 0;
-  animation: fadeUp 1.2s ease 0.7s forwards;
+  animation: fadeUp 1s ease 0.6s forwards;
 }
 
-.hero-date-block {
+/* ── DATE VISUAL ── */
+.date-visual {
   opacity: 0;
-  animation: fadeUp 1s ease 1s forwards;
+  animation: fadeUp 1s ease 0.8s forwards;
 }
 
-.hero-separator {
+.date-separator {
   display: flex;
   align-items: center;
   gap: 12px;
   justify-content: center;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
-
-.hero-sep-line {
+.date-sep-line {
   height: 1px;
-  width: 48px;
-  background: var(--lemon);
-  opacity: 0.7;
+  width: 44px;
+  background: var(--sage);
+  opacity: 0.5;
 }
-
-.hero-sep-text {
+.date-sep-text {
   font-size: 10px;
   letter-spacing: 5px;
   text-transform: uppercase;
-  color: var(--lemon);
+  color: var(--sage);
 }
 
-.hero-date-grid {
+.date-grid {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 0 16px;
-  max-width: 320px;
+  max-width: 300px;
   margin: 0 auto;
 }
+.date-left { text-align: right; }
+.date-right { text-align: left; }
 
-.hero-day-col {
-  text-align: right;
-}
-
-.hero-loc-col {
-  text-align: left;
-}
-
-.hero-day-label, .hero-loc-label {
+.date-sublabel {
   font-size: 9px;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--text-light);
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
-
-.hero-day-val, .hero-loc-val {
-  font-size: 13px;
+.date-subval {
+  font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text-dark);
   font-weight: 400;
 }
-
-.hero-date-num {
+.date-num {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(52px, 14vw, 76px);
+  font-size: clamp(50px, 13vw, 72px);
   font-weight: 300;
   color: var(--olive);
   line-height: 0.9;
   text-align: center;
 }
-
-.hero-date-year {
-  font-size: 11px;
+.date-year {
+  font-size: 10px;
   letter-spacing: 4px;
   color: var(--text-light);
   text-align: center;
-  margin-top: 4px;
+  margin-top: 5px;
 }
 
-.hero-tagline {
-  margin-top: 28px;
-  font-size: 11px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--text-mid);
-}
-
-/* ──────── SHARED ──────── */
-.section-wrap {
-  padding: 64px 24px;
-  max-width: 580px;
-  margin: 0 auto;
-}
-
+/* ── DIVIDER ── */
 .olive-divider {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 44px;
+  margin: 44px 0;
 }
 .olive-divider-line {
   flex: 1;
   height: 1px;
   background: linear-gradient(to right, transparent, var(--sage-light), transparent);
 }
-.olive-divider svg {
-  flex-shrink: 0;
-  opacity: 0.7;
+
+/* ── COUPLE PHOTO (parallax portrait) ── */
+.couple-section {
+  padding: 0 28px;
+  max-width: 580px;
+  margin: 0 auto 8px;
+}
+
+.couple-photo-wrap {
+  overflow: hidden;
+  border-radius: 3px;
+  height: 380px;
+  position: relative;
+}
+
+.couple-photo {
+  width: 100%;
+  height: 140%;
+  object-fit: cover;
+  object-position: center 15%;
+  will-change: transform;
+  display: block;
+}
+
+/* ── SECTION SHARED ── */
+.section-wrap {
+  padding: 52px 28px;
+  max-width: 580px;
+  margin: 0 auto;
 }
 
 .section-label {
@@ -228,49 +211,15 @@ body {
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--sage);
-  margin-bottom: 16px;
-}
-
-/* ──────── INTRO ──────── */
-.intro-quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: clamp(22px, 5.5vw, 30px);
-  line-height: 1.6;
-  color: var(--olive);
-  text-align: center;
   margin-bottom: 20px;
 }
 
-.intro-body {
-  font-size: 14px;
-  line-height: 1.9;
-  color: var(--text-mid);
-  text-align: center;
-}
-
-/* ──────── COUPLE PHOTO ──────── */
-.couple-photo-wrap {
-  padding: 0 24px 8px;
-  max-width: 580px;
-  margin: 0 auto;
-}
-
-.couple-photo {
-  width: 100%;
-  border-radius: 3px;
-  display: block;
-  max-height: 440px;
-  object-fit: cover;
-  object-position: center 15%;
-}
-
-/* ──────── SCHEDULE ──────── */
+/* ── SCHEDULE ── */
 .schedule-item {
   display: grid;
-  grid-template-columns: 64px 1fr;
-  gap: 0 20px;
-  margin-bottom: 40px;
+  grid-template-columns: 64px 1fr auto;
+  gap: 0 16px;
+  margin-bottom: 36px;
   align-items: start;
   opacity: 0;
   transform: translateY(18px);
@@ -280,30 +229,32 @@ body {
 
 .schedule-time {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
+  font-size: 25px;
   color: var(--olive);
   line-height: 1;
   padding-top: 2px;
   text-align: right;
-  padding-right: 20px;
+  padding-right: 16px;
   border-right: 1px solid rgba(122,158,126,0.3);
 }
+
+.schedule-body { flex: 1; }
 
 .schedule-event {
   font-size: 9px;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--sage);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .schedule-place {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 19px;
+  font-size: 18px;
   color: var(--text-dark);
   line-height: 1.4;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .map-btn {
@@ -321,23 +272,26 @@ body {
 }
 .map-btn:hover { color: var(--olive); border-color: var(--olive); }
 
-/* ──────── PARK PHOTO ──────── */
-.park-photo-wrap {
-  padding: 0 24px;
-  max-width: 580px;
-  margin: 0 auto 8px;
-}
-
-.park-photo {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  object-position: center 40%;
+/* photo placeholder next to schedule item */
+.schedule-thumb {
+  width: 64px;
+  height: 64px;
   border-radius: 3px;
-  display: block;
+  border: 1px dashed rgba(122,158,126,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: var(--sage-pale);
+  cursor: pointer;
+  transition: border-color 0.2s;
 }
+.schedule-thumb:hover { border-color: var(--sage); }
+.schedule-thumb svg { opacity: 0.4; }
+.schedule-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 2px; }
 
-/* ──────── TRANSPORT ──────── */
+/* ── TRANSPORT ── */
 .transport-box {
   background: var(--sage-pale);
   border: 1px solid rgba(122,158,126,0.25);
@@ -348,37 +302,28 @@ body {
 .transport-box p {
   font-size: 13px;
   color: var(--text-mid);
-  line-height: 1.8;
+  line-height: 1.85;
 }
-.transport-box strong {
-  color: var(--olive);
-  font-weight: 400;
-}
+.transport-box strong { color: var(--olive); font-weight: 400; }
 
-/* ──────── COUNTDOWN ──────── */
+/* ── COUNTDOWN ── */
 .countdown-section {
   position: relative;
   overflow: hidden;
   padding: 80px 24px;
   text-align: center;
 }
-
 .countdown-bg {
   position: absolute;
   inset: 0;
-  background: url('par.jpg') center 20% / cover no-repeat;
+  background: url('hero.jpg') center 20% / cover no-repeat;
 }
-
 .countdown-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(42, 61, 43, 0.82);
+  background: rgba(42,61,43,0.82);
 }
-
-.countdown-inner {
-  position: relative;
-  z-index: 2;
-}
+.countdown-inner { position: relative; z-index: 2; }
 
 .countdown-label {
   font-size: 10px;
@@ -388,29 +333,24 @@ body {
   margin-bottom: 12px;
   display: block;
 }
-
 .countdown-headline {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(36px, 9vw, 56px);
   color: #fff;
   margin-bottom: 44px;
-  font-weight: 400;
 }
-
 .countdown-grid {
   display: flex;
   justify-content: center;
   align-items: flex-end;
   gap: clamp(8px, 4vw, 36px);
 }
-
 .countdown-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
 }
-
 .countdown-num {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
@@ -420,14 +360,12 @@ body {
   min-width: clamp(44px, 10vw, 72px);
   text-align: center;
 }
-
 .countdown-lbl {
   font-size: 9px;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--sage-light);
 }
-
 .countdown-colon {
   font-family: 'Cormorant Garamond', serif;
   font-size: 40px;
@@ -436,16 +374,12 @@ body {
   padding-bottom: 24px;
 }
 
-/* ──────── RSVP ──────── */
+/* ── RSVP ── */
 .rsvp-section {
-  background: var(--cream-dark);
+  background: var(--cream-dark, #ede8da);
   padding: 64px 24px 72px;
 }
-
-.rsvp-inner {
-  max-width: 520px;
-  margin: 0 auto;
-}
+.rsvp-inner { max-width: 520px; margin: 0 auto; }
 
 .rsvp-headline {
   font-family: 'Great Vibes', cursive;
@@ -453,28 +387,20 @@ body {
   color: var(--olive);
   text-align: center;
   margin-bottom: 6px;
-  font-weight: 400;
 }
-
 .rsvp-sub {
   font-size: 12px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   color: var(--text-mid);
   text-align: center;
-  line-height: 1.8;
+  line-height: 1.85;
   margin-bottom: 40px;
 }
 
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 @media (max-width: 400px) { .form-row { grid-template-columns: 1fr; } }
 
 .form-group { margin-bottom: 18px; }
-
 .form-label {
   display: block;
   font-size: 9px;
@@ -483,7 +409,6 @@ body {
   color: var(--text-light);
   margin-bottom: 7px;
 }
-
 .form-input, .form-select, .form-textarea {
   width: 100%;
   background: #fff;
@@ -499,14 +424,9 @@ body {
   appearance: none;
   -webkit-appearance: none;
 }
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--sage); }
 
-.form-input:focus, .form-select:focus, .form-textarea:focus {
-  border-color: var(--sage);
-}
-
-.select-wrap {
-  position: relative;
-}
+.select-wrap { position: relative; }
 .select-wrap::after {
   content: '';
   position: absolute;
@@ -518,11 +438,7 @@ body {
   border-top: 5px solid var(--sage);
   pointer-events: none;
 }
-
-.form-textarea {
-  resize: vertical;
-  min-height: 90px;
-}
+.form-textarea { resize: vertical; min-height: 90px; }
 
 .guest-fields {
   display: none;
@@ -535,7 +451,12 @@ body {
   border: 1px solid rgba(122,158,126,0.2);
 }
 .guest-fields.show { display: flex; }
-
+.guest-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
 .guest-input {
   width: 100%;
   background: #fff;
@@ -550,14 +471,6 @@ body {
   transition: border-color 0.2s;
 }
 .guest-input:focus { border-color: var(--sage); }
-
-.guest-label {
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--text-light);
-  margin-bottom: 2px;
-}
 
 .ne-message {
   display: none;
@@ -585,56 +498,45 @@ body {
   margin-top: 8px;
   transition: background 0.3s, transform 0.1s;
 }
-.submit-btn:hover { background: var(--olive-mid); }
+.submit-btn:hover { background: var(--olive-mid, #4e7050); }
 .submit-btn:active { transform: scale(0.99); }
 .submit-btn:disabled { background: var(--sage); cursor: not-allowed; }
 
-.success-msg {
-  display: none;
-  text-align: center;
-  padding: 40px 20px;
-}
+.success-msg { display: none; text-align: center; padding: 40px 20px; }
 .success-msg h3 {
   font-family: 'Great Vibes', cursive;
   font-size: 48px;
   color: var(--olive);
   margin-bottom: 12px;
 }
-.success-msg p {
-  font-size: 13px;
-  color: var(--text-mid);
-  line-height: 1.8;
-}
+.success-msg p { font-size: 13px; color: var(--text-mid); line-height: 1.8; }
 
-/* ──────── FOOTER ──────── */
+/* ── FOOTER ── */
 .footer-section {
-  padding: 64px 24px 72px;
+  padding: 64px 28px 72px;
   max-width: 580px;
   margin: 0 auto;
   text-align: center;
 }
-
 .footer-quote {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: clamp(17px, 4vw, 22px);
   color: var(--text-mid);
-  line-height: 1.7;
+  line-height: 1.75;
   margin-bottom: 28px;
 }
-
 .footer-names {
   font-family: 'Great Vibes', cursive;
   font-size: 36px;
   color: var(--olive);
 }
 
-/* ──────── ANIMATIONS ──────── */
+/* ── ANIMATIONS ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
 .reveal {
   opacity: 0;
   transform: translateY(20px);
@@ -643,45 +545,39 @@ body {
 .reveal.visible { opacity: 1; transform: none; }
 
 @media (max-width: 480px) {
-  .section-wrap { padding: 52px 20px; }
-  .countdown-section { padding: 64px 20px; }
+  .section-wrap { padding: 44px 20px; }
+  .couple-photo-wrap { height: 300px; }
   .countdown-colon { font-size: 28px; padding-bottom: 18px; }
+  .schedule-item { grid-template-columns: 56px 1fr auto; }
 }
 </style>
 </head>
 <body>
 
-<!-- ── HERO ── -->
-<div class="hero">
-  <div class="hero-bg"></div>
+<!-- ── HERO PHOTO (full quality, no overlay, no text) ── -->
+<div class="hero-wrap">
+  <img class="hero-photo" src="hero.jpg" alt="Matea i Drago">
 
-  <!-- Botanical corners (olive branch SVGs) -->
   <svg class="botanical botanical-tr" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity="0.9">
-      <path d="M180 10 Q140 60 100 80 Q60 100 30 140" stroke="#3d5a3e" stroke-width="2" fill="none"/>
-      <ellipse cx="155" cy="35" rx="18" ry="10" fill="#4e7050" transform="rotate(-30 155 35)"/>
-      <ellipse cx="135" cy="55" rx="16" ry="9" fill="#7a9e7e" transform="rotate(-20 135 55)"/>
-      <ellipse cx="115" cy="72" rx="14" ry="8" fill="#4e7050" transform="rotate(-10 115 72)"/>
-      <ellipse cx="95" cy="88" rx="12" ry="7" fill="#7a9e7e" transform="rotate(5 95 88)"/>
-      <path d="M160 20 Q170 40 165 55" stroke="#3d5a3e" stroke-width="1.5" fill="none"/>
-      <ellipse cx="167" cy="48" rx="12" ry="7" fill="#c8b84a" transform="rotate(20 167 48)"/>
-      <circle cx="172" cy="56" r="5" fill="#c8b84a" opacity="0.8"/>
-      <circle cx="163" cy="60" r="4" fill="#b8a840" opacity="0.7"/>
-      <path d="M120 68 Q130 80 128 95" stroke="#3d5a3e" stroke-width="1.5" fill="none"/>
-      <ellipse cx="129" cy="88" rx="11" ry="6" fill="#7a9e7e" transform="rotate(35 129 88)"/>
-    </g>
+    <path d="M180 10 Q140 60 100 80 Q60 100 30 140" stroke="#3d5a3e" stroke-width="2" fill="none"/>
+    <ellipse cx="155" cy="35" rx="18" ry="10" fill="#4e7050" transform="rotate(-30 155 35)"/>
+    <ellipse cx="135" cy="55" rx="16" ry="9" fill="#7a9e7e" transform="rotate(-20 135 55)"/>
+    <ellipse cx="115" cy="72" rx="14" ry="8" fill="#4e7050" transform="rotate(-10 115 72)"/>
+    <ellipse cx="95" cy="88" rx="12" ry="7" fill="#7a9e7e" transform="rotate(5 95 88)"/>
+    <path d="M160 20 Q170 40 165 55" stroke="#3d5a3e" stroke-width="1.5" fill="none"/>
+    <ellipse cx="167" cy="48" rx="12" ry="7" fill="#7a9e7e" transform="rotate(20 167 48)"/>
+    <circle cx="172" cy="56" r="5" fill="#7a9e7e" opacity="0.8"/>
+    <circle cx="163" cy="60" r="4" fill="#4e7050" opacity="0.7"/>
   </svg>
 
   <svg class="botanical botanical-bl" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity="0.85">
-      <path d="M180 10 Q140 60 100 80 Q60 100 30 140" stroke="#3d5a3e" stroke-width="2" fill="none"/>
-      <ellipse cx="155" cy="35" rx="18" ry="10" fill="#4e7050" transform="rotate(-30 155 35)"/>
-      <ellipse cx="135" cy="55" rx="16" ry="9" fill="#7a9e7e" transform="rotate(-20 135 55)"/>
-      <ellipse cx="115" cy="72" rx="14" ry="8" fill="#4e7050" transform="rotate(-10 115 72)"/>
-      <ellipse cx="95" cy="88" rx="12" ry="7" fill="#7a9e7e" transform="rotate(5 95 88)"/>
-      <ellipse cx="167" cy="48" rx="12" ry="7" fill="#c8b84a" transform="rotate(20 167 48)"/>
-      <circle cx="172" cy="56" r="5" fill="#c8b84a" opacity="0.8"/>
-    </g>
+    <path d="M180 10 Q140 60 100 80 Q60 100 30 140" stroke="#3d5a3e" stroke-width="2" fill="none"/>
+    <ellipse cx="155" cy="35" rx="18" ry="10" fill="#4e7050" transform="rotate(-30 155 35)"/>
+    <ellipse cx="135" cy="55" rx="16" ry="9" fill="#7a9e7e" transform="rotate(-20 135 55)"/>
+    <ellipse cx="115" cy="72" rx="14" ry="8" fill="#4e7050" transform="rotate(-10 115 72)"/>
+    <ellipse cx="95" cy="88" rx="12" ry="7" fill="#7a9e7e" transform="rotate(5 95 88)"/>
+    <ellipse cx="167" cy="48" rx="12" ry="7" fill="#7a9e7e" transform="rotate(20 167 48)"/>
+    <circle cx="172" cy="56" r="5" fill="#4e7050" opacity="0.8"/>
   </svg>
 
   <svg class="botanical botanical-tl" viewBox="0 0 160 180" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -693,73 +589,64 @@ body {
 
   <svg class="botanical botanical-br" viewBox="0 0 160 180" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M10 10 Q50 60 90 90 Q120 110 140 150" stroke="#7a9e7e" stroke-width="1.5" fill="none"/>
-    <ellipse cx="35" cy="40" rx="15" ry="8" fill="#c8b84a" transform="rotate(30 35 40)" opacity="0.7"/>
+    <ellipse cx="35" cy="40" rx="15" ry="8" fill="#7a9e7e" transform="rotate(30 35 40)" opacity="0.7"/>
     <ellipse cx="60" cy="65" rx="13" ry="7" fill="#7a9e7e" transform="rotate(20 60 65)" opacity="0.65"/>
-    <ellipse cx="85" cy="85" rx="12" ry="6" fill="#c8b84a" transform="rotate(10 85 85)" opacity="0.6"/>
-    <circle cx="42" cy="48" r="4" fill="#b8a840" opacity="0.7"/>
-    <circle cx="38" cy="55" r="3.5" fill="#c8b84a" opacity="0.65"/>
+    <ellipse cx="85" cy="85" rx="12" ry="6" fill="#4e7050" transform="rotate(10 85 85)" opacity="0.6"/>
   </svg>
+</div>
 
-  <div class="hero-content">
-    <p class="hero-eyebrow">Pozivamo Vas na naš najvažniji projekt do sada<br>Projekt Pir</p>
+<!-- ── INTRO BLOCK ── -->
+<div class="intro-block">
+  <p class="intro-eyebrow">pozivamo vas na naš najvažniji projekt do sada</p>
+  <h1 class="intro-title">Projekt Pir</h1>
+  <p class="intro-tagline">jer ne možemo zamisliti ovaj dan bez vas</p>
 
-    <h1 class="hero-names">Drago & Matea</h1>
-
-    <div class="hero-date-block">
-      <div class="hero-separator">
-        <div class="hero-sep-line"></div>
-        <span class="hero-sep-text">Kolovoz</span>
-        <div class="hero-sep-line"></div>
+  <div class="date-visual">
+    <div class="date-separator">
+      <div class="date-sep-line"></div>
+      <span class="date-sep-text">Kolovoz</span>
+      <div class="date-sep-line"></div>
+    </div>
+    <div class="date-grid">
+      <div class="date-left">
+        <span class="date-sublabel">Dan</span>
+        <span class="date-subval">Subota</span>
       </div>
-
-      <div class="hero-date-grid">
-        <div class="hero-day-col">
-          <span class="hero-day-label">Dan</span>
-          <span class="hero-day-val">Subota</span>
-        </div>
-        <div>
-          <div class="hero-date-num">22</div>
-          <div class="hero-date-year">2026</div>
-        </div>
-        <div class="hero-loc-col">
-          <span class="hero-loc-label">Lokacija</span>
-          <span class="hero-loc-val">Sustipan</span>
-        </div>
+      <div>
+        <div class="date-num">22</div>
+        <div class="date-year">2026</div>
       </div>
-
-      <p class="hero-tagline" style="margin-top:28px;">Ne možemo zamisliti ovaj dan bez Vas</p>
+      <div class="date-right">
+        <span class="date-sublabel">Lokacija</span>
+        <span class="date-subval">Park Sustipan</span>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ── INTRO ── -->
+<!-- ── COUPLE PHOTO (parallax portrait) ── -->
+<div class="couple-section reveal">
+  <div class="couple-photo-wrap" id="parallax-wrap">
+    <img class="couple-photo" id="parallax-img" src="par.jpg" alt="Matea i Drago">
+  </div>
+</div>
+
+<!-- ── SCHEDULE ── -->
 <div class="section-wrap">
   <div class="olive-divider reveal">
     <div class="olive-divider-line"></div>
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
       <ellipse cx="12" cy="12" rx="3" ry="8" fill="#7a9e7e" transform="rotate(-30 12 12)" opacity="0.7"/>
       <ellipse cx="12" cy="12" rx="3" ry="8" fill="#4e7050" transform="rotate(30 12 12)" opacity="0.5"/>
     </svg>
     <div class="olive-divider-line"></div>
   </div>
-  <p class="intro-quote reveal">Postoje trenutci koji dobiju pravu vrijednost tek kada se podijele s onima do kojih nam je stalo.</p>
-  <p class="intro-body reveal" style="margin-top:20px;">
-    Stoga Vas pozivamo da zajedno s nama podijelite radost<br>našeg vjenčanog dana.
-  </p>
-</div>
 
-<!-- ── COUPLE PHOTO ── -->
-<div class="couple-photo-wrap reveal">
-  <img class="couple-photo" src="par.jpg" alt="Matea i Drago">
-</div>
-
-<!-- ── SCHEDULE ── -->
-<div class="section-wrap" style="padding-top:40px;">
   <span class="section-label reveal">Raspored dana</span>
 
   <div class="schedule-item">
     <div class="schedule-time">17:00</div>
-    <div>
+    <div class="schedule-body">
       <div class="schedule-event">Okupljanje</div>
       <div class="schedule-place">Park Sustipan<br><span style="font-size:15px;color:var(--text-mid);">Split</span></div>
       <a class="map-btn" href="https://maps.app.goo.gl/j9e1RARF3Lu6j1s46" target="_blank" rel="noopener">
@@ -767,11 +654,14 @@ body {
         Vidi na karti
       </a>
     </div>
+    <div class="schedule-thumb" title="Dodajte sliku">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 6 6"/><circle cx="8" cy="8" r="1.5" fill="#7a9e7e"/></svg>
+    </div>
   </div>
 
   <div class="schedule-item">
     <div class="schedule-time">19:00</div>
-    <div>
+    <div class="schedule-body">
       <div class="schedule-event">Vjenčanje</div>
       <div class="schedule-place">Crkva sv. Stjepana Prvomučenika<br><span style="font-size:15px;color:var(--text-mid);">Park Sustipan, Split</span></div>
       <a class="map-btn" href="https://maps.app.goo.gl/j9e1RARF3Lu6j1s46" target="_blank" rel="noopener">
@@ -779,40 +669,41 @@ body {
         Vidi na karti
       </a>
     </div>
+    <div class="schedule-thumb" title="Dodajte sliku">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 6 6"/><circle cx="8" cy="8" r="1.5" fill="#7a9e7e"/></svg>
+    </div>
   </div>
 
   <div class="schedule-item">
     <div class="schedule-time">20:30</div>
-    <div>
+    <div class="schedule-body">
       <div class="schedule-event">Svečana večera</div>
-      <div class="schedule-place">Restoran Adriatic<br><span style="font-size:15px;color:var(--text-mid);">Split</span></div>
+      <div class="schedule-place">Restoran Adriatic<br><span style="font-size:15px;color:var(--text-mid);">Park Sustipan, Split</span></div>
       <a class="map-btn" href="https://maps.app.goo.gl/j9e1RARF3Lu6j1s46" target="_blank" rel="noopener">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         Vidi na karti
       </a>
     </div>
-  </div>
-
-  <!-- Park photo - landscape -->
-  <div class="park-photo-wrap reveal" style="padding:0;margin-bottom:24px;">
-    <img class="park-photo" src="sustipan.JPG" alt="Park Sustipan">
+    <div class="schedule-thumb" title="Dodajte sliku">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 6 6"/><circle cx="8" cy="8" r="1.5" fill="#7a9e7e"/></svg>
+    </div>
   </div>
 
   <div class="transport-box reveal">
     <p>
-      <strong>Prijevoz:</strong> Preporučujemo dolazak taksijem jer su sva tri mjesta unutar parka Sustipan.<br><br>
-      Za goste koji dolaze automobilom dostupan je parking ispred parka. Napominjemo da slobodna mjesta ne možemo garantirati zbog sezone.
+      <strong>Sve na jednom mjestu.</strong> Okupljanje, vjenčanje i večera odvijaju se unutar parka Sustipan — gostima je omogućeno da cijeli dan provedu bez premještanja.<br><br>
+      <strong>Prijevoz:</strong> Preporučujemo taksij. Za one koji dolaze automobilom, parking je ispred parka — slobodna mjesta ne možemo garantirati zbog sezone.
     </p>
   </div>
 </div>
 
 <!-- ── COUNTDOWN ── -->
 <div class="countdown-section">
-  <div class="countdown-bg" style="background-image:url('hero.jpg');"></div>
+  <div class="countdown-bg"></div>
   <div class="countdown-overlay"></div>
   <div class="countdown-inner">
     <span class="countdown-label">Neka odbrojavanje krene</span>
-    <h2 class="countdown-headline">Do velikog dana ostalo je</h2>
+    <h2 class="countdown-headline">Drago & Matea</h2>
     <div class="countdown-grid">
       <div class="countdown-item">
         <span class="countdown-num" id="cd-days">--</span>
@@ -842,7 +733,7 @@ body {
   <div class="rsvp-inner">
     <div class="olive-divider reveal" style="margin-bottom:32px;">
       <div class="olive-divider-line"></div>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
         <ellipse cx="12" cy="12" rx="3" ry="8" fill="#7a9e7e" transform="rotate(-30 12 12)" opacity="0.7"/>
         <ellipse cx="12" cy="12" rx="3" ry="8" fill="#4e7050" transform="rotate(30 12 12)" opacity="0.5"/>
       </svg>
@@ -852,7 +743,7 @@ body {
     <h2 class="rsvp-headline">Potvrdite dolazak</h2>
     <p class="rsvp-sub">
       Molimo potvrdite Vaš dolazak do <strong style="color:var(--olive);font-weight:400;">1. kolovoza 2026.</strong><br>
-      Radujemo se što ćete biti dio našeg posebnog dana!
+      Ovo je jedini projekt koji ne želimo odraditi sami.
     </p>
 
     <form id="rsvp-form">
@@ -899,7 +790,7 @@ body {
         Žao nam je što nećete moći doći. Hvala što ste nas obavijestili.
       </div>
 
-      <div class="form-group" id="poruka-group">
+      <div class="form-group">
         <label class="form-label">Poruka (neobavezno)</label>
         <textarea class="form-textarea" name="poruka" placeholder="Vaša poruka mladencima..."></textarea>
       </div>
@@ -918,13 +809,14 @@ body {
 <div class="footer-section">
   <div class="olive-divider reveal" style="margin-bottom:40px;">
     <div class="olive-divider-line"></div>
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
       <ellipse cx="12" cy="12" rx="3" ry="8" fill="#7a9e7e" transform="rotate(-30 12 12)" opacity="0.7"/>
       <ellipse cx="12" cy="12" rx="3" ry="8" fill="#4e7050" transform="rotate(30 12 12)" opacity="0.5"/>
     </svg>
     <div class="olive-divider-line"></div>
   </div>
-  <p class="footer-quote reveal">
+  <p class="footer-quote reveal" id="footer-quote">
+    <!-- Oliver stih ide ovdje — pošaljite kad budete spremni -->
     "A sada ostaje vjera, nada, ljubav, to troje;<br>ali najveća od ovih je ljubav."
   </p>
   <p class="footer-names reveal" style="margin-top:20px;">Matea & Drago</p>
@@ -946,6 +838,20 @@ function tick() {
   document.getElementById('cd-secs').textContent  = pad(Math.floor(diff%60000/1000));
 }
 tick(); setInterval(tick, 1000);
+
+// ── PARALLAX ──
+const pImg = document.getElementById('parallax-img');
+const pWrap = document.getElementById('parallax-wrap');
+if (pImg && pWrap) {
+  window.addEventListener('scroll', () => {
+    const rect = pWrap.getBoundingClientRect();
+    const vh = window.innerHeight;
+    if (rect.bottom < 0 || rect.top > vh) return;
+    const progress = (vh - rect.top) / (vh + rect.height);
+    const offset = (progress - 0.5) * 80;
+    pImg.style.transform = `translateY(${offset}px)`;
+  }, { passive: true });
+}
 
 // ── RSVP ──
 const sel = document.getElementById('potvrda-select');
@@ -986,14 +892,11 @@ document.getElementById('rsvp-form').addEventListener('submit', async e => {
   e.preventDefault();
   const btn = document.getElementById('submit-btn');
   btn.disabled = true; btn.textContent = 'Šalje se...';
-
   const data = {};
   new FormData(e.target).forEach((v,k) => data[k]=v);
-
   const WEBHOOK = 'YOUR_MAKE_WEBHOOK_URL_HERE';
   try { await fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }); }
   catch(err) { console.log(err); }
-
   e.target.style.display = 'none';
   document.getElementById('success-msg').style.display = 'block';
 });
