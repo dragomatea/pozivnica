@@ -187,6 +187,7 @@ body { background: var(--cream); color: var(--text-dark); font-family: 'Jost', s
 #main-content.show { opacity: 1; }
 
 .hero-photo { width: 100%; display: block; max-height: 100svh; object-fit: cover; object-position: center 20%; will-change: transform; }
+@media (max-width: 600px) { .hero-photo { max-height: none; height: auto; object-fit: unset; } }
 
 .intro-block { padding: 60px 28px 52px; max-width: 560px; margin: 0 auto; text-align: center; }
 .intro-eyebrow { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: clamp(16px, 3.8vw, 21px); color: var(--text-mid); line-height: 1.6; margin-bottom: 10px; opacity: 0; animation: fadeUp 1s ease 0.2s forwards; letter-spacing: 0.3px; }
@@ -207,6 +208,10 @@ body { background: var(--cream); color: var(--text-dark); font-family: 'Jost', s
 .couple-section { padding: 0 28px; max-width: 580px; margin: 0 auto 8px; }
 .couple-photo-wrap { overflow: hidden; border-radius: 3px; height: 380px; position: relative; }
 .couple-photo { width: 100%; height: 140%; object-fit: cover; object-position: center 15%; will-change: transform; display: block; }
+@media (max-width: 600px) {
+  .couple-photo-wrap { height: auto; }
+  .couple-photo { height: auto; object-fit: unset; transform: none !important; }
+}
 
 .section-wrap { padding: 52px 28px; max-width: 580px; margin: 0 auto; }
 .section-label { display: block; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--sage); margin-bottom: 24px; }
@@ -460,12 +465,19 @@ envScene.addEventListener('click', openEnvelope);
 envScene.addEventListener('touchend', e => { e.preventDefault(); openEnvelope(); });
 
 // ══ YOUTUBE ══
-let ytPlayer = null, musicPlaying = false;
+let ytPlayer = null, musicPlaying = false, musicQueued = false;
+
 window.onYouTubeIframeAPIReady = () => {
   ytPlayer = new YT.Player('yt-player', {
     videoId: 'Ev1ghexU66Y',
-    playerVars: { start: 56, end: 104, autoplay: 0, controls: 0, disablekb: 1 },
-    events: { onStateChange: e => { if (e.data === YT.PlayerState.ENDED) { musicPlaying = false; updateIcon(); } } }
+    playerVars: { start: 56, end: 104, autoplay: 0, controls: 0, disablekb: 1, playsinline: 1, mute: 0 },
+    events: {
+      onReady: () => {
+        // Player is ready — if music was queued (envelope already opened), play now
+        if (musicQueued) { ytPlayer.seekTo(56); ytPlayer.playVideo(); musicPlaying = true; updateIcon(); }
+      },
+      onStateChange: e => { if (e.data === YT.PlayerState.ENDED) { musicPlaying = false; updateIcon(); } }
+    }
   });
 };
 const tag = document.createElement('script');
@@ -473,13 +485,18 @@ tag.src = 'https://www.youtube.com/iframe_api';
 document.head.appendChild(tag);
 
 function startMusic() {
-  if (!ytPlayer || !ytPlayer.playVideo) { setTimeout(startMusic, 400); return; }
-  ytPlayer.seekTo(56); ytPlayer.playVideo(); musicPlaying = true; updateIcon();
+  musicQueued = true;
+  if (ytPlayer && ytPlayer.playVideo) {
+    ytPlayer.seekTo(56); ytPlayer.playVideo(); musicPlaying = true; updateIcon();
+  }
+  // If not ready yet, onReady handler above will pick it up
 }
+
 document.getElementById('music-btn').addEventListener('click', () => {
   if (!ytPlayer) return;
-  musicPlaying ? ytPlayer.pauseVideo() : ytPlayer.playVideo();
-  musicPlaying = !musicPlaying; updateIcon();
+  if (musicPlaying) { ytPlayer.pauseVideo(); musicPlaying = false; }
+  else { ytPlayer.playVideo(); musicPlaying = true; }
+  updateIcon();
 });
 function updateIcon() {
   document.getElementById('icon-on').style.display = musicPlaying ? 'block' : 'none';
@@ -499,8 +516,9 @@ function tick() {
 }
 tick(); setInterval(tick, 1000);
 
-// ══ PARALLAX ══
+// ══ PARALLAX — samo desktop ══
 function parallax() {
+  if (window.innerWidth <= 600) return;
   const vh = window.innerHeight;
   [['hero-img', document.getElementById('hero-img')?.parentElement, 60],
    ['parallax-img', document.getElementById('parallax-wrap'), 80],
