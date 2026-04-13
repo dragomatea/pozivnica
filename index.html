@@ -17,6 +17,7 @@
   --sage:       #7a9e7e;
   --sage-light: #a8c5aa;
   --sage-pale:  #d4e4d5;
+  --sage-mid:   #5e8a62;
   --text-dark:  #2a3d2b;
   --text-mid:   #4e6650;
   --text-light: #7a9a7c;
@@ -31,52 +32,265 @@ body {
   overflow-x: hidden;
 }
 
-/* ── HERO — čista slika, bez ičega ── */
+/* ══════════════════════════════
+   ENVELOPE INTRO
+══════════════════════════════ */
+#envelope-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #e8ede8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0;
+}
+
+#envelope-screen.hide {
+  animation: screenFadeOut 0.8s ease 0.3s forwards;
+}
+
+@keyframes screenFadeOut {
+  to { opacity: 0; pointer-events: none; visibility: hidden; }
+}
+
+/* Envelope container */
+.env-wrap {
+  position: relative;
+  width: min(320px, 82vw);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Envelope body */
+.env-body {
+  position: relative;
+  width: 100%;
+  padding-top: 65%;
+  background: #8fac91;
+  border-radius: 4px 4px 6px 6px;
+  box-shadow: 0 8px 40px rgba(61,90,62,0.25), 0 2px 8px rgba(61,90,62,0.15);
+  overflow: hidden;
+}
+
+/* Bottom triangle fold */
+.env-body::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 50%;
+  background: #7a9e7e;
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+
+/* Side folds */
+.env-body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, #6b9170 50%, transparent 50%),
+    linear-gradient(225deg, #6b9170 50%, transparent 50%);
+  background-size: 50% 100%, 50% 100%;
+  background-position: left, right;
+  background-repeat: no-repeat;
+  clip-path: polygon(0 0, 50% 60%, 100% 0);
+  bottom: auto;
+  height: 60%;
+}
+
+/* Wax seal */
+.env-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  width: 52px;
+  height: 52px;
+  background: radial-gradient(circle at 35% 35%, #5e8a62, #3d5a3e);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(61,90,62,0.4);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.env-seal svg {
+  width: 26px;
+  height: 26px;
+  fill: rgba(255,255,255,0.85);
+}
+
+/* Envelope flap (top lid) */
+.env-flap {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 60%;
+  z-index: 4;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.env-flap-inner {
+  width: 100%;
+  height: 100%;
+  background: #9ab89c;
+  clip-path: polygon(0 0, 50% 90%, 100% 0);
+  backface-visibility: hidden;
+}
+
+/* Flap open state */
+.env-wrap.opening .env-flap {
+  transform: rotateX(-180deg);
+}
+.env-wrap.opening .env-seal {
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+}
+
+/* Letter */
+.env-letter {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 5%;
+  height: 85%;
+  background: var(--cream);
+  border-radius: 3px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 -2px 12px rgba(61,90,62,0.15);
+  transform: translateY(0);
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  padding: 16px;
+  text-align: center;
+}
+
+.env-letter-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(22px, 7vw, 32px);
+  color: var(--olive);
+  line-height: 1.1;
+}
+
+.env-letter-date {
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.env-wrap.opening .env-letter {
+  transform: translateY(-75%);
+}
+
+/* Hint text */
+.env-hint {
+  margin-top: 28px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(14px, 3.5vw, 18px);
+  color: var(--text-mid);
+  text-align: center;
+  animation: hintPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.env-wrap.opening ~ .env-hint {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Music toggle */
+#music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--olive);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(61,90,62,0.3);
+  transition: background 0.2s, transform 0.1s;
+  opacity: 0;
+  pointer-events: none;
+}
+#music-btn.show { opacity: 1; pointer-events: all; }
+#music-btn:hover { background: var(--olive-mid); }
+#music-btn:active { transform: scale(0.95); }
+#music-btn svg { width: 18px; height: 18px; fill: #fff; }
+
+/* ══════════════════════════════
+   MAIN CONTENT
+══════════════════════════════ */
+#main-content {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+#main-content.show { opacity: 1; }
+
+/* ── HERO ── */
 .hero-photo {
   width: 100%;
   display: block;
   max-height: 100svh;
   object-fit: cover;
   object-position: center 20%;
+  will-change: transform;
 }
 
-/* ── INTRO BLOCK ── */
+/* ── INTRO ── */
 .intro-block {
   padding: 60px 28px 52px;
   max-width: 560px;
   margin: 0 auto;
   text-align: center;
 }
-
 .intro-eyebrow {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-weight: 300;
-  font-size: clamp(17px, 4vw, 22px);
+  font-size: clamp(16px, 3.8vw, 21px);
   color: var(--text-mid);
   line-height: 1.6;
   margin-bottom: 10px;
   opacity: 0;
   animation: fadeUp 1s ease 0.2s forwards;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
-
 .intro-title {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(52px, 13vw, 80px);
   color: var(--olive);
   line-height: 1.05;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   opacity: 0;
   animation: fadeUp 1.1s ease 0.4s forwards;
   font-weight: 400;
 }
-
 .intro-tagline {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-weight: 300;
-  font-size: clamp(15px, 3.5vw, 19px);
+  font-size: clamp(14px, 3.3vw, 18px);
   color: var(--text-light);
   line-height: 1.7;
   margin-bottom: 44px;
@@ -84,13 +298,10 @@ body {
   opacity: 0;
   animation: fadeUp 1s ease 0.6s forwards;
 }
-
-/* ── DATE VISUAL ── */
 .date-visual {
   opacity: 0;
   animation: fadeUp 1s ease 0.8s forwards;
 }
-
 .date-separator {
   display: flex;
   align-items: center;
@@ -98,35 +309,15 @@ body {
   justify-content: center;
   margin-bottom: 16px;
 }
-.date-sep-line {
-  height: 1px;
-  width: 44px;
-  background: var(--sage);
-  opacity: 0.4;
-}
-.date-sep-text {
-  font-size: 10px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: var(--sage);
-}
-
-/* Samo broj + godina + subota + sustipan — bez labela */
+.date-sep-line { height: 1px; width: 44px; background: var(--sage); opacity: 0.4; }
+.date-sep-text { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--sage); }
 .date-row {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
 }
-
-.date-side {
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--text-light);
-  line-height: 1.4;
-}
-
+.date-side { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-light); line-height: 1.4; }
 .date-num {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(56px, 14vw, 80px);
@@ -134,29 +325,24 @@ body {
   color: var(--olive);
   line-height: 0.9;
 }
-
-.date-year {
-  font-size: 10px;
-  letter-spacing: 4px;
-  color: var(--text-light);
-  text-align: center;
-  margin-top: 6px;
-}
+.date-year { font-size: 10px; letter-spacing: 4px; color: var(--text-light); text-align: center; margin-top: 6px; }
 
 /* ── DIVIDER ── */
-.olive-divider {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 44px 0;
+.olive-divider { display: flex; align-items: center; gap: 14px; margin: 44px 0; }
+.olive-divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--sage-light), transparent); }
+
+/* ── PARALLAX SECTIONS ── */
+.parallax-section {
+  overflow: hidden;
+  position: relative;
 }
-.olive-divider-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--sage-light), transparent);
+.parallax-img {
+  width: 100%;
+  display: block;
+  will-change: transform;
+  transition: none;
 }
 
-/* ── COUPLE PHOTO parallax ── */
 .couple-section {
   padding: 0 28px;
   max-width: 580px;
@@ -178,20 +364,8 @@ body {
 }
 
 /* ── SECTION ── */
-.section-wrap {
-  padding: 52px 28px;
-  max-width: 580px;
-  margin: 0 auto;
-}
-
-.section-label {
-  display: block;
-  font-size: 10px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--sage);
-  margin-bottom: 24px;
-}
+.section-wrap { padding: 52px 28px; max-width: 580px; margin: 0 auto; }
+.section-label { display: block; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--sage); margin-bottom: 24px; }
 
 /* ── SCHEDULE ── */
 .schedule-item {
@@ -205,7 +379,6 @@ body {
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .schedule-item.visible { opacity: 1; transform: none; }
-
 .schedule-time {
   font-family: 'Cormorant Garamond', serif;
   font-size: 24px;
@@ -216,15 +389,7 @@ body {
   padding-right: 16px;
   border-right: 1px solid rgba(122,158,126,0.3);
 }
-
-.schedule-event {
-  font-size: 9px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--sage);
-  margin-bottom: 4px;
-}
-
+.schedule-event { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--sage); margin-bottom: 4px; }
 .schedule-place {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
@@ -233,7 +398,6 @@ body {
   line-height: 1.4;
   margin-bottom: 7px;
 }
-
 .map-btn {
   display: inline-flex;
   align-items: center;
@@ -248,8 +412,6 @@ body {
   transition: color 0.2s, border-color 0.2s;
 }
 .map-btn:hover { color: var(--olive); border-color: var(--olive); }
-
-/* Photo placeholder */
 .schedule-thumb {
   width: 62px;
   height: 62px;
@@ -262,12 +424,7 @@ body {
   background: var(--sage-pale);
   overflow: hidden;
 }
-.schedule-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 2px;
-}
+.schedule-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 2px; }
 
 /* ── TRANSPORT ── */
 .transport-box {
@@ -277,11 +434,7 @@ body {
   padding: 20px 22px;
   margin-top: 4px;
 }
-.transport-box p {
-  font-size: 13px;
-  color: var(--text-mid);
-  line-height: 1.85;
-}
+.transport-box p { font-size: 13px; color: var(--text-mid); line-height: 1.85; }
 .transport-box strong { color: var(--olive); font-weight: 400; }
 
 /* ── COUNTDOWN ── */
@@ -295,231 +448,59 @@ body {
   position: absolute;
   inset: 0;
   background: url('nova.jpg') center 30% / cover no-repeat;
+  will-change: transform;
 }
-.countdown-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(42,61,43,0.80);
-}
+.countdown-overlay { position: absolute; inset: 0; background: rgba(42,61,43,0.80); }
 .countdown-inner { position: relative; z-index: 2; }
-
-.countdown-label {
-  font-size: 10px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: var(--sage-light);
-  margin-bottom: 12px;
-  display: block;
-}
-.countdown-names {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(38px, 9vw, 58px);
-  color: #fff;
-  margin-bottom: 44px;
-  font-weight: 400;
-}
-.countdown-grid {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: clamp(8px, 4vw, 36px);
-}
-.countdown-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-.countdown-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: clamp(44px, 11vw, 72px);
-  color: #fff;
-  line-height: 1;
-  min-width: clamp(44px, 10vw, 72px);
-  text-align: center;
-}
-.countdown-lbl {
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--sage-light);
-}
-.countdown-colon {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 40px;
-  color: rgba(168,197,170,0.5);
-  line-height: 1;
-  padding-bottom: 24px;
-}
+.countdown-label { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--sage-light); margin-bottom: 12px; display: block; }
+.countdown-names { font-family: 'Great Vibes', cursive; font-size: clamp(38px, 9vw, 58px); color: #fff; margin-bottom: 44px; }
+.countdown-grid { display: flex; justify-content: center; align-items: flex-end; gap: clamp(8px, 4vw, 36px); }
+.countdown-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.countdown-num { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(44px, 11vw, 72px); color: #fff; line-height: 1; min-width: clamp(44px, 10vw, 72px); text-align: center; }
+.countdown-lbl { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--sage-light); }
+.countdown-colon { font-family: 'Cormorant Garamond', serif; font-size: 40px; color: rgba(168,197,170,0.5); line-height: 1; padding-bottom: 24px; }
 
 /* ── RSVP ── */
-.rsvp-section {
-  background: var(--cream-dark);
-  padding: 64px 24px 72px;
-}
+.rsvp-section { background: var(--cream-dark); padding: 64px 24px 72px; }
 .rsvp-inner { max-width: 520px; margin: 0 auto; }
-
-.rsvp-headline {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(42px, 10vw, 60px);
-  color: var(--olive);
-  text-align: center;
-  margin-bottom: 6px;
-  font-weight: 400;
-}
-.rsvp-sub {
-  font-size: 13px;
-  color: var(--text-mid);
-  text-align: center;
-  line-height: 1.85;
-  margin-bottom: 40px;
-}
+.rsvp-headline { font-family: 'Great Vibes', cursive; font-size: clamp(42px, 10vw, 60px); color: var(--olive); text-align: center; margin-bottom: 6px; }
+.rsvp-sub { font-size: 13px; color: var(--text-mid); text-align: center; line-height: 1.85; margin-bottom: 40px; }
 .rsvp-sub strong { color: var(--olive); font-weight: 400; }
-
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 @media (max-width: 400px) { .form-row { grid-template-columns: 1fr; } }
 .form-group { margin-bottom: 18px; }
-.form-label {
-  display: block;
-  font-size: 9px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--text-light);
-  margin-bottom: 7px;
-}
+.form-label { display: block; font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--text-light); margin-bottom: 7px; }
 .form-input, .form-select, .form-textarea {
-  width: 100%;
-  background: #fff;
-  border: 1px solid rgba(61,90,62,0.15);
-  border-radius: 2px;
-  padding: 12px 15px;
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  color: var(--text-dark);
-  outline: none;
-  transition: border-color 0.2s;
-  appearance: none;
-  -webkit-appearance: none;
+  width: 100%; background: #fff; border: 1px solid rgba(61,90,62,0.15); border-radius: 2px;
+  padding: 12px 15px; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 14px;
+  color: var(--text-dark); outline: none; transition: border-color 0.2s; appearance: none; -webkit-appearance: none;
 }
 .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--sage); }
 .select-wrap { position: relative; }
-.select-wrap::after {
-  content: '';
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 5px solid var(--sage);
-  pointer-events: none;
-}
+.select-wrap::after { content: ''; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid var(--sage); pointer-events: none; }
 .form-textarea { resize: vertical; min-height: 90px; }
-
-.guest-fields {
-  display: none;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
-  padding: 14px 16px;
-  background: var(--sage-pale);
-  border-radius: 2px;
-  border: 1px solid rgba(122,158,126,0.2);
-}
+.guest-fields { display: none; flex-direction: column; gap: 10px; margin-top: 10px; padding: 14px 16px; background: var(--sage-pale); border-radius: 2px; border: 1px solid rgba(122,158,126,0.2); }
 .guest-fields.show { display: flex; }
-.guest-label {
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--text-light);
-}
-.guest-input {
-  width: 100%;
-  background: #fff;
-  border: 1px solid rgba(61,90,62,0.12);
-  border-radius: 2px;
-  padding: 10px 13px;
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  font-size: 13px;
-  color: var(--text-dark);
-  outline: none;
-  transition: border-color 0.2s;
-}
+.guest-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-light); }
+.guest-input { width: 100%; background: #fff; border: 1px solid rgba(61,90,62,0.12); border-radius: 2px; padding: 10px 13px; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 13px; color: var(--text-dark); outline: none; transition: border-color 0.2s; }
 .guest-input:focus { border-color: var(--sage); }
-
-.ne-message {
-  display: none;
-  text-align: center;
-  padding: 16px;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 19px;
-  color: var(--text-mid);
-}
-
-.submit-btn {
-  width: 100%;
-  background: var(--olive);
-  color: #fff;
-  border: none;
-  padding: 15px 32px;
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  font-size: 10px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 2px;
-  margin-top: 8px;
-  transition: background 0.3s, transform 0.1s;
-}
+.ne-message { display: none; text-align: center; padding: 16px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 19px; color: var(--text-mid); }
+.submit-btn { width: 100%; background: var(--olive); color: #fff; border: none; padding: 15px 32px; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 10px; letter-spacing: 5px; text-transform: uppercase; cursor: pointer; border-radius: 2px; margin-top: 8px; transition: background 0.3s, transform 0.1s; }
 .submit-btn:hover { background: var(--olive-mid); }
 .submit-btn:active { transform: scale(0.99); }
 .submit-btn:disabled { background: var(--sage); cursor: not-allowed; }
-
 .success-msg { display: none; text-align: center; padding: 40px 20px; }
-.success-msg h3 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 48px;
-  color: var(--olive);
-  margin-bottom: 12px;
-}
+.success-msg h3 { font-family: 'Great Vibes', cursive; font-size: 48px; color: var(--olive); margin-bottom: 12px; }
 .success-msg p { font-size: 13px; color: var(--text-mid); line-height: 1.8; }
 
 /* ── FOOTER ── */
-.footer-section {
-  padding: 64px 28px 72px;
-  max-width: 560px;
-  margin: 0 auto;
-  text-align: center;
-}
-.footer-quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: clamp(17px, 4vw, 22px);
-  color: var(--text-mid);
-  line-height: 1.75;
-  margin-bottom: 28px;
-}
-.footer-names {
-  font-family: 'Great Vibes', cursive;
-  font-size: 36px;
-  color: var(--olive);
-}
+.footer-section { padding: 64px 28px 72px; max-width: 560px; margin: 0 auto; text-align: center; }
+.footer-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(17px, 4vw, 22px); color: var(--text-mid); line-height: 1.75; margin-bottom: 28px; }
+.footer-names { font-family: 'Great Vibes', cursive; font-size: 36px; color: var(--olive); }
 
 /* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 
 @media (max-width: 480px) {
@@ -532,140 +513,74 @@ body {
 </head>
 <body>
 
-<!-- ── HERO — čista slika ── -->
-<img class="hero-photo" src="hero.jpg" alt="Matea i Drago">
-
-<!-- ── INTRO ── -->
-<div class="intro-block">
-  <p class="intro-eyebrow">pozivamo vas na naš najvažniji projekt do sada</p>
-  <h1 class="intro-title">Projekt Pir</h1>
-  <p class="intro-tagline">jer ne možemo zamisliti ovaj dan bez vas</p>
-
-  <div class="date-visual">
-    <div class="date-separator">
-      <div class="date-sep-line"></div>
-      <span class="date-sep-text">Kolovoz</span>
-      <div class="date-sep-line"></div>
-    </div>
-
-    <div class="date-row">
-      <div class="date-side">Subota</div>
-      <div>
-        <div class="date-num">22</div>
-        <div class="date-year">2026</div>
+<!-- ══ ENVELOPE SCREEN ══ -->
+<div id="envelope-screen">
+  <div class="env-wrap" id="env-wrap">
+    <div class="env-body">
+      <div class="env-flap"><div class="env-flap-inner"></div></div>
+      <div class="env-seal">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
+        </svg>
       </div>
-      <div class="date-side">Park Sustipan</div>
+      <div class="env-letter">
+        <div class="env-letter-names">Drago & Matea</div>
+        <div class="env-letter-date">22 · VIII · 2026</div>
+      </div>
     </div>
   </div>
+  <p class="env-hint" id="env-hint">Dodirnite za otvaranje</p>
 </div>
 
-<!-- ── COUPLE PHOTO parallax ── -->
-<div class="couple-section reveal">
-  <div class="couple-photo-wrap" id="parallax-wrap">
-    <img class="couple-photo" id="parallax-img" src="par.jpg" alt="Matea i Drago">
-  </div>
-</div>
+<!-- Music button -->
+<button id="music-btn" title="Glazba">
+  <svg id="music-icon-on" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+  <svg id="music-icon-off" viewBox="0 0 24 24" style="display:none;"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><line x1="2" y1="2" x2="22" y2="22" stroke="#fff" stroke-width="2"/></svg>
+</button>
 
-<!-- ── SCHEDULE ── -->
-<div class="section-wrap">
-  <div class="olive-divider reveal">
-    <div class="olive-divider-line"></div>
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <ellipse cx="12" cy="12" rx="3" ry="8" fill="#7a9e7e" transform="rotate(-30 12 12)" opacity="0.7"/>
-      <ellipse cx="12" cy="12" rx="3" ry="8" fill="#4e7050" transform="rotate(30 12 12)" opacity="0.5"/>
-    </svg>
-    <div class="olive-divider-line"></div>
-  </div>
+<!-- YouTube iframe (hidden) -->
+<div id="yt-player" style="position:fixed;width:1px;height:1px;opacity:0;pointer-events:none;"></div>
 
-  <span class="section-label reveal">Raspored dana</span>
+<!-- ══ MAIN CONTENT ══ -->
+<div id="main-content">
 
-  <div class="schedule-item">
-    <div class="schedule-time">17:00</div>
-    <div>
-      <div class="schedule-event">Okupljanje</div>
-      <div class="schedule-place">Park Sustipan</div>
-      <a class="map-btn" href="https://maps.app.goo.gl/j9e1RARF3Lu6j1s46" target="_blank" rel="noopener">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Vidi na karti
-      </a>
-    </div>
-    <div class="schedule-thumb">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 6 6"/><circle cx="8.5" cy="8.5" r="1.5" fill="#7a9e7e"/></svg>
-    </div>
+  <!-- HERO -->
+  <div class="parallax-section" id="hero-section">
+    <img class="parallax-img" id="hero-img" src="hero.jpg" alt="Matea i Drago">
   </div>
 
-  <div class="schedule-item">
-    <div class="schedule-time">19:00</div>
-    <div>
-      <div class="schedule-event">Vjenčanje</div>
-      <div class="schedule-place">Crkva sv. Stjepana Prvomučenika</div>
-      <a class="map-btn" href="https://maps.app.goo.gl/j9e1RARF3Lu6j1s46" target="_blank" rel="noopener">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Vidi na karti
-      </a>
-    </div>
-    <div class="schedule-thumb">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 6 6"/><circle cx="8.5" cy="8.5" r="1.5" fill="#7a9e7e"/></svg>
-    </div>
-  </div>
-
-  <div class="schedule-item">
-    <div class="schedule-time">20:30</div>
-    <div>
-      <div class="schedule-event">Svečana večera</div>
-      <div class="schedule-place">Restoran Adriatic</div>
-      <a class="map-btn" href="https://maps.app.goo.gl/j9e1RARF3Lu6j1s46" target="_blank" rel="noopener">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Vidi na karti
-      </a>
-    </div>
-    <div class="schedule-thumb">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 6 6"/><circle cx="8.5" cy="8.5" r="1.5" fill="#7a9e7e"/></svg>
-    </div>
-  </div>
-
-  <div class="transport-box reveal">
-    <p>
-      <strong>Sve na jednom mjestu</strong> — stoga preporučamo dolazak taksijem. Za one koji dolaze automobilom, parking je ispred parka — slobodna mjesta ne možemo garantirati zbog sezone.
-    </p>
-  </div>
-</div>
-
-<!-- ── COUNTDOWN ── -->
-<div class="countdown-section">
-  <div class="countdown-bg"></div>
-  <div class="countdown-overlay"></div>
-  <div class="countdown-inner">
-    <span class="countdown-label">Neka odbrojavanje krene</span>
-    <p class="countdown-names">Drago & Matea</p>
-    <div class="countdown-grid">
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-days">--</span>
-        <span class="countdown-lbl">Dana</span>
+  <!-- INTRO -->
+  <div class="intro-block">
+    <p class="intro-eyebrow">pozivamo vas na naš najvažniji projekt do sada</p>
+    <h1 class="intro-title">Projekt Pir</h1>
+    <p class="intro-tagline">jer ne možemo zamisliti ovaj dan bez vas</p>
+    <div class="date-visual">
+      <div class="date-separator">
+        <div class="date-sep-line"></div>
+        <span class="date-sep-text">Kolovoz</span>
+        <div class="date-sep-line"></div>
       </div>
-      <div class="countdown-colon">:</div>
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-hours">--</span>
-        <span class="countdown-lbl">Sati</span>
-      </div>
-      <div class="countdown-colon">:</div>
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-mins">--</span>
-        <span class="countdown-lbl">Minuta</span>
-      </div>
-      <div class="countdown-colon">:</div>
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-secs">--</span>
-        <span class="countdown-lbl">Sekundi</span>
+      <div class="date-row">
+        <div class="date-side">Subota</div>
+        <div>
+          <div class="date-num">22</div>
+          <div class="date-year">2026</div>
+        </div>
+        <div class="date-side">Park Sustipan</div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ── RSVP ── -->
-<div class="rsvp-section">
-  <div class="rsvp-inner">
-    <div class="olive-divider reveal" style="margin-bottom:32px;">
+  <!-- COUPLE PHOTO parallax -->
+  <div class="couple-section reveal">
+    <div class="couple-photo-wrap" id="parallax-wrap">
+      <img class="couple-photo" id="parallax-img" src="par.jpg" alt="Matea i Drago">
+    </div>
+  </div>
+
+  <!-- SCHEDULE -->
+  <div class="section-wrap">
+    <div class="olive-divider reveal">
       <div class="olive-divider-line"></div>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
         <ellipse cx="12" cy="12" rx="3" ry="8" fill="#7a9e7e" transform="rotate(-30 12 12)" opacity="0.7"/>
@@ -673,98 +588,247 @@ body {
       </svg>
       <div class="olive-divider-line"></div>
     </div>
+    <span class="section-label reveal">Raspored dana</span>
 
-    <h2 class="rsvp-headline">Potvrdite dolazak</h2>
-    <p class="rsvp-sub">
-      Molimo potvrdite Vaš dolazak do <strong>1. kolovoza 2026.</strong><br>
-      Ovo je jedini projekt koji ne želimo odraditi sami.
-    </p>
-
-    <form id="rsvp-form">
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Ime *</label>
-          <input class="form-input" type="text" name="ime" required placeholder="Vaše ime">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Prezime *</label>
-          <input class="form-input" type="text" name="prezime" required placeholder="Vaše prezime">
-        </div>
+    <div class="schedule-item">
+      <div class="schedule-time">17:00</div>
+      <div>
+        <div class="schedule-event">Okupljanje</div>
+        <div class="schedule-place">Park Sustipan</div>
+        <a class="map-btn" href="https://maps.app.goo.gl/j9e1RARF3Lu6j1s46" target="_blank" rel="noopener">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Vidi na karti
+        </a>
       </div>
-
-      <div class="form-group">
-        <label class="form-label">Dolazak *</label>
-        <div class="select-wrap">
-          <select class="form-select" name="potvrda" id="potvrda-select" required>
-            <option value="">— Odaberite —</option>
-            <option value="DA">Da, dolazim s veseljem!</option>
-            <option value="NE">Nažalost, ne mogu doći</option>
-          </select>
-        </div>
+      <div class="schedule-thumb">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 6 6"/><circle cx="8.5" cy="8.5" r="1.5" fill="#7a9e7e"/></svg>
       </div>
+    </div>
 
-      <div id="da-fields" style="display:none;">
+    <div class="schedule-item">
+      <div class="schedule-time">19:00</div>
+      <div>
+        <div class="schedule-event">Vjenčanje</div>
+        <div class="schedule-place">Crkva sv. Stjepana Prvomučenika</div>
+        <a class="map-btn" href="https://maps.app.goo.gl/j9e1RARF3Lu6j1s46" target="_blank" rel="noopener">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Vidi na karti
+        </a>
+      </div>
+      <div class="schedule-thumb">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 6 6"/><circle cx="8.5" cy="8.5" r="1.5" fill="#7a9e7e"/></svg>
+      </div>
+    </div>
+
+    <div class="schedule-item">
+      <div class="schedule-time">20:30</div>
+      <div>
+        <div class="schedule-event">Candlelight Party</div>
+        <div class="schedule-place">Restoran Adriatic</div>
+        <a class="map-btn" href="https://maps.app.goo.gl/j9e1RARF3Lu6j1s46" target="_blank" rel="noopener">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Vidi na karti
+        </a>
+      </div>
+      <div class="schedule-thumb">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 6 6"/><circle cx="8.5" cy="8.5" r="1.5" fill="#7a9e7e"/></svg>
+      </div>
+    </div>
+
+    <div class="transport-box reveal">
+      <p>
+        <strong>Sve na jednom mjestu</strong> — stoga preporučamo dolazak taksijem. Za one koji dolaze automobilom, parking je ispred parka — slobodna mjesta ne možemo garantirati zbog sezone.
+      </p>
+    </div>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-section">
+    <div class="countdown-bg" id="countdown-bg"></div>
+    <div class="countdown-overlay"></div>
+    <div class="countdown-inner">
+      <span class="countdown-label">Neka odbrojavanje krene</span>
+      <p class="countdown-names">Drago & Matea</p>
+      <div class="countdown-grid">
+        <div class="countdown-item"><span class="countdown-num" id="cd-days">--</span><span class="countdown-lbl">Dana</span></div>
+        <div class="countdown-colon">:</div>
+        <div class="countdown-item"><span class="countdown-num" id="cd-hours">--</span><span class="countdown-lbl">Sati</span></div>
+        <div class="countdown-colon">:</div>
+        <div class="countdown-item"><span class="countdown-num" id="cd-mins">--</span><span class="countdown-lbl">Minuta</span></div>
+        <div class="countdown-colon">:</div>
+        <div class="countdown-item"><span class="countdown-num" id="cd-secs">--</span><span class="countdown-lbl">Sekundi</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RSVP -->
+  <div class="rsvp-section">
+    <div class="rsvp-inner">
+      <div class="olive-divider reveal" style="margin-bottom:32px;">
+        <div class="olive-divider-line"></div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <ellipse cx="12" cy="12" rx="3" ry="8" fill="#7a9e7e" transform="rotate(-30 12 12)" opacity="0.7"/>
+          <ellipse cx="12" cy="12" rx="3" ry="8" fill="#4e7050" transform="rotate(30 12 12)" opacity="0.5"/>
+        </svg>
+        <div class="olive-divider-line"></div>
+      </div>
+      <h2 class="rsvp-headline">Potvrdite dolazak</h2>
+      <p class="rsvp-sub">
+        Molimo potvrdite Vaš dolazak do <strong>1. kolovoza 2026.</strong><br>
+        Ovo je jedini projekt koji ne želimo odraditi sami.
+      </p>
+      <form id="rsvp-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Ime *</label>
+            <input class="form-input" type="text" name="ime" required placeholder="Vaše ime">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Prezime *</label>
+            <input class="form-input" type="text" name="prezime" required placeholder="Vaše prezime">
+          </div>
+        </div>
         <div class="form-group">
-          <label class="form-label">Pratnja</label>
+          <label class="form-label">Dolazak *</label>
           <div class="select-wrap">
-            <select class="form-select" name="broj_gostiju" id="broj-select">
-              <option value="0">Dolazim sam/a</option>
-              <option value="1">+ 1 osoba</option>
-              <option value="2">+ 2 osobe</option>
-              <option value="3">+ 3 osobe</option>
-              <option value="4">+ 4 osobe</option>
-              <option value="5">+ 5 osoba</option>
+            <select class="form-select" name="potvrda" id="potvrda-select" required>
+              <option value="">— Odaberite —</option>
+              <option value="DA">Da, dolazim s veseljem!</option>
+              <option value="NE">Nažalost, ne mogu doći</option>
             </select>
           </div>
         </div>
-        <div class="guest-fields" id="guest-fields"></div>
+        <div id="da-fields" style="display:none;">
+          <div class="form-group">
+            <label class="form-label">Pratnja</label>
+            <div class="select-wrap">
+              <select class="form-select" name="broj_gostiju" id="broj-select">
+                <option value="0">Dolazim sam/a</option>
+                <option value="1">+ 1 osoba</option>
+                <option value="2">+ 2 osobe</option>
+                <option value="3">+ 3 osobe</option>
+                <option value="4">+ 4 osobe</option>
+                <option value="5">+ 5 osoba</option>
+              </select>
+            </div>
+          </div>
+          <div class="guest-fields" id="guest-fields"></div>
+        </div>
+        <div id="ne-message" class="ne-message">Žao nam je što nećete moći doći. Hvala što ste nas obavijestili.</div>
+        <div class="form-group">
+          <label class="form-label">Unesi imena pratnje i djece koja dolaze s tobom</label>
+          <textarea class="form-textarea" name="poruka" placeholder="npr. Ana Horvat, Marko Horvat (7 god.)..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn" id="submit-btn">Potvrdi dolazak</button>
+      </form>
+      <div class="success-msg" id="success-msg">
+        <h3>Hvala Vam!</h3>
+        <p>Vaša potvrda je zaprimljena.<br>Veselimo se što ćete biti dio našeg posebnog dana.</p>
       </div>
-
-      <div id="ne-message" class="ne-message">
-        Žao nam je što nećete moći doći. Hvala što ste nas obavijestili.
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Poruka (neobavezno)</label>
-        <textarea class="form-textarea" name="poruka" placeholder="Vaša poruka mladencima..."></textarea>
-      </div>
-
-      <button type="submit" class="submit-btn" id="submit-btn">Potvrdi dolazak</button>
-    </form>
-
-    <div class="success-msg" id="success-msg">
-      <h3>Hvala Vam!</h3>
-      <p>Vaša potvrda je zaprimljena.<br>Veselimo se što ćete biti dio našeg posebnog dana.</p>
     </div>
   </div>
-</div>
 
-<!-- ── FOOTER ── -->
-<div class="footer-section">
-  <div class="olive-divider reveal" style="margin-bottom:40px;">
-    <div class="olive-divider-line"></div>
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <ellipse cx="12" cy="12" rx="3" ry="8" fill="#7a9e7e" transform="rotate(-30 12 12)" opacity="0.7"/>
-      <ellipse cx="12" cy="12" rx="3" ry="8" fill="#4e7050" transform="rotate(30 12 12)" opacity="0.5"/>
-    </svg>
-    <div class="olive-divider-line"></div>
+  <!-- FOOTER -->
+  <div class="footer-section">
+    <div class="olive-divider reveal" style="margin-bottom:40px;">
+      <div class="olive-divider-line"></div>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <ellipse cx="12" cy="12" rx="3" ry="8" fill="#7a9e7e" transform="rotate(-30 12 12)" opacity="0.7"/>
+        <ellipse cx="12" cy="12" rx="3" ry="8" fill="#4e7050" transform="rotate(30 12 12)" opacity="0.5"/>
+      </svg>
+      <div class="olive-divider-line"></div>
+    </div>
+    <p class="footer-quote reveal" id="footer-quote">
+      "A sada ostaje vjera, nada, ljubav, to troje;<br>ali najveća od ovih je ljubav."
+    </p>
+    <p class="footer-names reveal" style="margin-top:20px;">Matea & Drago</p>
   </div>
-  <p class="footer-quote reveal">
-    <!-- Oliver stih — javite pa mijenjam -->
-    "A sada ostaje vjera, nada, ljubav, to troje;<br>ali najveća od ovih je ljubav."
-  </p>
-  <p class="footer-names reveal" style="margin-top:20px;">Matea & Drago</p>
-</div>
+
+</div><!-- /main-content -->
 
 <script>
-// ── COUNTDOWN ──
+// ══ ENVELOPE ══
+const envWrap = document.getElementById('env-wrap');
+const envScreen = document.getElementById('envelope-screen');
+const mainContent = document.getElementById('main-content');
+const envHint = document.getElementById('env-hint');
+let envelopeOpened = false;
+
+function openEnvelope() {
+  if (envelopeOpened) return;
+  envelopeOpened = true;
+  envHint.style.opacity = '0';
+  envWrap.classList.add('opening');
+  setTimeout(() => {
+    envScreen.classList.add('hide');
+    mainContent.classList.add('show');
+    document.getElementById('music-btn').classList.add('show');
+    startMusic();
+  }, 1200);
+}
+
+envWrap.addEventListener('click', openEnvelope);
+envWrap.addEventListener('touchend', e => { e.preventDefault(); openEnvelope(); });
+
+// ══ YOUTUBE MUSIC ══
+let ytPlayer = null;
+let musicPlaying = false;
+const START_SEC = 56;
+const END_SEC = 104;
+
+function onYTReady() {
+  ytPlayer = new YT.Player('yt-player', {
+    height: '1', width: '1',
+    videoId: 'Ev1ghexU66Y',
+    playerVars: { start: START_SEC, end: END_SEC, autoplay: 0, controls: 0, disablekb: 1, loop: 0 },
+    events: {
+      onStateChange: e => {
+        if (e.data === YT.PlayerState.ENDED) {
+          musicPlaying = false;
+          updateMusicIcon();
+        }
+      }
+    }
+  });
+}
+
+window.onYouTubeIframeAPIReady = onYTReady;
+
+// Load YT API
+const tag = document.createElement('script');
+tag.src = 'https://www.youtube.com/iframe_api';
+document.head.appendChild(tag);
+
+function startMusic() {
+  if (!ytPlayer) { setTimeout(startMusic, 500); return; }
+  ytPlayer.seekTo(START_SEC);
+  ytPlayer.playVideo();
+  musicPlaying = true;
+  updateMusicIcon();
+}
+
+document.getElementById('music-btn').addEventListener('click', () => {
+  if (!ytPlayer) return;
+  if (musicPlaying) {
+    ytPlayer.pauseVideo();
+    musicPlaying = false;
+  } else {
+    ytPlayer.playVideo();
+    musicPlaying = true;
+  }
+  updateMusicIcon();
+});
+
+function updateMusicIcon() {
+  document.getElementById('music-icon-on').style.display = musicPlaying ? 'block' : 'none';
+  document.getElementById('music-icon-off').style.display = musicPlaying ? 'none' : 'block';
+}
+
+// ══ COUNTDOWN ══
 const wedding = new Date('2026-08-22T17:00:00');
 function tick() {
   const diff = wedding - new Date();
-  if (diff <= 0) {
-    ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => document.getElementById(id).textContent = '00');
-    return;
-  }
+  if (diff <= 0) { ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => document.getElementById(id).textContent = '00'); return; }
   const pad = n => String(n).padStart(2,'0');
   document.getElementById('cd-days').textContent  = pad(Math.floor(diff/86400000));
   document.getElementById('cd-hours').textContent = pad(Math.floor(diff%86400000/3600000));
@@ -773,20 +837,44 @@ function tick() {
 }
 tick(); setInterval(tick, 1000);
 
-// ── PARALLAX ──
-const pImg = document.getElementById('parallax-img');
-const pWrap = document.getElementById('parallax-wrap');
-if (pImg && pWrap) {
-  window.addEventListener('scroll', () => {
-    const rect = pWrap.getBoundingClientRect();
-    const vh = window.innerHeight;
-    if (rect.bottom < 0 || rect.top > vh) return;
-    const progress = (vh - rect.top) / (vh + rect.height);
-    pImg.style.transform = `translateY(${(progress - 0.5) * 80}px)`;
-  }, { passive: true });
-}
+// ══ PARALLAX ══
+function parallax() {
+  const vh = window.innerHeight;
 
-// ── RSVP ──
+  // Hero
+  const heroImg = document.getElementById('hero-img');
+  if (heroImg) {
+    const rect = heroImg.parentElement.getBoundingClientRect();
+    if (rect.bottom > 0 && rect.top < vh) {
+      const p = (vh - rect.top) / (vh + rect.height);
+      heroImg.style.transform = `translateY(${(p - 0.5) * 60}px)`;
+    }
+  }
+
+  // Couple
+  const pImg = document.getElementById('parallax-img');
+  const pWrap = document.getElementById('parallax-wrap');
+  if (pImg && pWrap) {
+    const rect = pWrap.getBoundingClientRect();
+    if (rect.bottom > 0 && rect.top < vh) {
+      const p = (vh - rect.top) / (vh + rect.height);
+      pImg.style.transform = `translateY(${(p - 0.5) * 80}px)`;
+    }
+  }
+
+  // Countdown bg
+  const cdBg = document.getElementById('countdown-bg');
+  if (cdBg) {
+    const rect = cdBg.parentElement.getBoundingClientRect();
+    if (rect.bottom > 0 && rect.top < vh) {
+      const p = (vh - rect.top) / (vh + rect.height);
+      cdBg.style.transform = `translateY(${(p - 0.5) * 50}px)`;
+    }
+  }
+}
+window.addEventListener('scroll', parallax, { passive: true });
+
+// ══ RSVP ══
 const sel = document.getElementById('potvrda-select');
 const daF = document.getElementById('da-fields');
 const neM = document.getElementById('ne-message');
@@ -797,29 +885,20 @@ sel.addEventListener('change', () => {
   daF.style.display = sel.value === 'DA' ? 'block' : 'none';
   neM.style.display = sel.value === 'NE' ? 'block' : 'none';
 });
-
 bSel.addEventListener('change', () => {
   const n = parseInt(bSel.value);
   gF.innerHTML = '';
   if (n > 0) {
     gF.classList.add('show');
-    const lbl = document.createElement('div');
-    lbl.className = 'guest-label';
-    lbl.textContent = 'Ime i prezime pratnje';
-    gF.appendChild(lbl);
+    const lbl = document.createElement('div'); lbl.className = 'guest-label'; lbl.textContent = 'Ime i prezime pratnje'; gF.appendChild(lbl);
     for (let i = 1; i <= n; i++) {
       const inp = document.createElement('input');
-      inp.type = 'text'; inp.name = 'gost_' + i;
-      inp.placeholder = 'Gost ' + i + ' — ime i prezime';
-      inp.className = 'guest-input';
+      inp.type = 'text'; inp.name = 'gost_' + i; inp.placeholder = 'Gost ' + i + ' — ime i prezime'; inp.className = 'guest-input';
       gF.appendChild(inp);
     }
-  } else {
-    gF.classList.remove('show');
-  }
+  } else { gF.classList.remove('show'); }
 });
 
-// ── SUBMIT ──
 document.getElementById('rsvp-form').addEventListener('submit', async e => {
   e.preventDefault();
   const btn = document.getElementById('submit-btn');
@@ -827,17 +906,14 @@ document.getElementById('rsvp-form').addEventListener('submit', async e => {
   const data = {};
   new FormData(e.target).forEach((v,k) => data[k]=v);
   const WEBHOOK = 'YOUR_MAKE_WEBHOOK_URL_HERE';
-  try { await fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }); }
-  catch(err) { console.log(err); }
+  try { await fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }); } catch(err) { console.log(err); }
   e.target.style.display = 'none';
   document.getElementById('success-msg').style.display = 'block';
 });
 
-// ── REVEAL ──
+// ══ REVEAL ══
 const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-  });
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
 }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.reveal, .schedule-item').forEach(el => obs.observe(el));
 </script>
