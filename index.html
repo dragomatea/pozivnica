@@ -207,7 +207,10 @@ body { background: var(--cream); color: var(--text-dark); font-family: 'Jost', s
 
 .couple-section { padding: 0 28px; max-width: 580px; margin: 0 auto 8px; }
 .couple-photo-wrap { border-radius: 3px; position: relative; }
-.couple-photo { width: 100%; height: auto; display: block; }
+.couple-photo { width: 100%; height: auto; display: block; max-height: 90vh; object-fit: cover; object-position: center 10%; }
+@media (max-width: 600px) {
+  .couple-photo { max-height: 75vh; object-position: center 5%; }
+}
 
 .section-wrap { padding: 52px 28px; max-width: 580px; margin: 0 auto; }
 .section-label { display: block; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--sage); margin-bottom: 24px; }
@@ -273,7 +276,7 @@ body { background: var(--cream); color: var(--text-dark); font-family: 'Jost', s
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
 .reveal.visible { opacity: 1; transform: none; }
-@media (max-width: 480px) { .section-wrap { padding: 44px 20px; } .couple-photo-wrap { height: 300px; } .schedule-item { grid-template-columns: 52px 1fr auto; } .countdown-colon { font-size: 28px; padding-bottom: 18px; } }
+@media (max-width: 480px) { .section-wrap { padding: 44px 20px; } .schedule-item { grid-template-columns: 52px 1fr auto; } .countdown-colon { font-size: 28px; padding-bottom: 18px; } .countdown-section { padding: 60px 20px; min-height: 0; } .countdown-num { font-size: 36px !important; } .countdown-names { font-size: 32px !important; margin-bottom: 24px; } }
 </style>
 </head>
 <body>
@@ -307,7 +310,7 @@ body { background: var(--cream); color: var(--text-dark); font-family: 'Jost', s
   <svg id="icon-off" viewBox="0 0 24 24" style="display:none"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><line x1="2" y1="2" x2="22" y2="22" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
 </button>
 
-<audio id="pisma" src="pisma.mp3" preload="auto"></audio>
+<audio id="pisma" src="pisma.mp3" preload="auto" playsinline></audio>
 
 <!-- ══ MAIN ══ -->
 <div id="main-content">
@@ -465,6 +468,9 @@ let opened = false;
 function openEnvelope() {
   if (opened) return;
   opened = true;
+  // iOS zahtijeva da audio.play() bude direktno u user gesture callbacku
+  audio.load();
+  audio.play().then(() => { musicPlaying = true; updateIcon(); }).catch(() => {});
   playSwoosh();
   document.getElementById('env-hint').style.opacity = '0';
   envScene.classList.add('opening');
@@ -472,7 +478,6 @@ function openEnvelope() {
     envScreen.classList.add('hide');
     mainContent.classList.add('show');
     document.getElementById('music-btn').classList.add('show');
-    startMusic();
   }, 1400);
 }
 
@@ -483,12 +488,7 @@ envScene.addEventListener('touchend', e => { e.preventDefault(); openEnvelope();
 const audio = document.getElementById('pisma');
 let musicPlaying = false;
 
-function startMusic() {
-  audio.play().then(() => {
-    musicPlaying = true;
-    updateIcon();
-  }).catch(() => {});
-}
+// startMusic — glazba se pokreće direktno u openEnvelope
 
 audio.addEventListener('ended', () => {
   musicPlaying = false;
