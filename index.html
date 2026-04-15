@@ -206,12 +206,8 @@ body { background: var(--cream); color: var(--text-dark); font-family: 'Jost', s
 .olive-divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--sage-light), transparent); }
 
 .couple-section { padding: 0 28px; max-width: 580px; margin: 0 auto 8px; }
-.couple-photo-wrap { overflow: hidden; border-radius: 3px; height: 380px; position: relative; }
-.couple-photo { width: 100%; height: 140%; object-fit: cover; object-position: center 15%; will-change: transform; display: block; }
-@media (max-width: 600px) {
-  .couple-photo-wrap { height: auto; }
-  .couple-photo { height: auto; object-fit: unset; transform: none !important; }
-}
+.couple-photo-wrap { overflow: hidden; border-radius: 3px; position: relative; }
+.couple-photo { width: 100%; height: auto; display: block; }
 
 .section-wrap { padding: 52px 28px; max-width: 580px; margin: 0 auto; }
 .section-label { display: block; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--sage); margin-bottom: 24px; }
@@ -348,19 +344,19 @@ body { background: var(--cream); color: var(--text-dark); font-family: 'Jost', s
     <div class="schedule-item">
       <div class="schedule-time">17:00</div>
       <div><div class="schedule-event">Okupljanje</div><div class="schedule-place">Park Sustipan</div><a class="map-btn" href="https://maps.app.goo.gl/j9e1RARF3Lu6j1s46" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Vidi na karti</a></div>
-      <div class="schedule-thumb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 6 6"/><circle cx="8.5" cy="8.5" r="1.5" fill="#7a9e7e"/></svg></div>
+      <div class="schedule-thumb"><img src="foto_sustipan.jpg" alt="Park Sustipan" onerror="this.parentElement.innerHTML='<svg width=20 height=20 viewBox=&quot;0 0 24 24&quot; fill=none stroke=#7a9e7e stroke-width=1.5><rect x=3 y=3 width=18 height=18 rx=2/><path d=&quot;M3 9l4-4 4 4 4-6 6 6&quot;/></svg>'"></div>
     </div>
 
     <div class="schedule-item">
       <div class="schedule-time">19:00</div>
-      <div><div class="schedule-event">Vjenčanje</div><div class="schedule-place">Crkva sv. Stjepana Prvomučenika</div><a class="map-btn" href="https://maps.app.goo.gl/j9e1RARF3Lu6j1s46" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Vidi na karti</a></div>
-      <div class="schedule-thumb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 6 6"/><circle cx="8.5" cy="8.5" r="1.5" fill="#7a9e7e"/></svg></div>
+      <div><div class="schedule-event">Vjenčanje</div><div class="schedule-place">Crkva sv. Stjepana Prvomučenika</div><a class="map-btn" href="https://maps.app.goo.gl/qE2d1wBbYSFBLuor9" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Vidi na karti</a></div>
+      <div class="schedule-thumb"><img src="foto_crkva.jpg" alt="Crkva sv. Stjepana" onerror="this.parentElement.innerHTML='<svg width=20 height=20 viewBox=&quot;0 0 24 24&quot; fill=none stroke=#7a9e7e stroke-width=1.5><rect x=3 y=3 width=18 height=18 rx=2/><path d=&quot;M3 9l4-4 4 4 4-6 6 6&quot;/></svg>'"></div>
     </div>
 
     <div class="schedule-item">
       <div class="schedule-time">20:30</div>
-      <div><div class="schedule-event">Candlelight Party</div><div class="schedule-place">Restoran Adriatic</div><a class="map-btn" href="https://maps.app.goo.gl/j9e1RARF3Lu6j1s46" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Vidi na karti</a></div>
-      <div class="schedule-thumb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 6 6"/><circle cx="8.5" cy="8.5" r="1.5" fill="#7a9e7e"/></svg></div>
+      <div><div class="schedule-event">Candlelight Party</div><div class="schedule-place">Restoran Adriatic</div><a class="map-btn" href="https://maps.app.goo.gl/WFQW2bkW4CLjkuGg8" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Vidi na karti</a></div>
+      <div class="schedule-thumb"><img src="foto_adriatic.jpg" alt="Restoran Adriatic" onerror="this.parentElement.innerHTML='<svg width=20 height=20 viewBox=&quot;0 0 24 24&quot; fill=none stroke=#7a9e7e stroke-width=1.5><rect x=3 y=3 width=18 height=18 rx=2/><path d=&quot;M3 9l4-4 4 4 4-6 6 6&quot;/></svg>'"></div>
     </div>
 
     <div class="transport-box reveal">
@@ -396,16 +392,35 @@ body { background: var(--cream); color: var(--text-dark); font-family: 'Jost', s
           <div class="form-group"><label class="form-label">Ime *</label><input class="form-input" type="text" name="ime" required placeholder="Vaše ime"></div>
           <div class="form-group"><label class="form-label">Prezime *</label><input class="form-input" type="text" name="prezime" required placeholder="Vaše prezime"></div>
         </div>
-        <div class="form-group"><label class="form-label">Dolazak *</label><div class="select-wrap"><select class="form-select" name="potvrda" id="potvrda-select" required><option value="">— Odaberite —</option><option value="DA">Da, dolazim s veseljem!</option><option value="NE">Nažalost, ne mogu doći</option></select></div></div>
-        <div id="da-fields" style="display:none;">
-          <div class="form-group"><label class="form-label">Pratnja</label><div class="select-wrap"><select class="form-select" name="broj_gostiju" id="broj-select"><option value="0">Dolazim sam/a</option><option value="1">+ 1 osoba</option><option value="2">+ 2 osobe</option><option value="3">+ 3 osobe</option><option value="4">+ 4 osobe</option><option value="5">+ 5 osoba</option></select></div></div>
-          <div class="guest-fields" id="guest-fields"></div>
+
+        <div class="form-group">
+          <label class="form-label">Dolazak *</label>
+          <div class="select-wrap">
+            <select class="form-select" name="potvrda" id="potvrda-select" required>
+              <option value="">— Odaberite —</option>
+              <option value="DA">Dolazim!</option>
+              <option value="MOZDA">Možda</option>
+              <option value="NE">Ne dolazim</option>
+            </select>
+          </div>
         </div>
+
+        <div id="da-fields" style="display:none;">
+          <div class="form-group">
+            <label class="form-label">Koliko vas dolazi ukupno? (uključujući sebe) *</label>
+            <input class="form-input" type="number" name="broj_gostiju" min="1" max="20" placeholder="npr. 3">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Imena svih koji dolaze</label>
+            <textarea class="form-textarea" name="imena_gostiju" placeholder="npr. Ivan Horvat, Ana Horvat, Maja Horvat (5 god.)..."></textarea>
+          </div>
+        </div>
+
         <div id="ne-message" class="ne-message">Žao nam je što nećete moći doći. Hvala što ste nas obavijestili.</div>
-        <div class="form-group"><label class="form-label">Unesi imena pratnje i djece koja dolaze s tobom</label><textarea class="form-textarea" name="poruka" placeholder="npr. Ana Horvat, Marko Horvat (7 god.)..."></textarea></div>
-        <button type="submit" class="submit-btn" id="submit-btn">Potvrdi dolazak</button>
+
+        <button type="submit" class="submit-btn" id="submit-btn">Potvrdi</button>
       </form>
-      <div class="success-msg" id="success-msg"><h3>Hvala Vam!</h3><p>Vaša potvrda je zaprimljena.<br>Veselimo se što ćete biti dio našeg posebnog dana.</p></div>
+      <div class="success-msg" id="success-msg"><h3>Hvala!</h3><p>Jedva čekamo proslaviti ovaj dan s vama.</p></div>
     </div>
   </div>
 
@@ -537,22 +552,23 @@ window.addEventListener('scroll', parallax, { passive: true });
 const sel = document.getElementById('potvrda-select');
 const daF = document.getElementById('da-fields');
 const neM = document.getElementById('ne-message');
-const bSel = document.getElementById('broj-select');
-const gF = document.getElementById('guest-fields');
-sel.addEventListener('change', () => { daF.style.display = sel.value==='DA'?'block':'none'; neM.style.display = sel.value==='NE'?'block':'none'; });
-bSel.addEventListener('change', () => {
-  const n = parseInt(bSel.value); gF.innerHTML = '';
-  if (n > 0) {
-    gF.classList.add('show');
-    const lbl = document.createElement('div'); lbl.className = 'guest-label'; lbl.textContent = 'Ime i prezime pratnje'; gF.appendChild(lbl);
-    for (let i = 1; i <= n; i++) { const inp = document.createElement('input'); inp.type='text'; inp.name='gost_'+i; inp.placeholder='Gost '+i+' — ime i prezime'; inp.className='guest-input'; gF.appendChild(inp); }
-  } else gF.classList.remove('show');
+sel.addEventListener('change', () => {
+  daF.style.display = (sel.value === 'DA' || sel.value === 'MOZDA') ? 'block' : 'none';
+  neM.style.display = sel.value === 'NE' ? 'block' : 'none';
 });
 document.getElementById('rsvp-form').addEventListener('submit', async e => {
   e.preventDefault();
   const btn = document.getElementById('submit-btn'); btn.disabled=true; btn.textContent='Šalje se...';
-  const data = {}; new FormData(e.target).forEach((v,k) => data[k]=v);
-  try { await fetch('YOUR_MAKE_WEBHOOK_URL_HERE', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }); } catch(err) {}
+  const raw = {};
+  new FormData(e.target).forEach((v,k) => raw[k]=v);
+  const data = {
+    ime_prezime: (raw.ime + ' ' + raw.prezime).trim(),
+    potvrda: raw.potvrda,
+    broj_gostiju: raw.broj_gostiju || '',
+    imena_gostiju: raw.imena_gostiju || '',
+    datum: new Date().toLocaleString('hr-HR', { timeZone: 'Europe/Zagreb' })
+  };
+  try { await fetch('https://hook.eu1.make.com/qm99187u4kdyfju7okbglwmfjwo6u57k', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }); } catch(err) {}
   e.target.style.display='none'; document.getElementById('success-msg').style.display='block';
 });
 
