@@ -103,14 +103,7 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
 }
 
 /* Botanical SVG corners on envelope */
-.env-botanical{
-  position:absolute;
-  pointer-events:none;
-  z-index:3;
-  opacity:0.22;
-}
-.env-botanical-tl{top:0;left:0;width:clamp(120px,28vw,220px)}
-.env-botanical-br{bottom:0;right:0;width:clamp(100px,24vw,190px);transform:rotate(180deg)}
+
 
 /* Flap */
 .env-flap{
@@ -243,12 +236,7 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
 @keyframes kenBurns{from{transform:scale(1) translateY(0)}to{transform:scale(1.06) translateY(-18px)}}
 @media(max-width:600px){.hero-photo{max-height:none;height:auto;object-fit:unset;animation:none}}
 
-/* Botanical overlay on hero corners */
-.hero-botanical{
-  position:absolute;pointer-events:none;z-index:2;opacity:0.75;
-}
-.hero-botanical-bl{bottom:0;left:0;width:clamp(100px,22vw,180px)}
-.hero-botanical-tr{top:0;right:0;width:clamp(90px,18vw,160px);transform:rotate(180deg)}
+
 
 /* ── INTRO ── */
 .intro-section{
@@ -259,12 +247,7 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
   overflow:hidden;
 }
 
-/* Watermark botanical background */
-.intro-watermark{
-  position:absolute;inset:0;
-  pointer-events:none;z-index:0;
-  opacity:1;
-}
+
 
 .intro-content{position:relative;z-index:1}
 
@@ -282,13 +265,7 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
   margin-bottom:10px;letter-spacing:-1px;
   opacity:0;animation:fadeUp 1.2s ease 0.4s forwards;
 }
-.intro-title-sub{
-  font-family:'Cinzel',serif;
-  font-size:clamp(9px,2vw,11px);
-  letter-spacing:9px;text-transform:uppercase;
-  color:var(--olive-light);display:block;margin-bottom:36px;
-  opacity:0;animation:fadeUp 1s ease 0.55s forwards;
-}
+
 .intro-tagline{
   font-family:'Cormorant',serif;font-style:italic;
   font-size:clamp(18px,4.2vw,25px);
@@ -310,13 +287,7 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
 .date-number{font-family:'Playfair Display',serif;font-size:clamp(80px,20vw,130px);font-weight:400;color:var(--ink);line-height:0.85}
 .date-year{font-family:'Cinzel',serif;font-size:clamp(9px,2vw,10px);letter-spacing:5px;color:var(--text-soft);text-align:center;margin-top:8px}
 
-/* ── BOTANICAL DIVIDER ── */
-.bot-divider{
-  display:flex;align-items:center;gap:0;
-  max-width:680px;margin:0 auto;padding:0 24px;
-}
-.bot-divider-line{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(168,144,90,0.3),transparent)}
-.bot-divider-svg{flex-shrink:0;opacity:0.65}
+
 
 /* ── COUPLE PHOTO ── */
 .couple-section{padding:0 32px;max-width:680px;margin:0 auto 80px}
@@ -334,11 +305,7 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
 
 /* ── TIMELINE ── */
 .timeline{position:relative;padding-left:0}
-.timeline-line{
-  position:absolute;left:54px;top:10px;bottom:10px;
-  width:1px;
-  background:linear-gradient(to bottom,transparent,rgba(168,144,90,0.4) 10%,rgba(168,144,90,0.4) 90%,transparent);
-}
+.timeline-line{display:none}
 .timeline-item{
   display:grid;grid-template-columns:54px 1fr auto;
   gap:0 24px;margin-bottom:52px;align-items:start;
@@ -353,13 +320,7 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
   font-size:24px;color:var(--olive-light);
   line-height:1;text-align:right;padding-top:2px;position:relative;
 }
-.timeline-time::after{
-  content:'';position:absolute;
-  right:-28px;top:8px;
-  width:9px;height:9px;border-radius:50%;
-  background:var(--cream);border:1.5px solid var(--gold);
-  box-shadow:0 0 0 3px var(--cream);
-}
+.timeline-time::after{display:none}
 .timeline-event{font-family:'Cinzel',serif;font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--text-soft);margin-bottom:5px}
 .timeline-place{
   font-family:'Playfair Display',serif;font-style:italic;
@@ -441,9 +402,7 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
   padding:88px 32px 96px;
 }
 /* Botanical watermark in RSVP */
-.rsvp-watermark{
-  position:absolute;inset:0;pointer-events:none;z-index:0;opacity:1;
-}
+
 .rsvp-inner{position:relative;z-index:1;max-width:560px;margin:0 auto}
 .rsvp-headline{
   font-family:'Playfair Display',serif;font-style:italic;
@@ -520,14 +479,14 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
 .cal-btn{
   display:inline-flex;align-items:center;gap:10px;
   margin-top:24px;padding:14px 28px;
-  border:1px solid rgba(61,107,61,0.35);border-radius:2px;
-  background:transparent;
+  border:1px solid var(--olive);border-radius:2px;
+  background:var(--olive);
   font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;
-  color:var(--olive);text-decoration:none;
+  color:var(--cream);text-decoration:none;
   transition:background 0.25s,border-color 0.25s,color 0.25s;
 }
-.cal-btn:hover{background:var(--olive);border-color:var(--olive);color:var(--cream)}
-.cal-btn svg{flex-shrink:0}
+.cal-btn:hover{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.cal-btn svg{flex-shrink:0;stroke:var(--cream)}
 
 /* ── FOOTER ── */
 .footer-section{
@@ -535,7 +494,7 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
   padding:80px 32px 88px;
   max-width:680px;margin:0 auto;text-align:center;
 }
-.footer-watermark{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:1}
+
 .footer-content{position:relative;z-index:1}
 
 .footer-quote-frame{
@@ -586,6 +545,9 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.9s ease,transform 0.9s ease}
 .reveal.visible{opacity:1;transform:none}
+
+.hero-botanical,.intro-watermark,.bot-divider,.intro-title-sub,
+.countdown-botanical,.env-botanical,.footer-watermark,.rsvp-watermark{display:none!important}
 </style>
 </head>
 <body>
@@ -601,35 +563,6 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
       <div class="env-tri-left"></div>
       <div class="env-tri-right"></div>
       <div class="env-tri-bottom"></div>
-
-      <!-- Botanical SVG corners on envelope -->
-      <svg class="env-botanical env-botanical-tl" viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10 10 Q30 80 20 150 Q50 100 70 160 Q40 110 60 180" stroke="#8ab88a" stroke-width="1.5" fill="none"/>
-        <ellipse cx="45" cy="80" rx="18" ry="8" fill="#6a9a6a" transform="rotate(-35 45 80)" opacity="0.8"/>
-        <ellipse cx="60" cy="110" rx="16" ry="7" fill="#8ab88a" transform="rotate(-25 60 110)" opacity="0.7"/>
-        <ellipse cx="55" cy="140" rx="15" ry="6" fill="#6a9a6a" transform="rotate(-15 55 140)" opacity="0.75"/>
-        <ellipse cx="65" cy="165" rx="14" ry="6" fill="#8ab88a" transform="rotate(-5 65 165)" opacity="0.65"/>
-        <path d="M35 70 Q25 90 28 110" stroke="#6a9a6a" stroke-width="1.2" fill="none"/>
-        <ellipse cx="27" cy="102" rx="12" ry="5" fill="#8ab88a" transform="rotate(30 27 102)" opacity="0.6"/>
-        <!-- Lemon -->
-        <ellipse cx="90" cy="40" rx="24" ry="17" fill="#c8be4a" transform="rotate(-20 90 40)" opacity="0.55"/>
-        <path d="M75 32 Q90 20 105 32" stroke="#a8a030" stroke-width="1" fill="none" opacity="0.6"/>
-        <path d="M90 24 L90 8 Q100 2 108 6" stroke="#6a9a6a" stroke-width="1.2" fill="none"/>
-        <ellipse cx="106" cy="5" rx="12" ry="5" fill="#6a9a6a" transform="rotate(-30 106 5)" opacity="0.6"/>
-        <!-- Small olives -->
-        <circle cx="30" cy="155" r="5" fill="#5a8a5a" opacity="0.5"/>
-        <circle cx="42" cy="168" r="4" fill="#7aaa7a" opacity="0.45"/>
-      </svg>
-
-      <svg class="env-botanical env-botanical-br" viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10 10 Q30 80 20 150 Q50 100 70 160 Q40 110 60 180" stroke="#8ab88a" stroke-width="1.5" fill="none"/>
-        <ellipse cx="45" cy="80" rx="18" ry="8" fill="#6a9a6a" transform="rotate(-35 45 80)" opacity="0.8"/>
-        <ellipse cx="60" cy="110" rx="16" ry="7" fill="#8ab88a" transform="rotate(-25 60 110)" opacity="0.7"/>
-        <ellipse cx="55" cy="140" rx="15" ry="6" fill="#6a9a6a" transform="rotate(-15 55 140)" opacity="0.75"/>
-        <ellipse cx="65" cy="165" rx="14" ry="6" fill="#8ab88a" transform="rotate(-5 65 165)" opacity="0.65"/>
-        <ellipse cx="90" cy="40" rx="24" ry="17" fill="#c8be4a" transform="rotate(-20 90 40)" opacity="0.55"/>
-        <circle cx="30" cy="155" r="5" fill="#5a8a5a" opacity="0.5"/>
-      </svg>
 
       <!-- Flap -->
       <div class="env-flap" id="env-flap">
@@ -697,83 +630,20 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
   <!-- HERO -->
   <div class="hero-wrap">
     <img class="hero-photo" id="hero-img" src="hero.jpg" alt="Matea i Drago">
-    <!-- Botanical corner overlays on hero -->
-    <svg class="hero-botanical hero-botanical-bl" viewBox="0 0 180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M10 210 Q40 160 30 100 Q60 140 80 90 Q55 130 75 70" stroke="rgba(255,255,255,0.55)" stroke-width="1.8" fill="none"/>
-      <ellipse cx="55" cy="140" rx="20" ry="9" fill="rgba(255,255,255,0.3)" transform="rotate(30 55 140)"/>
-      <ellipse cx="70" cy="110" rx="18" ry="8" fill="rgba(255,255,255,0.25)" transform="rotate(20 70 110)"/>
-      <ellipse cx="72" cy="80" rx="16" ry="7" fill="rgba(255,255,255,0.28)" transform="rotate(10 72 80)"/>
-      <ellipse cx="30" cy="50" rx="26" ry="19" fill="rgba(220,210,80,0.3)" transform="rotate(-15 30 50)"/>
-      <path d="M18 42 Q30 28 42 42" stroke="rgba(200,190,60,0.4)" stroke-width="1.2" fill="none"/>
-      <circle cx="52" cy="128" r="5.5" fill="rgba(255,255,255,0.2)"/>
-      <circle cx="62" cy="148" r="4.5" fill="rgba(255,255,255,0.18)"/>
-    </svg>
-    <svg class="hero-botanical hero-botanical-tr" viewBox="0 0 180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M170 10 Q140 60 150 120 Q120 80 100 130 Q125 90 105 150" stroke="rgba(255,255,255,0.55)" stroke-width="1.8" fill="none"/>
-      <ellipse cx="125" cy="80" rx="20" ry="9" fill="rgba(255,255,255,0.3)" transform="rotate(-30 125 80)"/>
-      <ellipse cx="110" cy="110" rx="18" ry="8" fill="rgba(255,255,255,0.25)" transform="rotate(-20 110 110)"/>
-      <ellipse cx="148" cy="170" rx="26" ry="19" fill="rgba(220,210,80,0.28)" transform="rotate(15 148 170)"/>
-      <circle cx="118" cy="92" r="5" fill="rgba(255,255,255,0.2)"/>
-    </svg>
   </div>
 
   <!-- INTRO -->
   <div class="intro-section">
-    <!-- Botanical watermark -->
-    <svg class="intro-watermark" viewBox="0 0 680 500" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g opacity="0.055" stroke="#3d6b3d" stroke-width="1.2">
-        <!-- Large lemon top right -->
-        <ellipse cx="580" cy="80" rx="55" ry="40" transform="rotate(-20 580 80)"/>
-        <path d="M540 68 Q580 40 620 68"/>
-        <path d="M580 42 L580 10 Q600 -2 615 5"/>
-        <ellipse cx="612" cy="4" rx="28" ry="12" transform="rotate(-30 612 4)"/>
-        <!-- Olive branch left -->
-        <path d="M40 120 Q60 180 50 260 Q80 210 100 270 Q70 220 90 290"/>
-        <ellipse cx="72" cy="180" rx="22" ry="10" transform="rotate(-30 72 180)"/>
-        <ellipse cx="85" cy="215" rx="20" ry="9" transform="rotate(-20 85 215)"/>
-        <ellipse cx="80" cy="248" rx="18" ry="8" transform="rotate(-10 80 248)"/>
-        <circle cx="74" cy="187" r="6"/>
-        <circle cx="82" cy="220" r="5.5"/>
-        <!-- Small lemon bottom left -->
-        <ellipse cx="80" cy="430" rx="40" ry="29" transform="rotate(15 80 430)"/>
-        <path d="M55 420 Q80 400 105 420"/>
-        <path d="M80 403 L80 378 Q93 368 102 373"/>
-        <ellipse cx="100" cy="371" rx="20" ry="9" transform="rotate(-25 100 371)"/>
-        <!-- Olive branch right -->
-        <path d="M640 350 Q620 290 630 210 Q600 250 580 190 Q610 240 590 170"/>
-        <ellipse cx="608" cy="290" rx="22" ry="10" transform="rotate(150 608 290)"/>
-        <ellipse cx="595" cy="255" rx="20" ry="9" transform="rotate(160 595 255)"/>
-        <ellipse cx="600" cy="222" rx="18" ry="8" transform="rotate(170 600 222)"/>
-        <circle cx="606" cy="283" r="6"/>
-        <circle cx="593" cy="248" r="5.5"/>
-      </g>
-    </svg>
 
     <div class="intro-content">
       <span class="intro-label">Pozivamo vas na naš najvažniji projekt do sada</span>
       <h1 class="intro-title">Projekt Pir</h1>
-      <span class="intro-title-sub">Split · Kolovoz · MMXXVI</span>
       <p class="intro-tagline">jer ne možemo zamisliti ovaj dan bez vas</p>
 
       <div class="date-block">
         <div class="date-rule">
           <div class="date-rule-line"></div>
-          <div class="date-rule-center">
-            <!-- Tiny lemon SVG ornament -->
-            <svg width="18" height="14" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.55">
-              <ellipse cx="18" cy="16" rx="14" ry="10" fill="#c8be4a" transform="rotate(-10 18 16)"/>
-              <path d="M8 12 Q18 4 28 12" stroke="#a8a030" stroke-width="1" fill="none"/>
-              <path d="M18 6 L18 0 Q23 -2 27 1" stroke="#5a8a5a" stroke-width="1.2" fill="none"/>
-              <ellipse cx="26" cy="0" rx="7" ry="3" fill="#5a8a5a" transform="rotate(-25 26 0)" opacity="0.8"/>
-            </svg>
-            <span class="date-rule-text">Kolovoz</span>
-            <svg width="18" height="14" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.55">
-              <ellipse cx="18" cy="16" rx="14" ry="10" fill="#c8be4a" transform="rotate(10 18 16)"/>
-              <path d="M8 12 Q18 4 28 12" stroke="#a8a030" stroke-width="1" fill="none"/>
-              <path d="M18 6 L18 0 Q13 -2 9 1" stroke="#5a8a5a" stroke-width="1.2" fill="none"/>
-              <ellipse cx="10" cy="0" rx="7" ry="3" fill="#5a8a5a" transform="rotate(25 10 0)" opacity="0.8"/>
-            </svg>
-          </div>
+          <div class="date-rule-center"><span class="date-rule-text">Kolovoz</span></div>
           <div class="date-rule-line"></div>
         </div>
         <div class="date-main">
@@ -788,54 +658,19 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
     </div>
   </div>
 
-  <!-- BOTANICAL DIVIDER -->
-  <div class="bot-divider reveal">
-    <div class="bot-divider-line"></div>
-    <svg class="bot-divider-svg" width="120" height="36" viewBox="0 0 240 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Branch left -->
-      <path d="M20 36 Q50 20 80 36 Q60 28 90 30" stroke="#7aaa7a" stroke-width="1.2" fill="none"/>
-      <ellipse cx="55" cy="24" rx="14" ry="6" fill="#6a9a6a" transform="rotate(-20 55 24)" opacity="0.7"/>
-      <ellipse cx="72" cy="30" rx="12" ry="5" fill="#8ab88a" transform="rotate(-10 72 30)" opacity="0.65"/>
-      <!-- Lemon center -->
-      <ellipse cx="120" cy="36" rx="22" ry="16" fill="#c8be4a" transform="rotate(-5 120 36)" opacity="0.6"/>
-      <path d="M102 30 Q120 18 138 30" stroke="#a8a030" stroke-width="0.9" fill="none" opacity="0.7"/>
-      <path d="M120 20 L120 8 Q128 4 134 7" stroke="#5a8a5a" stroke-width="1" fill="none"/>
-      <ellipse cx="133" cy="6" rx="10" ry="4" fill="#6a9a6a" transform="rotate(-25 133 6)" opacity="0.65"/>
-      <!-- Branch right -->
-      <path d="M220 36 Q190 20 160 36 Q180 28 150 30" stroke="#7aaa7a" stroke-width="1.2" fill="none"/>
-      <ellipse cx="185" cy="24" rx="14" ry="6" fill="#6a9a6a" transform="rotate(20 185 24)" opacity="0.7"/>
-      <ellipse cx="168" cy="30" rx="12" ry="5" fill="#8ab88a" transform="rotate(10 168 30)" opacity="0.65"/>
-      <!-- Olive berries -->
-      <circle cx="58" cy="30" r="4" fill="#4a7a4a" opacity="0.5"/>
-      <circle cx="182" cy="30" r="4" fill="#4a7a4a" opacity="0.5"/>
-    </svg>
-    <div class="bot-divider-line"></div>
-  </div>
+    
 
   <!-- COUPLE PHOTO -->
   <div class="couple-section reveal">
     <img class="couple-photo" src="par2.jpg" alt="Matea i Drago">
   </div>
 
-  <!-- BOTANICAL DIVIDER 2 -->
-  <div class="bot-divider reveal" style="margin-bottom:52px">
-    <div class="bot-divider-line"></div>
-    <svg class="bot-divider-svg" width="80" height="28" viewBox="0 0 160 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M10 28 Q40 14 70 28" stroke="#7aaa7a" stroke-width="1.2" fill="none"/>
-      <ellipse cx="80" cy="28" rx="18" ry="13" fill="#c8be4a" opacity="0.55"/>
-      <path d="M90 28 Q120 14 150 28" stroke="#7aaa7a" stroke-width="1.2" fill="none"/>
-      <circle cx="45" cy="22" r="3.5" fill="#4a7a4a" opacity="0.5"/>
-      <circle cx="115" cy="22" r="3.5" fill="#4a7a4a" opacity="0.5"/>
-    </svg>
-    <div class="bot-divider-line"></div>
-  </div>
+    
 
   <!-- SCHEDULE -->
   <div class="section-wrap">
     <span class="section-label reveal">Raspored dana</span>
     <div class="timeline">
-      <div class="timeline-line" id="timeline-line"></div>
-
       <div class="timeline-item">
         <div class="timeline-time">17:00</div>
         <div>
@@ -885,23 +720,6 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
   <div class="countdown-section">
     <div class="countdown-bg" id="countdown-bg"></div>
     <div class="countdown-overlay"></div>
-    <!-- Botanical corners on countdown -->
-    <svg class="countdown-botanical countdown-botanical-tl" viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M10 10 Q30 70 20 140" stroke="#8ab88a" stroke-width="1.5" fill="none"/>
-      <ellipse cx="38" cy="70" rx="18" ry="8" fill="#6a9a6a" transform="rotate(-30 38 70)" opacity="0.9"/>
-      <ellipse cx="50" cy="100" rx="16" ry="7" fill="#8ab88a" transform="rotate(-20 50 100)" opacity="0.8"/>
-      <ellipse cx="45" cy="128" rx="14" ry="6" fill="#6a9a6a" transform="rotate(-10 45 128)" opacity="0.85"/>
-      <ellipse cx="80" cy="30" rx="24" ry="17" fill="#c8be4a" transform="rotate(-20 80 30)" opacity="0.6"/>
-      <circle cx="42" cy="78" r="5" fill="#4a7a4a" opacity="0.6"/>
-      <circle cx="48" cy="107" r="4.5" fill="#4a7a4a" opacity="0.55"/>
-    </svg>
-    <svg class="countdown-botanical countdown-botanical-br" viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M10 10 Q30 70 20 140" stroke="#8ab88a" stroke-width="1.5" fill="none"/>
-      <ellipse cx="38" cy="70" rx="18" ry="8" fill="#6a9a6a" transform="rotate(-30 38 70)" opacity="0.9"/>
-      <ellipse cx="50" cy="100" rx="16" ry="7" fill="#8ab88a" transform="rotate(-20 50 100)" opacity="0.8"/>
-      <ellipse cx="80" cy="30" rx="24" ry="17" fill="#c8be4a" transform="rotate(-20 80 30)" opacity="0.6"/>
-      <circle cx="42" cy="78" r="5" fill="#4a7a4a" opacity="0.6"/>
-    </svg>
     <div class="countdown-inner">
       <span class="countdown-label">Neka odbrojavanje krene</span>
       <p class="countdown-names">Drago & Matea</p>
@@ -919,21 +737,6 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
 
   <!-- RSVP -->
   <div class="rsvp-section">
-    <!-- Botanical watermark RSVP -->
-    <svg class="rsvp-watermark" viewBox="0 0 560 500" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g opacity="0.05" stroke="#3d6b3d" stroke-width="1.2">
-        <ellipse cx="480" cy="80" rx="50" ry="36" transform="rotate(-15 480 80)"/>
-        <path d="M442 70 Q480 48 518 70"/>
-        <path d="M480 50 L480 20 Q496 10 508 16"/>
-        <ellipse cx="506" cy="14" rx="26" ry="11" transform="rotate(-28 506 14)"/>
-        <path d="M60 400 Q80 340 70 260 Q100 300 120 240 Q90 280 110 200"/>
-        <ellipse cx="88" cy="340" rx="22" ry="10" transform="rotate(-30 88 340)"/>
-        <ellipse cx="102" cy="310" rx="20" ry="9" transform="rotate(-20 102 310)"/>
-        <circle cx="92" cy="347" r="6"/>
-        <ellipse cx="70" cy="100" rx="36" ry="26" transform="rotate(10 70 100)"/>
-        <path d="M44 90 Q70 70 96 90"/>
-      </g>
-    </svg>
 
     <div class="rsvp-inner">
       <div class="ornament reveal" style="margin-bottom:40px">
@@ -994,34 +797,10 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
 
   <!-- FOOTER -->
   <div class="footer-section">
-    <!-- Botanical watermark footer -->
-    <svg class="footer-watermark" viewBox="0 0 680 400" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g opacity="0.06" stroke="#3d6b3d" stroke-width="1.2">
-        <ellipse cx="100" cy="320" rx="52" ry="38" transform="rotate(12 100 320)"/>
-        <path d="M62 308 Q100 284 138 308"/>
-        <path d="M100 286 L100 258 Q86 246 76 252"/>
-        <ellipse cx="78" cy="250" rx="28" ry="12" transform="rotate(28 78 250)"/>
-        <path d="M560 80 Q540 140 550 220 Q520 180 500 240 Q530 200 510 260"/>
-        <ellipse cx="528" cy="140" rx="22" ry="10" transform="rotate(-30 528 140)"/>
-        <ellipse cx="515" cy="170" rx="20" ry="9" transform="rotate(-20 515 170)"/>
-        <circle cx="530" cy="148" r="6"/>
-        <ellipse cx="580" cy="340" rx="44" ry="32" transform="rotate(-18 580 340)"/>
-        <path d="M548 328 Q580 304 612 328"/>
-      </g>
-    </svg>
 
     <div class="footer-content">
-      <div class="bot-divider reveal" style="margin-bottom:52px;padding:0">
-        <div class="bot-divider-line"></div>
-        <svg class="bot-divider-svg" width="100" height="32" viewBox="0 0 200 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 32 Q40 18 68 32" stroke="#7aaa7a" stroke-width="1.2" fill="none"/>
-          <ellipse cx="100" cy="32" rx="20" ry="14" fill="#c8be4a" opacity="0.55"/>
-          <path d="M132 32 Q160 18 190 32" stroke="#7aaa7a" stroke-width="1.2" fill="none"/>
-          <circle cx="40" cy="26" r="3.5" fill="#4a7a4a" opacity="0.5"/>
-          <circle cx="160" cy="26" r="3.5" fill="#4a7a4a" opacity="0.5"/>
-        </svg>
-        <div class="bot-divider-line"></div>
-      </div>
+
+        
 
       <div class="footer-quote-frame reveal">
         <div class="fqc fqc-tl"></div><div class="fqc fqc-tr"></div>
@@ -1039,8 +818,7 @@ body{background:var(--cream);color:var(--text);font-family:'Cormorant',serif;ove
         <div class="ornament-line"></div>
       </div>
 
-      <span class="footer-names reveal">Matea & Drago</span>
-      <span class="footer-year reveal">MMXXVI</span>
+
     </div>
   </div>
 
@@ -1134,19 +912,7 @@ window.addEventListener('scroll',()=>{
   bar.style.height=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%';
 },{passive:true});
 
-// ══ TIMELINE DRAW ══
-(function(){
-  const line=document.getElementById('timeline-line');
-  if(!line)return;
-  line.style.height='0';line.style.transition='height 1.2s ease';
-  const obs=new IntersectionObserver(entries=>{
-    if(entries[0].isIntersecting){
-      setTimeout(()=>{line.style.height=(line.parentElement.offsetHeight-16)+'px';},300);
-      obs.disconnect();
-    }
-  },{threshold:0.1});
-  obs.observe(line.parentElement);
-})();
+
 
 // ══ RSVP ══
 const sel=document.getElementById('potvrda-select');
@@ -1174,7 +940,7 @@ function launchConfetti(){
   if(!canvas)return;
   const ctx=canvas.getContext('2d');
   canvas.width=window.innerWidth;canvas.height=window.innerHeight;
-  const colors=['#c4aa78','#a08c5b','#7aaa7a','#5a8a5a','#f4f0e6','#e8c85a','#c8be4a'];
+  const colors=['#3d6b3d','#5a8a5a','#7aaa7a','#9ab89c','#c8ddc8','#a8905a','#c8aa72'];
   const pieces=Array.from({length:130},()=>({
     x:Math.random()*canvas.width,y:-10-Math.random()*200,
     r:Math.random()*6+2,color:colors[Math.floor(Math.random()*colors.length)],
