@@ -533,7 +533,11 @@ tick(); setInterval(tick, 1000);
 
 // ══ PARALLAX — samo desktop ══
 function parallax() {
-  if (window.innerWidth <= 600) return;
+  if (window.innerWidth <= 600) {
+    const pImg = document.getElementById('parallax-img');
+    if (pImg) pImg.style.transform = 'none';
+    return;
+  }
   const vh = window.innerHeight;
   [['hero-img', document.getElementById('hero-img')?.parentElement, 60],
    ['parallax-img', document.getElementById('parallax-wrap'), 80],
