@@ -226,8 +226,8 @@ body { background: var(--cream); color: var(--text-dark); font-family: 'Jost', s
 .transport-box p { font-size: 13px; color: var(--text-mid); line-height: 1.85; }
 .transport-box strong { color: var(--olive); font-weight: 400; }
 
-.countdown-section { position: relative; overflow: hidden; padding: 120px 24px; text-align: center; min-height: 500px; display: flex; align-items: center; justify-content: center; }
-.countdown-bg { position: absolute; inset: -80px 0; background: url('nova.jpg') center 40% / cover no-repeat; will-change: transform; }
+.countdown-section { position: relative; overflow: hidden; padding: 160px 24px; text-align: center; min-height: 700px; display: flex; align-items: center; justify-content: center; }
+.countdown-bg { position: absolute; inset: -160px 0; background: url('nova.jpg') center 40% / cover no-repeat; will-change: transform; }
 .countdown-overlay { position: absolute; inset: 0; background: rgba(42,61,43,0.80); }
 .countdown-inner { position: relative; z-index: 2; width: 100%; }
 .countdown-label { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--sage-light); margin-bottom: 12px; display: block; }
@@ -329,7 +329,7 @@ body { background: var(--cream); color: var(--text-dark); font-family: 'Jost', s
 
   <div class="couple-section reveal">
     <div class="couple-photo-wrap" id="parallax-wrap">
-      <img class="couple-photo" id="parallax-img" src="par.jpg" alt="Matea i Drago">
+      <img class="couple-photo" id="parallax-img" src="par2.jpg" alt="Matea i Drago">
     </div>
   </div>
 
@@ -541,7 +541,7 @@ function parallax() {
   const vh = window.innerHeight;
   [['hero-img', document.getElementById('hero-img')?.parentElement, 60],
    ['parallax-img', document.getElementById('parallax-wrap'), 80],
-   ['countdown-bg', document.getElementById('countdown-bg')?.parentElement, 100]
+   ['countdown-bg', document.getElementById('countdown-bg')?.parentElement, 200]
   ].forEach(([id, wrap, amt]) => {
     const el = document.getElementById(id);
     if (!el || !wrap) return;
