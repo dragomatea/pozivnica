@@ -206,7 +206,7 @@ body { background: var(--cream); color: var(--text-dark); font-family: 'Jost', s
 .olive-divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--sage-light), transparent); }
 
 .couple-section { padding: 0 28px; max-width: 580px; margin: 0 auto 8px; }
-.couple-photo-wrap { overflow: hidden; border-radius: 3px; position: relative; }
+.couple-photo-wrap { border-radius: 3px; position: relative; }
 .couple-photo { width: 100%; height: auto; display: block; }
 
 .section-wrap { padding: 52px 28px; max-width: 580px; margin: 0 auto; }
@@ -307,7 +307,7 @@ body { background: var(--cream); color: var(--text-dark); font-family: 'Jost', s
   <svg id="icon-off" viewBox="0 0 24 24" style="display:none"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><line x1="2" y1="2" x2="22" y2="22" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
 </button>
 
-<div id="yt-player" style="position:fixed;width:1px;height:1px;opacity:0;pointer-events:none;left:-9999px;"></div>
+<audio id="pisma" src="pisma.mp3" preload="auto"></audio>
 
 <!-- ══ MAIN ══ -->
 <div id="main-content">
@@ -411,8 +411,8 @@ body { background: var(--cream); color: var(--text-dark); font-family: 'Jost', s
             <input class="form-input" type="number" name="broj_gostiju" min="1" max="20" placeholder="npr. 3">
           </div>
           <div class="form-group">
-            <label class="form-label">Imena svih koji dolaze</label>
-            <textarea class="form-textarea" name="imena_gostiju" placeholder="npr. Ivan Horvat, Ana Horvat, Maja Horvat (5 god.)..."></textarea>
+            <label class="form-label">Imena ostalih uzvanika koji dolaze s tobom</label>
+            <textarea class="form-textarea" name="imena_gostiju" placeholder="npr. Ana Horvat, Maja Horvat (5 god.) — sebe ne trebaš upisivati"></textarea>
           </div>
         </div>
 
@@ -426,7 +426,7 @@ body { background: var(--cream); color: var(--text-dark); font-family: 'Jost', s
 
   <div class="footer-section">
     <div class="olive-divider reveal" style="margin-bottom:40px;"><div class="olive-divider-line"></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="3" ry="8" fill="#7a9e7e" transform="rotate(-30 12 12)" opacity="0.7"/><ellipse cx="12" cy="12" rx="3" ry="8" fill="#4e7050" transform="rotate(30 12 12)" opacity="0.5"/></svg><div class="olive-divider-line"></div></div>
-    <p class="footer-quote reveal">"A sada ostaje vjera, nada, ljubav, to troje;<br>ali najveća od ovih je ljubav."</p>
+    <p class="footer-quote reveal">"Nek nam bude nagrada kuća puna naroda."</p>
     <p class="footer-names reveal" style="margin-top:20px;">Matea & Drago</p>
   </div>
 </div>
@@ -479,40 +479,33 @@ function openEnvelope() {
 envScene.addEventListener('click', openEnvelope);
 envScene.addEventListener('touchend', e => { e.preventDefault(); openEnvelope(); });
 
-// ══ YOUTUBE ══
-let ytPlayer = null, musicPlaying = false, musicQueued = false;
-
-window.onYouTubeIframeAPIReady = () => {
-  ytPlayer = new YT.Player('yt-player', {
-    videoId: 'Ev1ghexU66Y',
-    playerVars: { start: 56, end: 104, autoplay: 0, controls: 0, disablekb: 1, playsinline: 1, mute: 0 },
-    events: {
-      onReady: () => {
-        // Player is ready — if music was queued (envelope already opened), play now
-        if (musicQueued) { ytPlayer.seekTo(56); ytPlayer.playVideo(); musicPlaying = true; updateIcon(); }
-      },
-      onStateChange: e => { if (e.data === YT.PlayerState.ENDED) { musicPlaying = false; updateIcon(); } }
-    }
-  });
-};
-const tag = document.createElement('script');
-tag.src = 'https://www.youtube.com/iframe_api';
-document.head.appendChild(tag);
+// ══ GLAZBA ══
+const audio = document.getElementById('pisma');
+let musicPlaying = false;
 
 function startMusic() {
-  musicQueued = true;
-  if (ytPlayer && ytPlayer.playVideo) {
-    ytPlayer.seekTo(56); ytPlayer.playVideo(); musicPlaying = true; updateIcon();
-  }
-  // If not ready yet, onReady handler above will pick it up
+  audio.play().then(() => {
+    musicPlaying = true;
+    updateIcon();
+  }).catch(() => {});
 }
 
-document.getElementById('music-btn').addEventListener('click', () => {
-  if (!ytPlayer) return;
-  if (musicPlaying) { ytPlayer.pauseVideo(); musicPlaying = false; }
-  else { ytPlayer.playVideo(); musicPlaying = true; }
+audio.addEventListener('ended', () => {
+  musicPlaying = false;
   updateIcon();
 });
+
+document.getElementById('music-btn').addEventListener('click', () => {
+  if (musicPlaying) {
+    audio.pause();
+    musicPlaying = false;
+  } else {
+    audio.play();
+    musicPlaying = true;
+  }
+  updateIcon();
+});
+
 function updateIcon() {
   document.getElementById('icon-on').style.display = musicPlaying ? 'block' : 'none';
   document.getElementById('icon-off').style.display = musicPlaying ? 'none' : 'block';
@@ -540,7 +533,7 @@ function parallax() {
   }
   const vh = window.innerHeight;
   [['hero-img', document.getElementById('hero-img')?.parentElement, 60],
-   ['parallax-img', document.getElementById('parallax-wrap'), 80],
+
    ['countdown-bg', document.getElementById('countdown-bg')?.parentElement, 200]
   ].forEach(([id, wrap, amt]) => {
     const el = document.getElementById(id);
